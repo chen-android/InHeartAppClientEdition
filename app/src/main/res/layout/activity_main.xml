@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	tools:context="com.inheart.inheartapp.MainActivity">
+	<FrameLayout
+		android:id="@+id/main_fl"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:layout_above="@+id/main_ll" />
+
+	<LinearLayout
+		android:id="@+id/main_ll"
+		android:layout_width="match_parent"
+		android:layout_height="50dp"
+		android:orientation="horizontal"
+		android:layout_alignParentBottom="true">
+
+		<ImageButton
+			android:id="@+id/main_tab_content_iv"
+			android:layout_width="0dp"
+			android:layout_weight="1"
+			android:layout_height="match_parent"
+			android:background="@android:color/transparent"
+			android:gravity="center"/>
+
+		<ImageButton
+			android:id="@+id/main_tab_consultation_ib"
+			android:layout_width="0dp"
+			android:layout_weight="1"
+			android:layout_height="match_parent"
+			android:background="@android:color/transparent"
+			android:gravity="center"/>
+
+		<ImageButton
+			android:id="@+id/main_tab_message_ib"
+			android:layout_width="0dp"
+			android:layout_weight="1"
+			android:layout_height="match_parent"
+			android:background="@android:color/transparent"
+			android:gravity="center"/>
+
+		<ImageButton
+			android:id="@+id/main_tab_mine_ib"
+			android:layout_width="0dp"
+			android:layout_weight="1"
+			android:layout_height="match_parent"
+			android:background="@android:color/transparent"
+			android:gravity="center" />
+	</LinearLayout>
+</RelativeLayout>

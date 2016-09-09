@@ -1,0 +1,20 @@
+<resources>
+	<string name="app_name">InHeartApp</string>
+
+	<string name="main_tab_content">内容</string>
+	<string name="main_tab_consultation">问诊</string>
+	<string name="main_tab_message">消息</string>
+	<string name="main_tab_mine">个人中心</string>
+
+	<!-- 个人中心 -->
+	<string name="login_register">立即注册</string>
+	<string name="login_forget_pwd">忘记密码？</string>
+	<string name="login_login">登&#160;&#160;录</string>
+	<string name="login_other_login">其他登陆方式</string>
+
+
+
+	<!-- hint -->
+	<string name="hint_login_user_phone">请输入您的手机号</string>
+	<string name="hint_login_user_pwd">请输入您的密码</string>
+</resources>
