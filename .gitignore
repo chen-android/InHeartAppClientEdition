@@ -1,7 +1,7 @@
 /.idea/libraries
 .DS_Store
 /captures
-.idea/vcs.xml
+.idea
 ### Android template
 
 # Generated files
@@ -36,4 +36,3 @@ captures/
 *.jks
 
 */build
-
