@@ -44,6 +44,7 @@ public class Main2Activity extends AppCompatActivity {
 		titles.add("消息");
 		titles.add("个人");
 		mMain2Vp.setAdapter(new MyPagerAdapter(getSupportFragmentManager()));
+		mMain2Psts.setViewPager(mMain2Vp);
 	}
 
 	private class MyPagerAdapter extends FragmentPagerAdapter {
@@ -55,7 +56,7 @@ public class Main2Activity extends AppCompatActivity {
 
 		@Override
 		public CharSequence getPageTitle(int position) {
-			return "";
+			return titles.get(position);
 		}
 
 		@Override

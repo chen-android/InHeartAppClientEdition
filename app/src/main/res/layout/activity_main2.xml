@@ -10,12 +10,17 @@
 		android:id="@+id/main2_vp"
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
+		android:layout_above="@+id/main2_psts"
 		/>
 
 	<com.cs.widget.tab.PagerSlidingTabStrip
 		android:id="@+id/main2_psts"
 		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
+		android:layout_height="50dp"
+		android:textColor="@color/black"
 		app:pstsIndicatorColor="@color/colorPrimary"
-		app:pstsIndicatorHeight="2dp" />
+		app:pstsIndicatorHeight="2dp"
+		app:pstsLineGravity="Top"
+		app:pstsShouldExpand="true"
+		android:layout_alignParentBottom="true"/>
 </RelativeLayout>

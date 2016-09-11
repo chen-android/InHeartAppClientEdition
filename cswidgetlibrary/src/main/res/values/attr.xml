@@ -21,6 +21,8 @@
 	</declare-styleable>
 
 	<declare-styleable name="PagerSlidingTabStrip">
+		<attr name="android:textColor"/>
+		<attr name="android:textSize"/>
 		<attr name="pstsIndicatorColor" format="color"/>
 		<attr name="pstsUnderlineColor" format="color"/>
 		<attr name="pstsDividerColor" format="color"/>
@@ -32,6 +34,10 @@
 		<attr name="pstsTabBackground" format="reference"/>
 		<attr name="pstsShouldExpand" format="boolean"/>
 		<attr name="pstsTextAllCaps" format="boolean"/>
+		<attr name="pstsLineGravity">
+			<enum name="Top" value="0"/>
+			<enum name="Bottom" value="1"/>
+		</attr>
 	</declare-styleable>
 
 </resources>

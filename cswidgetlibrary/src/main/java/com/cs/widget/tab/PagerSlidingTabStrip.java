@@ -50,12 +50,6 @@ public class PagerSlidingTabStrip extends HorizontalScrollView {
 	public interface IconTabProvider {
 		public int getPageIconResId(int position);
 	}
-
-	// @formatter:off
-	private static final int[] ATTRS = new int[]{
-			android.R.attr.textSize,
-			android.R.attr.textColor
-	};
 	// @formatter:on
 
 	private LinearLayout.LayoutParams defaultTabLayoutParams;
@@ -93,6 +87,7 @@ public class PagerSlidingTabStrip extends HorizontalScrollView {
 	private int tabTextColor = 0xFE9F17;
 	private Typeface tabTypeface = null;
 	private int tabTypefaceStyle = Typeface.NORMAL;
+	private int lineGravity = 1;//滑动的线在tab栏底部还是顶部，0顶部，1底部。
 
 	private int lastScrollX = 0;
 
@@ -131,17 +126,10 @@ public class PagerSlidingTabStrip extends HorizontalScrollView {
 
 		// get system attrs (android:textSize and android:textColor)
 
-		TypedArray a = context.obtainStyledAttributes(attrs, ATTRS);
+		TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.PagerSlidingTabStrip);
 
-		tabTextSize = a.getDimensionPixelSize(ATTRS[0], tabTextSize);
-		tabTextColor = a.getColor(ATTRS[1], tabTextColor);
-
-		a.recycle();
-
-		// get custom attrs
-
-		a = context.obtainStyledAttributes(attrs, R.styleable.PagerSlidingTabStrip);
-
+		tabTextSize = a.getDimensionPixelSize(R.styleable.PagerSlidingTabStrip_android_textSize, tabTextSize);
+		tabTextColor = a.getColor(R.styleable.PagerSlidingTabStrip_android_textColor, tabTextColor);
 		indicatorColor = a.getColor(R.styleable.PagerSlidingTabStrip_pstsIndicatorColor, indicatorColor);
 		underlineColor = a.getColor(R.styleable.PagerSlidingTabStrip_pstsUnderlineColor, underlineColor);
 		dividerColor = a.getColor(R.styleable.PagerSlidingTabStrip_pstsDividerColor, dividerColor);
@@ -153,6 +141,7 @@ public class PagerSlidingTabStrip extends HorizontalScrollView {
 		shouldExpand = a.getBoolean(R.styleable.PagerSlidingTabStrip_pstsShouldExpand, shouldExpand);
 		scrollOffset = a.getDimensionPixelSize(R.styleable.PagerSlidingTabStrip_pstsScrollOffset, scrollOffset);
 		textAllCaps = a.getBoolean(R.styleable.PagerSlidingTabStrip_pstsTextAllCaps, textAllCaps);
+		lineGravity = a.getInt(R.styleable.PagerSlidingTabStrip_pstsLineGravity, lineGravity);
 
 		a.recycle();
 
@@ -271,7 +260,7 @@ public class PagerSlidingTabStrip extends HorizontalScrollView {
 				TextView tab = (TextView) v;
 				tab.setTextSize(TypedValue.COMPLEX_UNIT_PX, tabTextSize);
 				tab.setTypeface(tabTypeface, tabTypefaceStyle);
-				tab.setTextColor(tabTextColor);
+				tab.setTextColor(pager.getCurrentItem() == i ? indicatorColor : tabTextColor);
 
 				// setAllCaps() is only available from API 14, so the upper case is made manually if we are on a
 				// pre-ICS-build
@@ -336,12 +325,20 @@ public class PagerSlidingTabStrip extends HorizontalScrollView {
 			lineRight = (currentPositionOffset * nextTabRight + (1f - currentPositionOffset) * lineRight);
 		}
 
-		canvas.drawRect(lineLeft, height - indicatorHeight, lineRight, height, rectPaint);
+		if (lineGravity == 1) {//tab线在文字底部
+			canvas.drawRect(lineLeft, height - indicatorHeight, lineRight, height, rectPaint);
 
-		// draw underline
+			// draw underline
+			rectPaint.setColor(underlineColor);
+			canvas.drawRect(0, height - underlineHeight, tabsContainer.getWidth(), height, rectPaint);
 
-		rectPaint.setColor(underlineColor);
-		canvas.drawRect(0, height - underlineHeight, tabsContainer.getWidth(), height, rectPaint);
+		} else {//tab线在文字顶部
+			canvas.drawRect(lineLeft, 0, lineRight, indicatorHeight, rectPaint);
+
+			// draw underline
+			rectPaint.setColor(underlineColor);
+			canvas.drawRect(0, 0, tabsContainer.getWidth(), underlineHeight, rectPaint);
+		}
 
 		// draw divider
 
