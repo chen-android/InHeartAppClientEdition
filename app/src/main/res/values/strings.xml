@@ -6,6 +6,11 @@
 	<string name="main_tab_message">消息</string>
 	<string name="main_tab_mine">个人中心</string>
 
+	<!-- 问诊 -->
+	<string name="consultation_type_disease">按病种</string>
+	<string name="consultation_type_expert">按专家</string>
+
+
 	<!-- 个人中心 -->
 	<string name="login_register">立即注册</string>
 	<string name="login_forget_pwd">忘记密码？</string>

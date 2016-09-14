@@ -1,14 +1,60 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-             xmlns:tools="http://schemas.android.com/tools"
-             android:layout_width="match_parent"
-             android:layout_height="match_parent"
-             tools:context="com.inheart.inheartapp.fragment.ConsultationFragment">
+<LinearLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:orientation="vertical"
+	tools:context="com.inheart.inheartapp.fragment.ConsultationFragment">
 
-	<!-- TODO: Update blank fragment layout -->
-	<TextView
-		android:layout_width="wrap_content"
+	<RadioGroup
+		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
-		android:text="问诊fragment"
-		android:layout_gravity="center"/>
+		android:orientation="horizontal">
 
-</FrameLayout>
+		<RadioButton
+			android:layout_width="0dp"
+			android:layout_weight="1"
+			android:layout_height="wrap_content"
+			android:text="@string/consultation_type_disease"
+			android:textColor="@color/selector_blue_black"
+			android:checked="true"
+			android:button="@null"
+			android:gravity="center"
+			android:drawableBottom="@drawable/selector_blue_transparent_line_check"
+			android:drawablePadding="@dimen/small_space"
+			android:padding="@dimen/middle_space"
+			/>
+
+		<RadioButton
+			android:layout_width="0dp"
+			android:layout_weight="1"
+			android:layout_height="wrap_content"
+			android:text="@string/consultation_type_expert"
+			android:textColor="@color/selector_blue_black"
+			android:button="@null"
+			android:gravity="center"
+			android:drawableBottom="@drawable/selector_blue_transparent_line_check"
+			android:drawablePadding="@dimen/small_space"
+			android:padding="@dimen/middle_space"/>
+	</RadioGroup>
+
+	<RelativeLayout
+		android:layout_width="match_parent"
+		android:layout_height="match_parent">
+
+		<android.support.v7.widget.RecyclerView
+			android:id="@+id/consultation_disease_rv"
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"/>
+
+		<com.cs.widget.recyclerview.supprot.BladeView
+			android:id="@+id/consultation_disease_bv"
+			android:layout_width="30dp"
+			android:layout_height="wrap_content"
+			android:layout_alignParentRight="true"
+			android:padding="@dimen/middle_space"
+			android:layout_centerVertical="true"/>
+	</RelativeLayout>
+
+
+</LinearLayout>
