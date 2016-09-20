@@ -3,47 +3,88 @@ package com.inheart.inheartapp.fragment;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
+import android.widget.RelativeLayout;
 
+import com.cs.widget.recyclerview.supprot.BladeView;
 import com.inheart.inheartapp.R;
+
+import butterknife.ButterKnife;
+import butterknife.InjectView;
 
 /**
  *
  */
 public class ConsultationFragment extends Fragment {
-	private static final String ARG_PARAM1 = "param1";
-	private static final String ARG_PARAM2 = "param2";
-	private String mParam1;
-	private String mParam2;
+	@InjectView(R.id.consultation_type_disease_rb)
+	RadioButton mConsultationTypeDiseaseRb;
+	@InjectView(R.id.consultation_type_expert_rb)
+	RadioButton mConsultationTypeExpertRb;
+	@InjectView(R.id.consultation_type_rg)
+	RadioGroup mConsultationTypeRg;
+	@InjectView(R.id.consultation_disease_rv)
+	RecyclerView mConsultationDiseaseRv;
+	@InjectView(R.id.consultation_disease_bv)
+	BladeView mConsultationDiseaseBv;
+	@InjectView(R.id.consultation_disease_rl)
+	RelativeLayout mConsultationDiseaseRl;
 
 
 	public ConsultationFragment() {
 	}
 
-	public static ConsultationFragment newInstance(String param1, String param2) {
+	public static ConsultationFragment newInstance() {
 		ConsultationFragment fragment = new ConsultationFragment();
-		Bundle args = new Bundle();
-		args.putString(ARG_PARAM1, param1);
-		args.putString(ARG_PARAM2, param2);
-		fragment.setArguments(args);
 		return fragment;
 	}
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		if (getArguments() != null) {
-			mParam1 = getArguments().getString(ARG_PARAM1);
-			mParam2 = getArguments().getString(ARG_PARAM2);
-		}
 	}
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 	                         Bundle savedInstanceState) {
-		return inflater.inflate(R.layout.fragment_consultation, container, false);
+		View view = inflater.inflate(R.layout.fragment_consultation, container, false);
+		ButterKnife.inject(this, view);
+
+		return view;
 	}
 
+	private class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
+
+		@Override
+		public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+			return null;
+		}
+
+		@Override
+		public void onBindViewHolder(ViewHolder holder, int position) {
+
+		}
+
+		@Override
+		public int getItemCount() {
+			return 0;
+		}
+
+		class ViewHolder extends RecyclerView.ViewHolder {
+
+			public ViewHolder(View itemView) {
+				super(itemView);
+			}
+		}
+	}
+
+	@Override
+	public void onDestroyView() {
+		super.onDestroyView();
+		ButterKnife.reset(this);
+	}
 }

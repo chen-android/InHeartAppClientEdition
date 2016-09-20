@@ -29,7 +29,7 @@ public class Main2Activity extends AppCompatActivity {
 	private ArrayList<String> titles = new ArrayList<>();
 	private Fragment[] fragments = {
 			HomeFragment.newInstance("", ""),
-			ConsultationFragment.newInstance("", ""),
+			ConsultationFragment.newInstance(),
 			MessageFragment.newInstance("", ""),
 			MineFragment.newInstance("", "")
 	};
