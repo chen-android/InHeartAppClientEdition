@@ -5,9 +5,9 @@ import android.content.res.TypedArray;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
-import android.graphics.Typeface;
 import android.os.Handler;
 import android.util.AttributeSet;
+import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.View;
@@ -43,9 +43,8 @@ public class BladeView extends View {
 		a.recycle();
 		paint = new Paint();
 		paint.setColor(textColor);
-		paint.setTypeface(Typeface.DEFAULT);
 		paint.setAntiAlias(true);
-		paint.setTextSize(20);
+		paint.setTextSize(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, 14, context.getResources().getDisplayMetrics()));
 	}
 
 	public BladeView(Context context, AttributeSet attrs, int defStyleAttr) {

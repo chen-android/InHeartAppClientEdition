@@ -7,7 +7,8 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 
-import com.cs.widget.tab.PagerSlidingTabStrip;
+import com.cs.widget.tab.PagerSlidingTabStrip1;
+import com.cs.widget.tab.TextImageRes;
 import com.inheart.inheartapp.fragment.ConsultationFragment;
 import com.inheart.inheartapp.fragment.HomeFragment;
 import com.inheart.inheartapp.fragment.MessageFragment;
@@ -24,14 +25,14 @@ public class Main2Activity extends AppCompatActivity {
 	@InjectView(R.id.main2_vp)
 	ViewPager mMain2Vp;
 	@InjectView(R.id.main2_psts)
-	PagerSlidingTabStrip mMain2Psts;
+	PagerSlidingTabStrip1 mMain2Psts;
 
-	private ArrayList<String> titles = new ArrayList<>();
+	private ArrayList<TextImageRes> tabs = new ArrayList<>();
 	private Fragment[] fragments = {
 			HomeFragment.newInstance("", ""),
 			ConsultationFragment.newInstance(),
 			MessageFragment.newInstance("", ""),
-			MineFragment.newInstance("", "")
+			MineFragment.newInstance()
 	};
 
 	@Override
@@ -39,24 +40,19 @@ public class Main2Activity extends AppCompatActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main2);
 		ButterKnife.inject(this);
-		titles.add("内容");
-		titles.add("问诊");
-		titles.add("消息");
-		titles.add("个人");
+		tabs.add(new TextImageRes("内容", R.drawable.icon_content_selector, R.color.color_blue_black_selector));
+		tabs.add(new TextImageRes("问诊", R.drawable.icon_ask_selector, R.color.color_blue_black_selector));
+		tabs.add(new TextImageRes("消息", R.drawable.icon_message_selector, R.color.color_blue_black_selector));
+		tabs.add(new TextImageRes("个人", R.drawable.icon_personal_selector, R.color.color_blue_black_selector));
 		mMain2Vp.setAdapter(new MyPagerAdapter(getSupportFragmentManager()));
 		mMain2Psts.setViewPager(mMain2Vp);
 	}
 
-	private class MyPagerAdapter extends FragmentPagerAdapter {
+	private class MyPagerAdapter extends FragmentPagerAdapter implements PagerSlidingTabStrip1.IconTabProvider {
 
 
 		public MyPagerAdapter(FragmentManager fm) {
 			super(fm);
-		}
-
-		@Override
-		public CharSequence getPageTitle(int position) {
-			return titles.get(position);
 		}
 
 		@Override
@@ -67,6 +63,11 @@ public class Main2Activity extends AppCompatActivity {
 		@Override
 		public int getCount() {
 			return fragments.length;
+		}
+
+		@Override
+		public TextImageRes getPageRes(int position) {
+			return tabs.get(position);
 		}
 	}
 

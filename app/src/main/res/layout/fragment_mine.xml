@@ -1,13 +1,178 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-             xmlns:tools="http://schemas.android.com/tools"
-             android:layout_width="match_parent"
-             android:layout_height="match_parent"
-             tools:context="com.inheart.inheartapp.fragment.MineFragment">
+<LinearLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:orientation="vertical"
+	tools:context="com.inheart.inheartapp.fragment.MineFragment">
 
 	<TextView
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
-		android:text="用户fragment"
-		android:layout_gravity="center"/>
+		android:layout_width="match_parent"
+		android:layout_height="50dp"
+		android:text="@string/title_mine"
+		android:textColor="@color/white"
+		android:background="@color/colorPrimary"
+		android:gravity="center"
+		android:textSize="@dimen/middle_text_size"/>
 
-</FrameLayout>
+	<ScrollView
+		android:layout_width="match_parent"
+		android:layout_height="match_parent">
+
+		<LinearLayout
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:orientation="vertical">
+
+			<RelativeLayout
+				android:id="@+id/mine_personal_rl"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:background="@color/white"
+				android:padding="@dimen/middle_space">
+
+				<ImageView
+					android:id="@+id/mine_personal_iv"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:padding="@dimen/small_space"
+					android:src="@drawable/icon_personal_info"/>
+
+				<LinearLayout
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_centerVertical="true"
+					android:layout_marginLeft="@dimen/small_space"
+					android:layout_toEndOf="@+id/mine_personal_iv"
+					android:layout_toRightOf="@+id/mine_personal_iv"
+					android:orientation="vertical">
+
+					<TextView
+						android:id="@+id/mine_name_tv"
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						tools:text="徐坷楠"/>
+
+					<TextView
+						android:id="@+id/mine_phone_tv"
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:layout_marginTop="@dimen/small_space"
+						tools:text="13732254419"/>
+				</LinearLayout>
+
+				<ImageView
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_alignParentEnd="true"
+					android:layout_alignParentRight="true"
+					android:layout_centerVertical="true"
+					android:src="@drawable/icon_right_arrow"/>
+			</RelativeLayout>
+
+			<TextView
+				android:id="@+id/mine_my_ask_tv"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layout_marginTop="@dimen/middle_space"
+				android:background="@color/white"
+				android:drawableLeft="@drawable/icon_my_ask"
+				android:drawablePadding="@dimen/middle_space"
+				android:drawableRight="@drawable/icon_right_arrow"
+				android:gravity="center_vertical"
+				android:paddingBottom="@dimen/middle_space"
+				android:paddingLeft="@dimen/large_space"
+				android:paddingRight="@dimen/middle_space"
+				android:paddingTop="@dimen/middle_space"
+				android:text="@string/mine_my_ask"/>
+
+			<include layout="@layout/line_break_system_bg"/>
+
+			<TextView
+				android:id="@+id/mine_my_doctor_tv"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:background="@color/white"
+				android:drawableLeft="@drawable/icon_my_doctor"
+				android:drawablePadding="@dimen/middle_space"
+				android:drawableRight="@drawable/icon_right_arrow"
+				android:gravity="center_vertical"
+				android:paddingBottom="@dimen/middle_space"
+				android:paddingLeft="@dimen/large_space"
+				android:paddingRight="@dimen/middle_space"
+				android:paddingTop="@dimen/middle_space"
+				android:text="@string/mine_my_doctor"/>
+
+			<include layout="@layout/line_break_system_bg"/>
+
+			<TextView
+				android:id="@+id/mine_my_collection_tv"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:background="@color/white"
+				android:drawableLeft="@drawable/icon_my_collection"
+				android:drawablePadding="@dimen/middle_space"
+				android:drawableRight="@drawable/icon_right_arrow"
+				android:gravity="center_vertical"
+				android:paddingBottom="@dimen/middle_space"
+				android:paddingLeft="@dimen/large_space"
+				android:paddingRight="@dimen/middle_space"
+				android:paddingTop="@dimen/middle_space"
+				android:text="@string/mine_my_collection"/>
+
+			<include layout="@layout/line_break_system_bg"/>
+
+			<TextView
+				android:id="@+id/mine_my_money_tv"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:background="@color/white"
+				android:drawableLeft="@drawable/icon_my_money"
+				android:drawablePadding="@dimen/middle_space"
+				android:drawableRight="@drawable/icon_right_arrow"
+				android:gravity="center_vertical"
+				android:paddingBottom="@dimen/middle_space"
+				android:paddingLeft="@dimen/large_space"
+				android:paddingRight="@dimen/middle_space"
+				android:paddingTop="@dimen/middle_space"
+				android:text="@string/mine_my_money"/>
+
+			<include layout="@layout/line_break_system_bg"/>
+
+			<TextView
+				android:id="@+id/mine_help_feedback_tv"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layout_marginTop="@dimen/middle_space"
+				android:background="@color/white"
+				android:drawableLeft="@drawable/icon_help_feedback"
+				android:drawablePadding="@dimen/middle_space"
+				android:drawableRight="@drawable/icon_right_arrow"
+				android:gravity="center_vertical"
+				android:paddingBottom="@dimen/middle_space"
+				android:paddingLeft="@dimen/large_space"
+				android:paddingRight="@dimen/middle_space"
+				android:paddingTop="@dimen/middle_space"
+				android:text="@string/mine_help_feedback"/>
+
+			<include layout="@layout/line_break_system_bg"/>
+
+			<TextView
+				android:id="@+id/mine_setting_tv"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:background="@color/white"
+				android:drawableLeft="@drawable/icon_my_setting"
+				android:drawablePadding="@dimen/middle_space"
+				android:drawableRight="@drawable/icon_right_arrow"
+				android:gravity="center_vertical"
+				android:paddingBottom="@dimen/middle_space"
+				android:paddingLeft="@dimen/large_space"
+				android:paddingRight="@dimen/middle_space"
+				android:paddingTop="@dimen/middle_space"
+				android:text="@string/mine_setting"/>
+
+			<include layout="@layout/line_break_system_bg"/>
+		</LinearLayout>
+	</ScrollView>
+</LinearLayout>

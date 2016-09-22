@@ -29,6 +29,12 @@
 	<!-- hint -->
 	<string name="hint_login_user_phone">请输入您的手机号</string>
 	<string name="hint_login_user_pwd">请输入您的密码</string>
+	<string name="mine_my_ask">我的问诊</string>
+	<string name="mine_my_doctor">我的医生</string>
+	<string name="mine_my_collection">我的收藏</string>
+	<string name="mine_my_money">我的账户</string>
+	<string name="mine_help_feedback">帮助与反馈</string>
+	<string name="mine_setting">设置</string>
 
 
 </resources>

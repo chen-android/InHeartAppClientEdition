@@ -36,31 +36,29 @@ import android.view.Gravity;
 import android.view.View;
 import android.view.ViewTreeObserver.OnGlobalLayoutListener;
 import android.widget.HorizontalScrollView;
-import android.widget.ImageButton;
-import android.widget.LinearLayout;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import com.cs.widgetlibrary.R;
 
 import java.util.Locale;
 
-/**
- * 滑动tab栏,适用于纯文字或纯图片
- */
-public class PagerSlidingTabStrip extends HorizontalScrollView {
+
+public class PagerSlidingTabStrip1 extends HorizontalScrollView {
 
 	public interface IconTabProvider {
-		int getPageIconResId(int position);
+		TextImageRes getPageRes(int position);
 	}
 	// @formatter:on
 
-	private LinearLayout.LayoutParams defaultTabLayoutParams;
-	private LinearLayout.LayoutParams expandedTabLayoutParams;
+	private RadioGroup.LayoutParams defaultTabLayoutParams;
+	private RadioGroup.LayoutParams expandedTabLayoutParams;
 
 	private final PageListener pageListener = new PageListener();
 	public OnPageChangeListener delegatePageListener;
 
-	private LinearLayout tabsContainer;
+	private RadioGroup tabsContainer;
 	private ViewPager pager;
 
 	private int tabCount;
@@ -97,23 +95,24 @@ public class PagerSlidingTabStrip extends HorizontalScrollView {
 
 	private Locale locale;
 
-	public PagerSlidingTabStrip(Context context) {
+	public PagerSlidingTabStrip1(Context context) {
 		this(context, null);
 	}
 
-	public PagerSlidingTabStrip(Context context, AttributeSet attrs) {
+	public PagerSlidingTabStrip1(Context context, AttributeSet attrs) {
 		this(context, attrs, 0);
 	}
 
-	public PagerSlidingTabStrip(Context context, AttributeSet attrs, int defStyle) {
+	public PagerSlidingTabStrip1(Context context, AttributeSet attrs, int defStyle) {
 		super(context, attrs, defStyle);
 
 		setFillViewport(true);
 		setWillNotDraw(false);
 
-		tabsContainer = new LinearLayout(context);
-		tabsContainer.setOrientation(LinearLayout.HORIZONTAL);
+		tabsContainer = new RadioGroup(context);
+		tabsContainer.setOrientation(RadioGroup.HORIZONTAL);
 		tabsContainer.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
+		tabsContainer.setPadding(0, 20, 0, 0);
 		addView(tabsContainer);
 
 		DisplayMetrics dm = getResources().getDisplayMetrics();
@@ -155,8 +154,8 @@ public class PagerSlidingTabStrip extends HorizontalScrollView {
 		dividerPaint.setAntiAlias(true);
 		dividerPaint.setStrokeWidth(dividerWidth);
 
-		defaultTabLayoutParams = new LinearLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.MATCH_PARENT);
-		expandedTabLayoutParams = new LinearLayout.LayoutParams(0, LayoutParams.MATCH_PARENT, 1.0f);
+		defaultTabLayoutParams = new RadioGroup.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.MATCH_PARENT);
+		expandedTabLayoutParams = new RadioGroup.LayoutParams(0, LayoutParams.MATCH_PARENT, 1.0f);
 
 		if (locale == null) {
 			locale = getResources().getConfiguration().locale;
@@ -188,7 +187,7 @@ public class PagerSlidingTabStrip extends HorizontalScrollView {
 		for (int i = 0; i < tabCount; i++) {
 
 			if (pager.getAdapter() instanceof IconTabProvider) {
-				addIconTab(i, ((IconTabProvider) pager.getAdapter()).getPageIconResId(i));
+				addIconTab(i, ((IconTabProvider) pager.getAdapter()).getPageRes(i));
 			} else {
 				addTextTab(i, pager.getAdapter().getPageTitle(i).toString());
 			}
@@ -227,11 +226,14 @@ public class PagerSlidingTabStrip extends HorizontalScrollView {
 		addTab(position, tab);
 	}
 
-	private void addIconTab(final int position, int resId) {
+	private void addIconTab(final int position, TextImageRes res) {
 
-		ImageButton tab = new ImageButton(getContext());
-		tab.setImageResource(resId);
-
+		RadioButton tab = new RadioButton(getContext());
+		tab.setCompoundDrawablesWithIntrinsicBounds(0, res.getResId(), 0, 0);
+		tab.setButtonDrawable(null);
+		tab.setGravity(Gravity.CENTER);
+		tab.setText(res.getText());
+		tab.setTextColor(getContext().getResources().getColorStateList(res.getTextColorId()));
 		addTab(position, tab);
 
 	}
@@ -256,24 +258,26 @@ public class PagerSlidingTabStrip extends HorizontalScrollView {
 			View v = tabsContainer.getChildAt(i);
 
 			v.setBackgroundResource(tabBackgroundResId);
-
-			if (v instanceof TextView) {
-
-				TextView tab = (TextView) v;
-				tab.setTextSize(TypedValue.COMPLEX_UNIT_PX, tabTextSize);
-				tab.setTypeface(tabTypeface, tabTypefaceStyle);
-				tab.setTextColor(pager.getCurrentItem() == i ? indicatorColor : tabTextColor);
-
-				// setAllCaps() is only available from API 14, so the upper case is made manually if we are on a
-				// pre-ICS-build
-				if (textAllCaps) {
-					if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH) {
-						tab.setAllCaps(true);
-					} else {
-						tab.setText(tab.getText().toString().toUpperCase(locale));
-					}
-				}
+			if (v instanceof RadioButton) {
+				if (pager.getCurrentItem() == i) v.performClick();
 			}
+//			if (v instanceof TextView) {
+//
+//				TextView tab = (TextView) v;
+//				tab.setTextSize(TypedValue.COMPLEX_UNIT_PX, tabTextSize);
+//				tab.setTypeface(tabTypeface, tabTypefaceStyle);
+//				tab.setTextColor(pager.getCurrentItem() == i ? indicatorColor : tabTextColor);
+//
+//				// setAllCaps() is only available from API 14, so the upper case is made manually if we are on a
+//				// pre-ICS-build
+//				if (textAllCaps) {
+//					if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH) {
+//						tab.setAllCaps(true);
+//					} else {
+//						tab.setText(tab.getText().toString().toUpperCase(locale));
+//					}
+//				}
+//			}
 		}
 
 	}
@@ -390,14 +394,7 @@ public class PagerSlidingTabStrip extends HorizontalScrollView {
 	}
 
 	public void changeTabTextColor(int position) {
-		for (int i = 0; i < tabsContainer.getChildCount(); i++) {
-			TextView tv = (TextView) tabsContainer.getChildAt(i);
-			if (i != position) {
-				tv.setTextColor(tabTextColor);
-			} else {
-				tv.setTextColor(indicatorColor);
-			}
-		}
+		tabsContainer.getChildAt(position).performClick();
 	}
 
 	public void setIndicatorColor(int indicatorColor) {
