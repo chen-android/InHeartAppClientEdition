@@ -23,6 +23,8 @@
 		</activity>
 		<activity android:name=".InitialActivity">
 		</activity>
+		<activity android:name=".activity.bill.BillActivity">
+		</activity>
 	</application>
 
 </manifest>
