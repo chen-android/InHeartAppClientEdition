@@ -26,6 +26,7 @@ ext {
     targetSdkVersion = 24
     versionCode = 1
     versionName = "1.0"
+    androidSuppportVersion = "24.2.1"
 }
 
 task clean(type: Delete) {

@@ -105,7 +105,7 @@ public class BladeView extends View {
 		switch (action) {
 			case MotionEvent.ACTION_DOWN:
 				showBg = true;
-				if (oldChoose != choose) {
+				if (oldChoose != c) {
 					if (c >= 0 && c < list.length) {
 						performItemClick(c);
 						choose = c;
@@ -115,7 +115,7 @@ public class BladeView extends View {
 				break;
 			case MotionEvent.ACTION_MOVE:
 				showBg = true;
-				if (oldChoose != choose) {
+				if (oldChoose != c) {
 					if (c >= 0 && c < list.length) {
 						performItemClick(c);
 						choose = c;

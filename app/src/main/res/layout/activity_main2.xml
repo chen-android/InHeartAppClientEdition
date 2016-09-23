@@ -16,7 +16,7 @@
 	<com.cs.widget.tab.PagerSlidingTabStrip1
 		android:id="@+id/main2_psts"
 		android:layout_width="match_parent"
-		android:layout_height="50dp"
+		android:layout_height="wrap_content"
 		android:textColor="@color/black"
 		app:pstsIndicatorColor="@color/colorPrimary"
 		app:pstsIndicatorHeight="2dp"

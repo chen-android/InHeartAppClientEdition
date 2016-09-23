@@ -20,9 +20,11 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Paint.Style;
 import android.graphics.Typeface;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
 import android.os.Parcel;
 import android.os.Parcelable;
@@ -112,7 +114,7 @@ public class PagerSlidingTabStrip1 extends HorizontalScrollView {
 		tabsContainer = new RadioGroup(context);
 		tabsContainer.setOrientation(RadioGroup.HORIZONTAL);
 		tabsContainer.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
-		tabsContainer.setPadding(0, 20, 0, 0);
+		tabsContainer.setPadding(0, 20, 0, 10);
 		addView(tabsContainer);
 
 		DisplayMetrics dm = getResources().getDisplayMetrics();
@@ -230,7 +232,7 @@ public class PagerSlidingTabStrip1 extends HorizontalScrollView {
 
 		RadioButton tab = new RadioButton(getContext());
 		tab.setCompoundDrawablesWithIntrinsicBounds(0, res.getResId(), 0, 0);
-		tab.setButtonDrawable(null);
+		tab.setButtonDrawable(new ColorDrawable(Color.TRANSPARENT));
 		tab.setGravity(Gravity.CENTER);
 		tab.setText(res.getText());
 		tab.setTextColor(getContext().getResources().getColorStateList(res.getTextColorId()));

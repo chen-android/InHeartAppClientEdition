@@ -9,6 +9,13 @@
 
 	<include layout="@layout/activity_base_title_bar"/>
 
+	<ImageView
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:src="@drawable/icon_logo_big"
+		android:layout_marginTop="@dimen/middle_space"
+		android:layout_marginBottom="@dimen/super_plus_space"/>
+
 	<LinearLayout
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"

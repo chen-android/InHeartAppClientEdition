@@ -19,8 +19,6 @@ import com.inheart.inheartapp.beans.Disease;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.HashMap;
-import java.util.Map;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
@@ -29,6 +27,7 @@ import butterknife.InjectView;
  *
  */
 public class ConsultationFragment extends Fragment {
+	private static final String TAG = ConsultationFragment.class.getSimpleName();
 	@InjectView(R.id.consultation_type_disease_rb)
 	RadioButton mConsultationTypeDiseaseRb;
 	@InjectView(R.id.consultation_type_expert_rb)
@@ -44,8 +43,9 @@ public class ConsultationFragment extends Fragment {
 
 
 	private ArrayList<Disease> diseases = new ArrayList<>();
-	private Map<String, Integer> indexOfSpell = new HashMap<>();
 	private MyDiseaseAdapter myDiseaseAdapter;
+	private LinearLayoutManager layoutManager;
+	private int index;
 
 	public ConsultationFragment() {
 	}
@@ -67,7 +67,7 @@ public class ConsultationFragment extends Fragment {
 		ButterKnife.inject(this, view);
 		initDisease();
 		myDiseaseAdapter = new MyDiseaseAdapter();
-		LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
+		layoutManager = new LinearLayoutManager(getActivity());
 		layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
 		mConsultationDiseaseRv.setLayoutManager(layoutManager);
 		mConsultationDiseaseRv.setAdapter(myDiseaseAdapter);
@@ -98,26 +98,36 @@ public class ConsultationFragment extends Fragment {
 
 		Collections.sort(diseases, (o1, o2) -> o1.getFirstSpell().compareTo(o2.getFirstSpell()));
 
-		ArrayList<String> spellList = new ArrayList<>();
+		ArrayList<String> spellListForBladeView = new ArrayList<>();
+		ArrayList<String> allSpellList = new ArrayList<>();
 		String A = "";
 		String B = "";
 		for (int i = 0; i < diseases.size(); i++) {
 			B = diseases.get(i).getFirstSpell();
+			allSpellList.add(B);
 			if (!A.equals(B)) {
-				spellList.add(B);
+				spellListForBladeView.add(B);
 				A = B;
 			}
 
 		}
-		mConsultationDiseaseBv.setList(spellList.toArray(new String[spellList.size()]));
-		mConsultationDiseaseBv.setOnItemClickListener(s -> mConsultationDiseaseRv.scrollToPosition(diseases.indexOf(s)));
+		mConsultationDiseaseBv.setList(spellListForBladeView.toArray(new String[spellListForBladeView.size()]));
+		mConsultationDiseaseBv.setOnItemClickListener(s -> layoutManager.scrollToPositionWithOffset(allSpellList.indexOf(s), 0));
 	}
+
+//	@OnCheckedChanged(R.id.consultation_type_rg)
+//	public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+//		if (buttonView == mConsultationTypeExpertRb) {
+//			Toast.makeText(buttonView.getContext(),"haha",Toast.LENGTH_SHORT).show();
+//		}
+//
+//	}
 
 	private class MyDiseaseAdapter extends RecyclerView.Adapter<MyDiseaseAdapter.ViewHolder> {
 
 		@Override
 		public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-			View v = View.inflate(parent.getContext(), R.layout.item_disease, null);
+			View v = View.inflate(parent.getContext(), R.layout.list_item_disease, null);
 			v.setLayoutParams(new RecyclerView.LayoutParams(RecyclerView.LayoutParams.MATCH_PARENT, RecyclerView.LayoutParams.WRAP_CONTENT));
 			return new ViewHolder(v);
 		}

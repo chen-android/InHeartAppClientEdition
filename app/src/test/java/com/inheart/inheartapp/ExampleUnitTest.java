@@ -2,7 +2,7 @@ package com.inheart.inheartapp;
 
 import org.junit.Test;
 
-import static org.junit.Assert.*;
+import java.util.Date;
 
 /**
  * To work on unit tests, switch the Test Artifact in the Build Variants view.
@@ -10,6 +10,8 @@ import static org.junit.Assert.*;
 public class ExampleUnitTest {
 	@Test
 	public void addition_isCorrect() throws Exception {
-		assertEquals(4, 2 + 2);
+		long time = 1474473600000l;
+		Date d = new Date("1474473600000");
+		System.out.println(d);
 	}
 }

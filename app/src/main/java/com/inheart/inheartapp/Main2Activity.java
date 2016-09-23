@@ -10,7 +10,7 @@ import android.support.v7.app.AppCompatActivity;
 import com.cs.widget.tab.PagerSlidingTabStrip1;
 import com.cs.widget.tab.TextImageRes;
 import com.inheart.inheartapp.fragment.ConsultationFragment;
-import com.inheart.inheartapp.fragment.HomeFragment;
+import com.inheart.inheartapp.fragment.ContentFragment;
 import com.inheart.inheartapp.fragment.MessageFragment;
 import com.inheart.inheartapp.fragment.MineFragment;
 
@@ -29,9 +29,9 @@ public class Main2Activity extends AppCompatActivity {
 
 	private ArrayList<TextImageRes> tabs = new ArrayList<>();
 	private Fragment[] fragments = {
-			HomeFragment.newInstance("", ""),
+			ContentFragment.newInstance("", ""),
 			ConsultationFragment.newInstance(),
-			MessageFragment.newInstance("", ""),
+			MessageFragment.newInstance(),
 			MineFragment.newInstance()
 	};
 

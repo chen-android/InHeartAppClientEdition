@@ -1,5 +1,6 @@
 <resources>
 	<string name="app_name">InHeartApp</string>
+	<string name="save">保存</string>
 
 	<string name="main_tab_content">内容</string>
 	<string name="main_tab_consultation">问诊</string>
@@ -29,12 +30,23 @@
 	<!-- hint -->
 	<string name="hint_login_user_phone">请输入您的手机号</string>
 	<string name="hint_login_user_pwd">请输入您的密码</string>
+
+	<!-- 我的 -->
 	<string name="mine_my_ask">我的问诊</string>
 	<string name="mine_my_doctor">我的医生</string>
 	<string name="mine_my_collection">我的收藏</string>
 	<string name="mine_my_money">我的账户</string>
 	<string name="mine_help_feedback">帮助与反馈</string>
 	<string name="mine_setting">设置</string>
+
+	<!-- 个人信息完善 -->
+	<string name="user_info_complete_username">姓名</string>
+	<string name="user_info_complete_id">身份证</string>
+	<string name="user_info_complete_age">年龄</string>
+	<string name="user_info_complete_emergency_contact">紧急联系人</string>
+	<string name="user_info_complete_emergency_phone">紧急联系方式</string>
+	<string name="user_info_complete_address">家庭住址</string>
+	<string name="content_search">请输入搜索内容</string>
 
 
 </resources>
