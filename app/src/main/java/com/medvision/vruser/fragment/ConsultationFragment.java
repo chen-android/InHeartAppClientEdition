@@ -1,4 +1,4 @@
-package com.inheart.inheartapp.fragment;
+package com.medvision.vruser.fragment;
 
 
 import android.os.Bundle;
@@ -15,7 +15,7 @@ import android.widget.TextView;
 
 import com.cs.widget.recyclerview.supprot.BladeView;
 import com.inheart.inheartapp.R;
-import com.inheart.inheartapp.beans.Disease;
+import com.medvision.vruser.beans.Disease;
 
 import java.util.ArrayList;
 import java.util.Collections;

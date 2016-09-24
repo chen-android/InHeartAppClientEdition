@@ -1,11 +1,12 @@
-package com.inheart.inheartapp;
+package com.medvision.vruser;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
-import com.inheart.inheartapp.activity.user.LoginActivity;
-import com.inheart.inheartapp.database.SpUtils;
+import com.inheart.inheartapp.R;
+import com.medvision.vruser.activity.user.LoginActivity;
+import com.medvision.vruser.database.SpUtils;
 
 public class InitialActivity extends AppCompatActivity {
 

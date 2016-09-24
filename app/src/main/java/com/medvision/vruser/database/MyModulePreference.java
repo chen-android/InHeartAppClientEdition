@@ -1,4 +1,4 @@
-package com.inheart.inheartapp.database;
+package com.medvision.vruser.database;
 
 import android.content.Context;
 

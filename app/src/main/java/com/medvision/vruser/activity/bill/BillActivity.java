@@ -1,4 +1,4 @@
-package com.inheart.inheartapp.activity.bill;
+package com.medvision.vruser.activity.bill;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -9,8 +9,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.inheart.inheartapp.R;
-import com.inheart.inheartapp.beans.Message;
 import com.jcodecraeer.xrecyclerview.XRecyclerView;
+import com.medvision.vruser.beans.Message;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,4 +1,4 @@
-package com.inheart.inheartapp.beans;
+package com.medvision.vruser.beans;
 
 /**
  * Created by cs on 16/5/12.

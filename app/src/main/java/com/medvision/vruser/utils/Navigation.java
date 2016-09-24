@@ -1,4 +1,4 @@
-package com.inheart.inheartapp.utils;
+package com.medvision.vruser.utils;
 
 import android.support.v4.app.FragmentActivity;
 import android.view.View;

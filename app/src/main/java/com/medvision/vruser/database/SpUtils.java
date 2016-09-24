@@ -1,9 +1,9 @@
-package com.inheart.inheartapp.database;
+package com.medvision.vruser.database;
 
 import android.content.Context;
 import android.util.Base64;
 
-import com.inheart.inheartapp.beans.User;
+import com.medvision.vruser.beans.User;
 import com.orhanobut.logger.Logger;
 
 import net.grandcentrix.tray.core.ItemNotFoundException;

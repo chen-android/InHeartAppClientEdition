@@ -1,4 +1,4 @@
-package com.inheart.inheartapp.database;
+package com.medvision.vruser.database;
 
 /**
  * Created by chenshuai12619 on 2016/3/28 16:19.

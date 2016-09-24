@@ -1,4 +1,4 @@
-package com.inheart.inheartapp.beans;
+package com.medvision.vruser.beans;
 
 import android.os.Parcel;
 import android.os.Parcelable;

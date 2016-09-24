@@ -1,4 +1,4 @@
-package com.inheart.inheartapp;
+package com.medvision.vruser;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -9,10 +9,11 @@ import android.support.v7.app.AppCompatActivity;
 
 import com.cs.widget.tab.PagerSlidingTabStrip1;
 import com.cs.widget.tab.TextImageRes;
-import com.inheart.inheartapp.fragment.ConsultationFragment;
-import com.inheart.inheartapp.fragment.ContentFragment;
-import com.inheart.inheartapp.fragment.MessageFragment;
-import com.inheart.inheartapp.fragment.MineFragment;
+import com.inheart.inheartapp.R;
+import com.medvision.vruser.fragment.ConsultationFragment;
+import com.medvision.vruser.fragment.ContentFragment;
+import com.medvision.vruser.fragment.MessageFragment;
+import com.medvision.vruser.fragment.MineFragment;
 
 import java.util.ArrayList;
 

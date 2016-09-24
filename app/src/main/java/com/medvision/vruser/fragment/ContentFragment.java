@@ -1,4 +1,4 @@
-package com.inheart.inheartapp.fragment;
+package com.medvision.vruser.fragment;
 
 
 import android.os.Bundle;
@@ -13,8 +13,8 @@ import android.widget.TextView;
 
 import com.bigkoo.convenientbanner.ConvenientBanner;
 import com.inheart.inheartapp.R;
-import com.inheart.inheartapp.beans.Banner;
 import com.jcodecraeer.xrecyclerview.XRecyclerView;
+import com.medvision.vruser.beans.Banner;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;

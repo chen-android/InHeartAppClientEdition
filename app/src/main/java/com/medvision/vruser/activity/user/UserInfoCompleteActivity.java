@@ -1,11 +1,11 @@
-package com.inheart.inheartapp.activity.user;
+package com.medvision.vruser.activity.user;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.EditText;
 
 import com.inheart.inheartapp.R;
-import com.inheart.inheartapp.utils.Navigation;
+import com.medvision.vruser.utils.Navigation;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
