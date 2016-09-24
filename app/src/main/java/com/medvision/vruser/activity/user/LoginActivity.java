@@ -3,7 +3,7 @@ package com.medvision.vruser.activity.user;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
-import com.inheart.inheartapp.R;
+import com.medvision.vruser.R;
 
 import butterknife.ButterKnife;
 

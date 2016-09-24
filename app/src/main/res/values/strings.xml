@@ -8,6 +8,7 @@
 	<string name="main_tab_mine">个人中心</string>
 
 	<!-- 问诊 -->
+	<string name="consultation_type_place">按地区</string>
 	<string name="consultation_type_disease">按病种</string>
 	<string name="consultation_type_expert">按专家</string>
 

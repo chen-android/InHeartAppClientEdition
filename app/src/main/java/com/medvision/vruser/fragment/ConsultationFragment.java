@@ -1,6 +1,7 @@
 package com.medvision.vruser.fragment;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -8,13 +9,16 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.cs.widget.recyclerview.supprot.BladeView;
-import com.inheart.inheartapp.R;
+import com.jcodecraeer.xrecyclerview.XRecyclerView;
+import com.medvision.vruser.R;
+import com.medvision.vruser.activity.consultation.ExpertDetailActivity;
 import com.medvision.vruser.beans.Disease;
 
 import java.util.ArrayList;
@@ -40,10 +44,17 @@ public class ConsultationFragment extends Fragment {
 	BladeView mConsultationDiseaseBv;
 	@InjectView(R.id.consultation_disease_rl)
 	RelativeLayout mConsultationDiseaseRl;
+	@InjectView(R.id.consultation_type_place_rb)
+	RadioButton mConsultationTypePlaceRb;
+	@InjectView(R.id.consultation_expert_rv)
+	XRecyclerView mConsultationExpertRv;
+	@InjectView(R.id.consultation_expert_rl)
+	RelativeLayout mConsultationExpertRl;
 
 
 	private ArrayList<Disease> diseases = new ArrayList<>();
 	private MyDiseaseAdapter myDiseaseAdapter;
+	private MyExpertAdapter myExpertAdapter;
 	private LinearLayoutManager layoutManager;
 	private int index;
 
@@ -66,11 +77,19 @@ public class ConsultationFragment extends Fragment {
 		View view = inflater.inflate(R.layout.fragment_consultation, container, false);
 		ButterKnife.inject(this, view);
 		initDisease();
-		myDiseaseAdapter = new MyDiseaseAdapter();
-		layoutManager = new LinearLayoutManager(getActivity());
-		layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-		mConsultationDiseaseRv.setLayoutManager(layoutManager);
-		mConsultationDiseaseRv.setAdapter(myDiseaseAdapter);
+		initExpert();
+		mConsultationTypeRg.setOnCheckedChangeListener((radioGroup, i) -> {
+			switch (i) {
+				case R.id.consultation_type_expert_rb:
+					mConsultationDiseaseRl.setVisibility(View.GONE);
+					mConsultationExpertRl.setVisibility(View.VISIBLE);
+					break;
+				case R.id.consultation_type_disease_rb:
+					mConsultationDiseaseRl.setVisibility(View.VISIBLE);
+					mConsultationExpertRl.setVisibility(View.GONE);
+					break;
+			}
+		});
 		return view;
 	}
 
@@ -113,15 +132,22 @@ public class ConsultationFragment extends Fragment {
 		}
 		mConsultationDiseaseBv.setList(spellListForBladeView.toArray(new String[spellListForBladeView.size()]));
 		mConsultationDiseaseBv.setOnItemClickListener(s -> layoutManager.scrollToPositionWithOffset(allSpellList.indexOf(s), 0));
+
+		myDiseaseAdapter = new MyDiseaseAdapter();
+		layoutManager = new LinearLayoutManager(getActivity());
+		layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+		mConsultationDiseaseRv.setLayoutManager(layoutManager);
+		mConsultationDiseaseRv.setAdapter(myDiseaseAdapter);
+
 	}
 
-//	@OnCheckedChanged(R.id.consultation_type_rg)
-//	public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-//		if (buttonView == mConsultationTypeExpertRb) {
-//			Toast.makeText(buttonView.getContext(),"haha",Toast.LENGTH_SHORT).show();
-//		}
-//
-//	}
+	private void initExpert() {
+		myExpertAdapter = new MyExpertAdapter();
+		layoutManager = new LinearLayoutManager(getActivity());
+		layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+		mConsultationExpertRv.setLayoutManager(layoutManager);
+		mConsultationExpertRv.setAdapter(myExpertAdapter);
+	}
 
 	private class MyDiseaseAdapter extends RecyclerView.Adapter<MyDiseaseAdapter.ViewHolder> {
 
@@ -157,6 +183,40 @@ public class ConsultationFragment extends Fragment {
 				super(itemView);
 				name = (TextView) itemView.findViewById(R.id.item_disease_name_tv);
 				spell = (TextView) itemView.findViewById(R.id.item_disease_spell_tv);
+			}
+		}
+	}
+
+	private class MyExpertAdapter extends RecyclerView.Adapter<MyExpertAdapter.ViewHolder> {
+
+		@Override
+		public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+			View v = View.inflate(parent.getContext(), R.layout.list_item_expert, null);
+			v.setLayoutParams(new RecyclerView.LayoutParams(RecyclerView.LayoutParams.MATCH_PARENT, RecyclerView.LayoutParams.WRAP_CONTENT));
+			return new ViewHolder(v);
+		}
+
+		@Override
+		public void onBindViewHolder(ViewHolder holder, int position) {
+			holder.itemView.setOnClickListener(v -> startActivity(new Intent(getContext(), ExpertDetailActivity.class)));
+		}
+
+		@Override
+		public int getItemCount() {
+			return 5;
+		}
+
+		class ViewHolder extends RecyclerView.ViewHolder {
+			ImageView iv;
+			TextView name;
+			TextView title;
+			TextView askTimes;
+			TextView location;
+			TextView tip;
+
+			ViewHolder(View itemView) {
+				super(itemView);
+
 			}
 		}
 	}

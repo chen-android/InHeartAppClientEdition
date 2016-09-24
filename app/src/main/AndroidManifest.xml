@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest package="com.inheart.inheartapp"
-          xmlns:android="http://schemas.android.com/apk/res/android">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+          package="com.medvision.vruser">
 
 	<application
 		android:allowBackup="true"
@@ -24,6 +24,8 @@
 		<activity android:name=".InitialActivity">
 		</activity>
 		<activity android:name=".activity.bill.BillActivity">
+		</activity>
+		<activity android:name=".activity.consultation.ExpertDetailActivity">
 		</activity>
 	</application>
 

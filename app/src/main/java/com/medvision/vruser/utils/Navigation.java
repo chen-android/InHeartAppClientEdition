@@ -6,7 +6,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.inheart.inheartapp.R;
+import com.medvision.vruser.R;
 
 
 /**

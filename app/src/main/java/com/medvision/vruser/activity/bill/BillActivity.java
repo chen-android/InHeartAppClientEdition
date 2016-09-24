@@ -8,8 +8,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.inheart.inheartapp.R;
 import com.jcodecraeer.xrecyclerview.XRecyclerView;
+import com.medvision.vruser.R;
 import com.medvision.vruser.beans.Message;
 
 import java.util.ArrayList;

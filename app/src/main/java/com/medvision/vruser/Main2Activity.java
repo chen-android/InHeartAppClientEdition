@@ -9,7 +9,6 @@ import android.support.v7.app.AppCompatActivity;
 
 import com.cs.widget.tab.PagerSlidingTabStrip1;
 import com.cs.widget.tab.TextImageRes;
-import com.inheart.inheartapp.R;
 import com.medvision.vruser.fragment.ConsultationFragment;
 import com.medvision.vruser.fragment.ContentFragment;
 import com.medvision.vruser.fragment.MessageFragment;
@@ -30,9 +29,9 @@ public class Main2Activity extends AppCompatActivity {
 
 	private ArrayList<TextImageRes> tabs = new ArrayList<>();
 	private Fragment[] fragments = {
-			ContentFragment.newInstance("", ""),
 			ConsultationFragment.newInstance(),
 			MessageFragment.newInstance(),
+			ContentFragment.newInstance("", ""),
 			MineFragment.newInstance()
 	};
 
@@ -41,9 +40,9 @@ public class Main2Activity extends AppCompatActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main2);
 		ButterKnife.inject(this);
-		tabs.add(new TextImageRes("内容", R.drawable.icon_content_selector, R.color.color_blue_black_selector));
 		tabs.add(new TextImageRes("问诊", R.drawable.icon_ask_selector, R.color.color_blue_black_selector));
 		tabs.add(new TextImageRes("消息", R.drawable.icon_message_selector, R.color.color_blue_black_selector));
+		tabs.add(new TextImageRes("内容", R.drawable.icon_content_selector, R.color.color_blue_black_selector));
 		tabs.add(new TextImageRes("个人", R.drawable.icon_personal_selector, R.color.color_blue_black_selector));
 		mMain2Vp.setAdapter(new MyPagerAdapter(getSupportFragmentManager()));
 		mMain2Psts.setViewPager(mMain2Vp);

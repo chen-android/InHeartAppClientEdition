@@ -9,7 +9,7 @@ import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.inheart.inheartapp.R;
+import com.medvision.vruser.R;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;

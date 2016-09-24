@@ -8,7 +8,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.inheart.inheartapp.R;
+import com.medvision.vruser.R;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;

@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
-import com.inheart.inheartapp.R;
 import com.medvision.vruser.activity.user.LoginActivity;
 import com.medvision.vruser.database.SpUtils;
 

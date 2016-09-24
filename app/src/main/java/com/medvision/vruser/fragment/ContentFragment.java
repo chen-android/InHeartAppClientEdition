@@ -12,9 +12,12 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bigkoo.convenientbanner.ConvenientBanner;
-import com.inheart.inheartapp.R;
 import com.jcodecraeer.xrecyclerview.XRecyclerView;
+import com.medvision.vruser.R;
 import com.medvision.vruser.beans.Banner;
+import com.medvision.vruser.utils.BannerViewHolder;
+
+import java.util.ArrayList;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
@@ -56,6 +59,7 @@ public class ContentFragment extends Fragment {
 		adapter = new MyContentAdapter();
 		mContentRv.setAdapter(adapter);
 		mContentRv.addHeaderView(initHeaderView());
+
 		return view;
 	}
 
@@ -63,6 +67,9 @@ public class ContentFragment extends Fragment {
 		View v = View.inflate(getContext(), R.layout.layout_item_fragment_content, null);
 		convenientBanner = (ConvenientBanner<Banner>) v.findViewById(R.id.content_cb);
 		searchTv = (TextView) v.findViewById(R.id.content_search_tv);
+		ArrayList<Banner> banners = new ArrayList<>();
+		banners.add(new Banner());
+		convenientBanner.setPages(BannerViewHolder::new, banners);
 		return v;
 	}
 
@@ -71,6 +78,7 @@ public class ContentFragment extends Fragment {
 		@Override
 		public MyContentViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 			View v = View.inflate(parent.getContext(), R.layout.list_item_content, null);
+			v.setLayoutParams(new RecyclerView.LayoutParams(RecyclerView.LayoutParams.MATCH_PARENT, RecyclerView.LayoutParams.WRAP_CONTENT));
 			return new MyContentViewHolder(v);
 		}
 
@@ -81,7 +89,7 @@ public class ContentFragment extends Fragment {
 
 		@Override
 		public int getItemCount() {
-			return 0;
+			return 10;
 		}
 
 		class MyContentViewHolder extends RecyclerView.ViewHolder {

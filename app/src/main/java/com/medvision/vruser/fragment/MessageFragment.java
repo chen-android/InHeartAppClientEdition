@@ -11,8 +11,9 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.inheart.inheartapp.R;
+import com.cs.widget.recyclerview.RecyclerViewDivider;
 import com.jcodecraeer.xrecyclerview.XRecyclerView;
+import com.medvision.vruser.R;
 import com.medvision.vruser.beans.Message;
 
 import java.util.ArrayList;
@@ -54,6 +55,7 @@ public class MessageFragment extends Fragment {
 
 		LinearLayoutManager layoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
 		mMessageRv.setLayoutManager(layoutManager);
+		mMessageRv.addItemDecoration(new RecyclerViewDivider(getContext(), LinearLayoutManager.VERTICAL));
 		adapter = new MyRecyclerAdapter();
 		mMessageRv.setAdapter(adapter);
 		mMessageRv.setEmptyView(mMessageNoDataRl);
