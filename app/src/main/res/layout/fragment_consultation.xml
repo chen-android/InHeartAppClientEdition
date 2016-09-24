@@ -52,7 +52,6 @@
 			android:layout_height="wrap_content"
 			android:text="@string/consultation_type_disease"
 			android:textColor="@color/color_blue_black_selector"
-
 			android:button="@null"
 			android:gravity="center"
 			android:drawableBottom="@drawable/selector_blue_transparent_line_check"
