@@ -1,1 +1,1 @@
-include ':vruser', ':cswidgetlibrary', ':csnetworklibrary', ':vrdoctor'
+include ':vruser', ':cswidgetlibrary', ':csnetworklibrary', ':vrdoctor', ':cscommonlibrary'

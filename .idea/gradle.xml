@@ -9,6 +9,7 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/cscommonlibrary" />
             <option value="$PROJECT_DIR$/csnetworklibrary" />
             <option value="$PROJECT_DIR$/cswidgetlibrary" />
             <option value="$PROJECT_DIR$/vrdoctor" />
