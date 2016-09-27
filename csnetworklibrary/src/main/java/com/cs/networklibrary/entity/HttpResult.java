@@ -4,24 +4,24 @@ package com.cs.networklibrary.entity;
  * Created by chenshuai12619 on 2016/3/17 15:10.
  */
 public class HttpResult<T> {
-	private String resultCode;
-	private String resultMsg;
+	private String code;
+	private String message;
 	private T data;
 
-    public String getResultCode() {
-        return resultCode;
+	public String getCode() {
+		return code;
 	}
 
-	public void setResultCode(String resultCode) {
-		this.resultCode = resultCode;
+	public void setCode(String code) {
+		this.code = code;
 	}
 
-	public String getResultMsg() {
-		return resultMsg;
+	public String getMessage() {
+		return message;
 	}
 
-	public void setResultMsg(String resultMsg) {
-		this.resultMsg = resultMsg;
+	public void setMessage(String message) {
+		this.message = message;
 	}
 
 	public T getData() {

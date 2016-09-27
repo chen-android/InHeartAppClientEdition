@@ -53,6 +53,10 @@ public class PropertiesUtil {
 		String url = mProperties.getProperty("server_url");
 		String port = mProperties.getProperty("server_port");
 		String project = mProperties.getProperty("server_project");
-		return type + "://" + url + ":" + port + "/" + project + "/";
+		String version = mProperties.getProperty("server_version");
+		if (!version.isEmpty()) {
+			version += "/";
+		}
+		return type + "://" + url + ":" + port + "/" + project + "/" + version;
 	}
 }

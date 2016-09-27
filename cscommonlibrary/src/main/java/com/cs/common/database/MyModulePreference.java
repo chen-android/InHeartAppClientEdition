@@ -9,8 +9,8 @@ import net.grandcentrix.tray.TrayPreferences;
  */
 public class MyModulePreference extends TrayPreferences {
 
-	public MyModulePreference(Context context) {
-		this(context, "InHeartDataBase", 1);
+	public MyModulePreference(Context context, String databaseName) {
+		this(context, databaseName, 1);
 	}
 
 	public MyModulePreference(Context context, String module, int version) {

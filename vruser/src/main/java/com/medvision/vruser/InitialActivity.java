@@ -5,7 +5,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
 import com.medvision.vruser.activity.user.LoginActivity;
-import com.medvision.vruser.database.SpUtils;
+import com.medvision.vruser.utils.SpUtils;
 
 public class InitialActivity extends AppCompatActivity {
 

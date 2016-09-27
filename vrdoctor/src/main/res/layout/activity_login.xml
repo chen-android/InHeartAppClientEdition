@@ -75,6 +75,7 @@
 		</RelativeLayout>
 
 		<Button
+			android:id="@+id/login_confirm_bt"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
 			android:layout_margin="@dimen/middle_space"

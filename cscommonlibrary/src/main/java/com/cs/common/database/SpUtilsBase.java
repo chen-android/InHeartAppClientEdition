@@ -1,10 +1,6 @@
 package com.cs.common.database;
 
-import android.content.Context;
 import android.util.Base64;
-
-import com.medvision.vruser.beans.User;
-import com.orhanobut.logger.Logger;
 
 import net.grandcentrix.tray.core.ItemNotFoundException;
 
@@ -16,33 +12,17 @@ import java.io.ObjectOutputStream;
 /**
  * Created by chenshuai12619 on 2016/3/28 14:08.
  */
-public class SpUtils {
-	private static SpUtils instance;
-	private MyModulePreference mAppPreferences;
+public class SpUtilsBase {
+	protected MyModulePreference mAppPreferences;
 
-	private SpUtils() {
+	public SpUtilsBase() {
 	}
 
-	public static SpUtils getInstance() {
-		if (instance == null) {
-			instance = new SpUtils();
-			return instance;
-		} else {
-			return instance;
-		}
-	}
-
-	public void init(Context context) {
-		if (mAppPreferences == null) {
-			mAppPreferences = new MyModulePreference(context);
-		}
-	}
-
-	public void putString(String key, String value) {
+	protected void putString(String key, String value) {
 		mAppPreferences.put(key, value);
 	}
 
-	public void getString(String key) {
+	protected void getString(String key) {
 		try {
 			mAppPreferences.getString(key);
 		} catch (ItemNotFoundException e) {
@@ -50,39 +30,39 @@ public class SpUtils {
 		}
 	}
 
-	public void putBoolean(String key, boolean b) {
+	protected void putBoolean(String key, boolean b) {
 		mAppPreferences.put(key, b);
 	}
 
-	public void getBoolean(String key) {
+	protected void getBoolean(String key) {
 		mAppPreferences.getBoolean(key, false);
 	}
 
-	public void putInt(String key, int i) {
+	protected void putInt(String key, int i) {
 		mAppPreferences.put(key, i);
 	}
 
-	public void getInt(String key) {
+	protected void getInt(String key) {
 		mAppPreferences.getInt(key, 0);
 	}
 
-	public void putFloat(String key, float f) {
+	protected void putFloat(String key, float f) {
 		mAppPreferences.put(key, f);
 	}
 
-	public void getFloat(String key) {
+	protected void getFloat(String key) {
 		mAppPreferences.getFloat(key, 0);
 	}
 
-	public void putLong(String key, long l) {
+	protected void putLong(String key, long l) {
 		mAppPreferences.put(key, l);
 	}
 
-	public void getLong(String key) {
+	protected void getLong(String key) {
 		mAppPreferences.getLong(key, 0l);
 	}
 
-	public void putModule(String key, Object o) {
+	protected void putModule(String key, Object o) {
 		ByteArrayOutputStream baos = new ByteArrayOutputStream();
 		try {
 			ObjectOutputStream oos = new ObjectOutputStream(baos);
@@ -94,7 +74,7 @@ public class SpUtils {
 		}
 	}
 
-	public Object getModule(String key) {
+	protected Object getModule(String key) {
 		Object object = null;
 		try {
 			String string = mAppPreferences.getString(key);
@@ -115,33 +95,10 @@ public class SpUtils {
 		return object;
 	}
 
-	public void remove(String key) {
+	protected void remove(String key) {
 		mAppPreferences.remove(key);
 	}
 
 
 	/**------------以上是基本方法-------------**/
-
-	/**
-	 * ------------以下是针对某些常用参数的便捷获取方式-------------
-	 **/
-
-	public User getUser() {
-		Object module = getInstance().getModule(SpDictionary.SP_USER);
-		if (module != null) {
-			return (User) module;
-		} else {
-			Logger.wtf("用户信息为空");
-			return null;
-		}
-	}
-
-	public String getUserId() {
-		String userId = "";
-		Object module = getInstance().getModule(SpDictionary.SP_USER);
-		if (module != null) {
-			userId = ((User) module).getUserId();
-		}
-		return userId;
-	}
 }
