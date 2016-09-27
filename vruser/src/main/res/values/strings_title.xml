@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<string name="title_mine">我的</string>
+	<string name="title_message">消息</string>
+	<string name="title_user_info">个人信息</string>
+</resources>

@@ -1,0 +1,111 @@
+<LinearLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:orientation="vertical">
+
+	<RelativeLayout
+		android:layout_width="match_parent"
+		android:layout_height="50dp"
+		android:background="@color/colorPrimary">
+
+		<TextView
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:text="问诊"
+			android:textColor="@color/white"
+			android:layout_centerInParent="true"
+			android:textSize="@dimen/middle_text_size"/>
+
+		<ImageView
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:src="@drawable/icon_search"
+			android:layout_alignParentRight="true"
+			android:layout_centerVertical="true"
+			android:layout_marginRight="@dimen/large_space"/>
+	</RelativeLayout>
+
+	<RadioGroup
+		android:id="@+id/consultation_type_rg"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:orientation="horizontal">
+
+		<RadioButton
+			android:id="@+id/consultation_type_place_rb"
+			android:layout_width="0dp"
+			android:layout_weight="1"
+			android:layout_height="wrap_content"
+			android:text="@string/consultation_type_place"
+			android:textColor="@color/color_blue_black_selector"
+			android:checked="true"
+			android:button="@null"
+			android:gravity="center"
+			android:drawableBottom="@drawable/selector_blue_transparent_line_check"
+			android:drawablePadding="@dimen/small_space"
+			android:layout_marginTop="@dimen/middle_space"
+			/>
+
+		<RadioButton
+			android:id="@+id/consultation_type_disease_rb"
+			android:layout_width="0dp"
+			android:layout_weight="1"
+			android:layout_height="wrap_content"
+			android:text="@string/consultation_type_disease"
+			android:textColor="@color/color_blue_black_selector"
+			android:button="@null"
+			android:gravity="center"
+			android:drawableBottom="@drawable/selector_blue_transparent_line_check"
+			android:drawablePadding="@dimen/small_space"
+			android:layout_marginTop="@dimen/middle_space"
+			/>
+
+		<RadioButton
+			android:id="@+id/consultation_type_expert_rb"
+			android:layout_width="0dp"
+			android:layout_weight="1"
+			android:layout_height="wrap_content"
+			android:text="@string/consultation_type_expert"
+			android:textColor="@color/color_blue_black_selector"
+			android:button="@null"
+			android:gravity="center"
+			android:drawableBottom="@drawable/selector_blue_transparent_line_check"
+			android:drawablePadding="@dimen/small_space"
+			android:layout_marginTop="@dimen/middle_space"
+			android:checked="true"/>
+	</RadioGroup>
+
+	<RelativeLayout
+		android:id="@+id/consultation_expert_rl"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent">
+
+		<com.jcodecraeer.xrecyclerview.XRecyclerView
+			android:id="@+id/consultation_expert_rv"
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"/>
+	</RelativeLayout>
+
+	<RelativeLayout
+		android:id="@+id/consultation_disease_rl"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:visibility="gone">
+
+		<android.support.v7.widget.RecyclerView
+			android:id="@+id/consultation_disease_rv"
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"/>
+
+		<com.cs.widget.recyclerview.supprot.BladeView
+			android:id="@+id/consultation_disease_bv"
+			android:layout_width="30dp"
+			android:layout_height="wrap_content"
+			android:layout_alignParentRight="true"
+			android:padding="@dimen/middle_space"
+			android:layout_centerVertical="true"/>
+	</RelativeLayout>
+
+
+</LinearLayout>

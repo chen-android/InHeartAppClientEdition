@@ -1,0 +1,40 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical"
+              tools:context="com.inheart.inheartapp.fragment.MessageFragment">
+
+	<TextView
+		android:layout_width="match_parent"
+		android:layout_height="50dp"
+		android:text="@string/title_message"
+		android:textColor="@color/white"
+		android:background="@color/colorPrimary"
+		android:gravity="center"
+		android:textSize="@dimen/middle_text_size"/>
+
+	<FrameLayout
+		android:layout_width="match_parent"
+		android:layout_height="match_parent">
+
+		<com.jcodecraeer.xrecyclerview.XRecyclerView
+			android:id="@+id/message_rv"
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"/>
+
+		<RelativeLayout
+			android:id="@+id/message_no_data_rl"
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			android:visibility="gone">
+
+			<TextView
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_centerInParent="true"
+				android:text="暂无消息"
+				android:textSize="@dimen/large_text_size"/>
+		</RelativeLayout>
+	</FrameLayout>
+</LinearLayout>
