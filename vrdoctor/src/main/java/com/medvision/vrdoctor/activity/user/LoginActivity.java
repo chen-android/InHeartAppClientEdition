@@ -19,6 +19,7 @@ import com.medvision.vrdoctor.network.UserService;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 import butterknife.OnClick;
+import cn.pedant.SweetAlert.SweetAlertDialog;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
@@ -72,7 +73,13 @@ public class LoginActivity extends AppCompatActivity {
 				}, error -> {
 					String[] eInfo = error.split("&");
 					if (eInfo[0].equals("-4")) {
-						startActivity(new Intent(LoginActivity.this, DoctorVerify1Activity.class));
+						new SweetAlertDialog(LoginActivity.this)
+								.setTitleText("提示")
+								.setContentText("您还未认证医师，是否现在去认证？")
+								.setConfirmText("确认")
+								.setCancelText("取消")
+								.setConfirmClickListener(sweetAlertDialog -> startActivity(new Intent(LoginActivity.this, DoctorVerify1Activity.class)))
+								.setCancelClickListener(SweetAlertDialog::cancel).show();
 					}
 				}));
 	}

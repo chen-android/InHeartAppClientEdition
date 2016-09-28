@@ -13,6 +13,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 /**
  * Created by chenshuai12619 on 2016/3/17 16:39.
  */
+
 public class HttpMethods {
 	public static final String BASE_URL = PropertiesUtil.getServerFullPath();
 
