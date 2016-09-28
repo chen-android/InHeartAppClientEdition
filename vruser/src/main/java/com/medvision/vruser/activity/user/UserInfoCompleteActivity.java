@@ -5,7 +5,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.widget.EditText;
 
 import com.medvision.vruser.R;
-import com.medvision.vruser.utils.Navigation;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;

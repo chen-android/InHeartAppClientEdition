@@ -1,4 +1,4 @@
-package com.medvision.vruser.utils;
+package com.cs.widget.utils;
 
 import android.support.v4.app.FragmentActivity;
 import android.view.View;
@@ -6,8 +6,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.medvision.vruser.R;
-
+import com.cs.widgetlibrary.R;
 
 /**
  * Created by Administrator on 2016/3/23.

@@ -1,6 +1,6 @@
 package com.cs.networklibrary.http;
 
-import com.cs.networklibrary.entity.HttpResult;
+import com.cs.networklibrary.entity.HttpResultBase;
 
 import rx.functions.Func1;
 
@@ -9,13 +9,13 @@ import rx.functions.Func1;
  *
  * @param <T> Subscriber真正需要的数据类型，也就是Data部分的数据类型
  */
-public class HttpResultFunc<T> implements Func1<HttpResult<T>, T> {
+public class HttpResultFunc<T> implements Func1<HttpResultBase<T>, T> {
 
     @Override
-    public T call(HttpResult<T> httpResult) {
-        if (!httpResult.getCode().equals("0")) {
-            throw new ApiException(httpResult.getMessage());
-        }
+    public T call(HttpResultBase<T> httpResult) {
+	    if (!httpResult.isSuccess()) {
+		    throw new ApiException(httpResult.getCode() + "&" + httpResult.getMessage());
+	    }
         return httpResult.getData();
     }
 }

@@ -12,6 +12,8 @@ android {
         versionCode rootProject.ext.versionCode
         versionName rootProject.ext.versionName
         multiDexEnabled true
+
+        resValue "string", "tray__authority", "${applicationId}.tray"
     }
     buildTypes {
         release {

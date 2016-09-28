@@ -3,8 +3,8 @@ package com.medvision.vruser.activity.consultation;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
+import com.cs.widget.utils.Navigation;
 import com.medvision.vruser.R;
-import com.medvision.vruser.utils.Navigation;
 
 public class ExpertDetailActivity extends AppCompatActivity {
 
