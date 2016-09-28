@@ -1,5 +1,8 @@
 <resources>
 	<string name="app_name">VrDoctor</string>
+
+	<string name="next">下一步</string>
+
 	<!-- 个人中心 -->
 	<string name="login_register">立即注册</string>
 	<string name="login_forget_pwd">忘记密码？</string>
@@ -18,5 +21,7 @@
 	<!-- hint -->
 	<string name="hint_login_user_phone">请输入您的手机号</string>
 	<string name="hint_login_user_pwd">请输入您的密码</string>
+	<string name="doctor_verify_pic_upload">医师资格证件照上传</string>
+	<string name="doctor_verify_upload_tip">建议在网络良好的情况下上传,注意避免照片反光。</string>
 
 </resources>

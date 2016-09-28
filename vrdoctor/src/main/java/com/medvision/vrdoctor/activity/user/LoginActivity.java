@@ -72,7 +72,7 @@ public class LoginActivity extends AppCompatActivity {
 				}, error -> {
 					String[] eInfo = error.split("&");
 					if (eInfo[0].equals("-4")) {
-
+						startActivity(new Intent(LoginActivity.this, DoctorVerify1Activity.class));
 					}
 				}));
 	}

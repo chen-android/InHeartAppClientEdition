@@ -1,1 +1,1 @@
-include ':vruser', ':cswidgetlibrary', ':csnetworklibrary', ':vrdoctor', ':cscommonlibrary'
+include ':vruser', ':cswidgetlibrary', ':csnetworklibrary', ':vrdoctor', ':cscommonlibrary', ':multi-image-selector'
