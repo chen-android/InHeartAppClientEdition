@@ -3,11 +3,9 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/Application.iml" filepath="$PROJECT_DIR$/Application.iml" />
-      <module fileurl="file://$PROJECT_DIR$/InHeartAppClientEdition.iml" filepath="$PROJECT_DIR$/InHeartAppClientEdition.iml" />
       <module fileurl="file://$PROJECT_DIR$/cscommonlibrary/cscommonlibrary.iml" filepath="$PROJECT_DIR$/cscommonlibrary/cscommonlibrary.iml" />
       <module fileurl="file://$PROJECT_DIR$/csnetworklibrary/csnetworklibrary.iml" filepath="$PROJECT_DIR$/csnetworklibrary/csnetworklibrary.iml" />
       <module fileurl="file://$PROJECT_DIR$/cswidgetlibrary/cswidgetlibrary.iml" filepath="$PROJECT_DIR$/cswidgetlibrary/cswidgetlibrary.iml" />
-      <module fileurl="file://$PROJECT_DIR$/multi-image-selector/multi-image-selector.iml" filepath="$PROJECT_DIR$/multi-image-selector/multi-image-selector.iml" />
       <module fileurl="file://$PROJECT_DIR$/multi-image-selector/multi-image-selector.iml" filepath="$PROJECT_DIR$/multi-image-selector/multi-image-selector.iml" />
       <module fileurl="file://$PROJECT_DIR$/vrdoctor/vrdoctor.iml" filepath="$PROJECT_DIR$/vrdoctor/vrdoctor.iml" />
       <module fileurl="file://$PROJECT_DIR$/vruser/vruser.iml" filepath="$PROJECT_DIR$/vruser/vruser.iml" />

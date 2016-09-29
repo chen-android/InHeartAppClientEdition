@@ -12,6 +12,7 @@ import com.cs.widget.utils.Navigation;
 import com.medvision.vrdoctor.R;
 import com.squareup.picasso.Picasso;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,7 +30,7 @@ public class DoctorVerify1Activity extends AppCompatActivity {
 	Button mDoctorVerifyNextBt;
 	@InjectView(R.id.activity_doctor_verify)
 	LinearLayout mActivityDoctorVerify;
-	private ArrayList<String> paths;
+	private ArrayList<String> paths = new ArrayList<>();
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +45,7 @@ public class DoctorVerify1Activity extends AppCompatActivity {
 	public void onClick(View view) {
 		switch (view.getId()) {
 			case R.id.doctor_verify_iv:
+				imgSelect();
 				break;
 			case R.id.doctor_verify_next_bt:
 				break;
@@ -70,7 +72,7 @@ public class DoctorVerify1Activity extends AppCompatActivity {
 				List<String> path = data.getStringArrayListExtra(MultiImageSelectorActivity.EXTRA_RESULT);
 				paths.clear();
 				paths.addAll(path);
-				Picasso.with(this).load(path.get(0)).centerCrop().into(mDoctorVerifyIv);
+				Picasso.with(this).load(new File(path.get(0))).into(mDoctorVerifyIv);
 			}
 		}
 	}

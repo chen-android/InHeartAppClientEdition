@@ -22,6 +22,7 @@
 		android:layout_height="wrap_content"
 		android:layout_marginLeft="@dimen/middle_space"
 		android:layout_marginBottom="@dimen/middle_space"
+		android:scaleType="fitXY"
 		android:src="@drawable/icon_pic_add"/>
 
 	<include layout="@layout/line_break_black"/>
