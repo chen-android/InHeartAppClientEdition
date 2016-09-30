@@ -70,7 +70,7 @@
 					android:background="@android:color/transparent"
 					android:hint="@string/register_sms_hint"
 					android:inputType="numberSigned"
-					android:maxLength="5"
+					android:maxLength="6"
 					android:padding="@dimen/large_space"/>
 
 				<include layout="@layout/line_break_blue"/>

@@ -10,7 +10,6 @@ import android.widget.TextView;
 
 import com.cs.common.utils.ToastUtil;
 import com.cs.networklibrary.http.HttpMethods;
-import com.cs.networklibrary.http.HttpResultFunc;
 import com.cs.networklibrary.subscribers.ProgressSubscriber;
 import com.medvision.vrdoctor.R;
 import com.medvision.vrdoctor.beans.requestbody.UserReq;
@@ -65,23 +64,26 @@ public class LoginActivity extends AppCompatActivity {
 
 	private void requestLogin(UserReq userReq) {
 		userService.requestLogin(userReq)
-				.map(new HttpResultFunc<>())
 				.subscribeOn(Schedulers.io())
 				.observeOn(AndroidSchedulers.mainThread())
-				.subscribe(new ProgressSubscriber<>(LoginActivity.this, user -> {
-					ToastUtil.showMessage(LoginActivity.this, "登陆成功");
-				}, error -> {
-					String[] eInfo = error.split("&");
-					if (eInfo[0].equals("-4")) {
+				.subscribe(new ProgressSubscriber<>(LoginActivity.this, result -> {
+					if (result.getCode().equals("0")) {
+						ToastUtil.showMessage(LoginActivity.this, "登陆成功");
+					} else if (result.getCode().equals("-4")) {
 						new SweetAlertDialog(LoginActivity.this)
 								.setTitleText("提示")
 								.setContentText("您还未认证医师，是否现在去认证？")
 								.setConfirmText("确认")
 								.setCancelText("取消")
 								.setConfirmClickListener(sweetAlertDialog -> {
-									startActivity(new Intent(LoginActivity.this, DoctorVerify1Activity.class));
+									Intent intent = new Intent(LoginActivity.this, DoctorVerify1Activity.class);
+									intent.putExtra("uid", result.getData().getUid());
+									startActivity(intent);
+									sweetAlertDialog.dismiss();
 								})
-								.setCancelClickListener(SweetAlertDialog::cancel).show();
+								.setCancelClickListener(SweetAlertDialog::dismiss).show();
+					} else {
+						ToastUtil.showMessage(LoginActivity.this, "登陆失败");
 					}
 				}));
 	}
