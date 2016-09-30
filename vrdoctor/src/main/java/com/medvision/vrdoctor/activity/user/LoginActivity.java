@@ -78,7 +78,9 @@ public class LoginActivity extends AppCompatActivity {
 								.setContentText("您还未认证医师，是否现在去认证？")
 								.setConfirmText("确认")
 								.setCancelText("取消")
-								.setConfirmClickListener(sweetAlertDialog -> startActivity(new Intent(LoginActivity.this, DoctorVerify1Activity.class)))
+								.setConfirmClickListener(sweetAlertDialog -> {
+									startActivity(new Intent(LoginActivity.this, DoctorVerify1Activity.class));
+								})
 								.setCancelClickListener(SweetAlertDialog::cancel).show();
 					}
 				}));

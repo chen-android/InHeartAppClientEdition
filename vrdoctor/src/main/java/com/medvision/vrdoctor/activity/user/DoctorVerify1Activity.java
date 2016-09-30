@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
@@ -30,6 +31,10 @@ public class DoctorVerify1Activity extends AppCompatActivity {
 	Button mDoctorVerifyNextBt;
 	@InjectView(R.id.activity_doctor_verify)
 	LinearLayout mActivityDoctorVerify;
+	@InjectView(R.id.doctor_verify_name_et)
+	EditText mDoctorVerifyNameEt;
+	@InjectView(R.id.doctor_verify_id_et)
+	EditText mDoctorVerifyIdEt;
 	private ArrayList<String> paths = new ArrayList<>();
 
 	@Override
