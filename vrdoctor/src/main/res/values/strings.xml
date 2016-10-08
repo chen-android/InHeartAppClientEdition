@@ -26,4 +26,7 @@
 	<string name="doctor_verify_pic_upload">医师资格证件照上传</string>
 	<string name="doctor_verify_upload_tip">请确认以下信息准确</string>
 
+	<!-- TODO: Remove or change this placeholder text -->
+	<string name="hello_blank_fragment">Hello blank fragment</string>
+
 </resources>

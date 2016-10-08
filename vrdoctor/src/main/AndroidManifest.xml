@@ -18,13 +18,14 @@
 		<activity android:name=".activity.user.RegisterActivity">
 		</activity>
 		<activity android:name=".activity.MainActivity">
-		</activity>
-		<activity android:name=".activity.InitalActivity">
 			<intent-filter>
 				<action android:name="android.intent.action.MAIN"/>
 
 				<category android:name="android.intent.category.LAUNCHER"/>
 			</intent-filter>
+		</activity>
+		<activity android:name=".activity.InitalActivity">
+
 		</activity>
 		<activity android:name=".activity.user.DoctorVerify1Activity">
 		</activity>

@@ -87,7 +87,7 @@
 					android:layout_height="wrap_content"
 					android:background="@android:color/transparent"
 					android:hint="@string/register_password_hint"
-					android:inputType="text"
+					android:inputType="textPassword"
 					android:padding="@dimen/large_space"/>
 
 				<include layout="@layout/line_break_blue"/>

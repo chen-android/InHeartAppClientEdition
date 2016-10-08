@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+             android:layout_width="match_parent"
+             android:layout_height="match_parent"
+             android:orientation="vertical">
+
+	<ImageView
+		android:id="@+id/list_item_content_iv"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:scaleType="fitXY"
+		android:src="@drawable/icon_banner"/>
+
+	<RelativeLayout
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_gravity="bottom"
+		android:background="@color/transparent_50_black">
+
+		<TextView
+			android:id="@+id/list_item_content_tv"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:lines="1"
+			android:text="焦虑症VR视频"
+			android:layout_centerInParent="true"
+			android:layout_margin="@dimen/middle_space"
+			android:textColor="@color/white"/>
+	</RelativeLayout>
+</FrameLayout>
