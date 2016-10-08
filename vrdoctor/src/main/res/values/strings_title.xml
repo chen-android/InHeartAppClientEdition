@@ -2,4 +2,5 @@
 <resources>
 	<string name="title_register">注册</string>
 	<string name="title_doctor_verify">医师认证</string>
+	<string name="title_mine">个人中心</string>
 </resources>
