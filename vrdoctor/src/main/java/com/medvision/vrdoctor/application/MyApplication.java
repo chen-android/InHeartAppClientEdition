@@ -2,6 +2,7 @@ package com.medvision.vrdoctor.application;
 
 import android.app.Application;
 
+import com.cs.networklibrary.http.HttpMethods;
 import com.cs.networklibrary.util.PropertiesUtil;
 import com.medvision.vrdoctor.utils.SpUtils;
 
@@ -16,5 +17,6 @@ public class MyApplication extends Application {
 		super.onCreate();
 		SpUtils.getInstance().init(this);
 		PropertiesUtil.init(this);
+		HttpMethods.getInstance().initContext(this);
 	}
 }
