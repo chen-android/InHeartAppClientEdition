@@ -7,9 +7,13 @@ package com.medvision.vrdoctor.beans.requestbody;
 public class UserReq {
 	private String username;
 	private String password;
-	private String deviceId;
-	private String deviceType;
-	private String deviceCode;
+	private String appId;
+	private String deviceVersion;
+	private String deviceModel;
+	private String deviceSystem;
+	private String appVersion;
+	private String channel;
+	private String pushId;
 
 	public UserReq() {
 	}
@@ -35,27 +39,59 @@ public class UserReq {
 		this.password = password;
 	}
 
-	public String getDeviceId() {
-		return deviceId;
+	public String getAppId() {
+		return appId;
 	}
 
-	public void setDeviceId(String deviceId) {
-		this.deviceId = deviceId;
+	public void setAppId(String appId) {
+		this.appId = appId;
 	}
 
-	public String getDeviceType() {
-		return deviceType;
+	public String getDeviceVersion() {
+		return deviceVersion;
 	}
 
-	public void setDeviceType(String deviceType) {
-		this.deviceType = deviceType;
+	public void setDeviceVersion(String deviceVersion) {
+		this.deviceVersion = deviceVersion;
 	}
 
-	public String getDeviceCode() {
-		return deviceCode;
+	public String getDeviceModel() {
+		return deviceModel;
 	}
 
-	public void setDeviceCode(String deviceCode) {
-		this.deviceCode = deviceCode;
+	public void setDeviceModel(String deviceModel) {
+		this.deviceModel = deviceModel;
+	}
+
+	public String getDeviceSystem() {
+		return deviceSystem;
+	}
+
+	public void setDeviceSystem(String deviceSystem) {
+		this.deviceSystem = deviceSystem;
+	}
+
+	public String getAppVersion() {
+		return appVersion;
+	}
+
+	public void setAppVersion(String appVersion) {
+		this.appVersion = appVersion;
+	}
+
+	public String getChannel() {
+		return channel;
+	}
+
+	public void setChannel(String channel) {
+		this.channel = channel;
+	}
+
+	public String getPushId() {
+		return pushId;
+	}
+
+	public void setPushId(String pushId) {
+		this.pushId = pushId;
 	}
 }

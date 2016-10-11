@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	tools:context="com.medvision.vrdoctor.activity.process.PrescriptionActivity"
+	android:orientation="vertical">
+
+	<include layout="@layout/activity_base_title_bar"/>
+
+	<ScrollView
+		android:layout_width="match_parent"
+		android:layout_height="match_parent">
+
+		<LinearLayout
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:orientation="vertical">
+
+			<TextView
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:text="医嘱"
+				android:padding="@dimen/small_space"
+				android:background="@color/lightgray"/>
+
+			<TextView
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				tools:text="    拉萨肌肤拉丝的；啊就是的叫阿三解放路卡家圣诞快乐风景为哦 iu 情人离去我饿哦日u 去哦我 i 饿若我若玩儿去我 u 柔情为 i 饿若起舞饿肉u 文化上看到就回复可撒地方和心脏病 v崇明县女包周末下班 v 名男子被吵醒v 买保险从 v 美女标准面向农村版 v丈母娘宣传部 v丈母娘宣传部v 美女主播现场 v 美女主播小聪明 v 吧在面向农村 v 吧在面向传播 v某些女包v 们真心不错v 名字被写成v 目标朝鲜民族v 某些女包成 v妹子你想变成 v 美女现场 v 回家啊可是地方哈市领导看见哈伦裤升级换代封口机哈隧道口广发卡就是个大房间哥萨克肌肤噶司空见惯饭卡几乎是高科技化官方撒空间和国防建设的广发卡建设的高峰期业务额头日 u 却因为特日 u 却因为特日 u 企业委托日 u 却因为特日 u 提问求饿一天如无其他热 i 无额头瑞温泉"
+				android:padding="@dimen/small_space"/>
+
+			<TextView
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:text="选择内容"
+				android:padding="@dimen/small_space"
+				android:background="@color/lightgray"/>
+		</LinearLayout>
+	</ScrollView>
+</LinearLayout>

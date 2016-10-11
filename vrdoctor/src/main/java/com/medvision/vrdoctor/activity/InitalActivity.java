@@ -6,6 +6,8 @@ import android.support.v7.app.AppCompatActivity;
 
 import com.medvision.vrdoctor.R;
 import com.medvision.vrdoctor.activity.user.LoginActivity;
+import com.medvision.vrdoctor.beans.User;
+import com.medvision.vrdoctor.utils.Constant;
 import com.medvision.vrdoctor.utils.SpUtils;
 
 public class InitalActivity extends AppCompatActivity {
@@ -14,7 +16,8 @@ public class InitalActivity extends AppCompatActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_inital);
-		if (SpUtils.getInstance().getUser() != null) {
+		User user = SpUtils.getInstance().getUser();
+		if (user != null && (Constant.LOGIN_STATUS_SUCCESS.equals(user.getCode()) || Constant.LOGIN_STATUS_CLOSE.equals(user.getCode()))) {
 			startActivity(new Intent(this, MainActivity.class));
 		} else {
 			startActivity(new Intent(this, LoginActivity.class));

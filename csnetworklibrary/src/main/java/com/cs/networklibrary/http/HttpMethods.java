@@ -1,14 +1,9 @@
 package com.cs.networklibrary.http;
 
-import android.content.Context;
-
 import com.cs.networklibrary.util.PropertiesUtil;
 
-import java.net.CookieManager;
-import java.net.CookiePolicy;
 import java.util.concurrent.TimeUnit;
 
-import okhttp3.JavaNetCookieJar;
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
@@ -28,14 +23,14 @@ public class HttpMethods {
 
 	private Retrofit retrofit;
 
-	private Context mContext;
+//	private Context mContext;
 
 	//构造方法私有
 	private HttpMethods() {
 		//手动创建一个OkHttpClient并设置超时时间
 		OkHttpClient.Builder builder = new OkHttpClient.Builder();
-		builder.connectTimeout(DEFAULT_TIMEOUT, TimeUnit.SECONDS)
-				.cookieJar(new JavaNetCookieJar(new CookieManager(new PersistentCookieStore(mContext), CookiePolicy.ACCEPT_ALL)));
+		builder.connectTimeout(DEFAULT_TIMEOUT, TimeUnit.SECONDS);
+//				.cookieJar(new JavaNetCookieJar(new CookieManager(new PersistentCookieStore(mContext), CookiePolicy.ACCEPT_ALL)));
 		if (IS_PRINT_LOG) {
 			HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
 			interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
@@ -55,9 +50,9 @@ public class HttpMethods {
 		return SingletonHolder.INSTANCE;
 	}
 
-	public void initContext(Context context) {
-		mContext = context;
-	}
+//	public void initContext(Context context) {
+//		mContext = context;
+//	}
 
     public <T> T getClassInstance(Class<T> clazz) {
         return retrofit.create(clazz);

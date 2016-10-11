@@ -9,12 +9,12 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
-import com.cs.common.utils.ToastUtil;
 import com.cs.networklibrary.http.HttpMethods;
 import com.cs.networklibrary.http.HttpResultFunc;
 import com.cs.networklibrary.subscribers.ProgressSubscriber;
 import com.cs.widget.utils.Navigation;
 import com.medvision.vrdoctor.R;
+import com.medvision.vrdoctor.beans.requestbody.VerifyInfoReq;
 import com.medvision.vrdoctor.network.UserService;
 import com.squareup.picasso.Picasso;
 
@@ -26,7 +26,6 @@ import butterknife.ButterKnife;
 import butterknife.InjectView;
 import butterknife.OnClick;
 import me.nereo.multi_image_selector.MultiImageSelectorActivity;
-import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 import rx.android.schedulers.AndroidSchedulers;
@@ -47,7 +46,7 @@ public class DoctorVerify1Activity extends AppCompatActivity {
 	EditText mDoctorVerifyIdEt;
 	private ArrayList<String> paths = new ArrayList<>();
 
-	private String uid;
+	private String token;
 	private UserService userService;
 
 	@Override
@@ -56,7 +55,7 @@ public class DoctorVerify1Activity extends AppCompatActivity {
 		setContentView(R.layout.activity_doctor_verify1);
 		ButterKnife.inject(this);
 		Navigation.getInstance(this).setBack().setTitle(getString(R.string.title_doctor_verify));
-		uid = getIntent().getStringExtra("uid");
+		token = getIntent().getStringExtra("token");
 		userService = HttpMethods.getInstance().getClassInstance(UserService.class);
 	}
 
@@ -100,14 +99,33 @@ public class DoctorVerify1Activity extends AppCompatActivity {
 	private void commitInfo() {
 		File file = new File(paths.get(0));
 		if (file.exists()) {
-			RequestBody fileRequest = RequestBody.create(MediaType.parse("multipart/from-data"), file);
-			MultipartBody.Part part = MultipartBody.Part.create(fileRequest);
-			userService.uploadVerifyImg(RequestBody.create(MediaType.parse("multipart/from-data"), uid), RequestBody.create(MediaType.parse("multipart/from-data"), file.getName()), part)
+//			RequestBody requestBody = MultipartBody.create(MultipartBody.FORM, file);
+//
+//			userService.uploadVerifyImg(requestBody,token,file.getName())
+//					.map(new HttpResultFunc<>())
+//					.subscribeOn(Schedulers.io())
+//					.observeOn(AndroidSchedulers.mainThread())
+//					.subscribe(new ProgressSubscriber<>(DoctorVerify1Activity.this, verifyImg -> {
+//						ToastUtil.showMessage(DoctorVerify1Activity.this, verifyImg.getImageId());
+//					}));
+
+			RequestBody requestBody = RequestBody.create(MultipartBody.FORM, file);
+			MultipartBody.Builder builder = new MultipartBody.Builder();
+			builder.addFormDataPart("fileData", file.getName(), requestBody).addFormDataPart("token", token).addFormDataPart("filename", file.getName());
+			userService.uploadVerifyImg(builder.build())
+					.map(new HttpResultFunc<>())
+					.flatMap(verifyImg -> {
+						VerifyInfoReq verifyInfoReq = new VerifyInfoReq();
+						verifyInfoReq.setIdNumber(mDoctorVerifyIdEt.getText().toString());
+						verifyInfoReq.setImageId(verifyImg.getImageId());
+						verifyInfoReq.setRealname(mDoctorVerifyNameEt.getText().toString());
+						return userService.uploadVerifyInfo(verifyInfoReq);
+					})
 					.map(new HttpResultFunc<>())
 					.subscribeOn(Schedulers.io())
 					.observeOn(AndroidSchedulers.mainThread())
-					.subscribe(new ProgressSubscriber<>(DoctorVerify1Activity.this, verifyImg -> {
-						ToastUtil.showMessage(DoctorVerify1Activity.this, verifyImg.getImageId());
+					.subscribe(new ProgressSubscriber<>(DoctorVerify1Activity.this, noData -> {
+
 					}));
 		}
 	}

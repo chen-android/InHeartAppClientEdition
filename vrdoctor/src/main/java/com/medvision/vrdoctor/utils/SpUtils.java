@@ -34,7 +34,7 @@ public class SpUtils extends SpUtilsBase {
 	}
 
 	public User getUser() {
-		Object module = getInstance().getModule(SpDictionary.SP_USER);
+		Object module = getModule(SpDictionary.SP_USER);
 		if (module != null) {
 			return (User) module;
 		} else {
@@ -43,12 +43,7 @@ public class SpUtils extends SpUtilsBase {
 		}
 	}
 
-	public String getUserId() {
-		String userId = "";
-		Object module = getInstance().getModule(SpDictionary.SP_USER);
-		if (module != null) {
-			userId = ((User) module).getUid();
-		}
-		return userId;
+	public void saveUser(User user) {
+		putModule(SpDictionary.SP_USER, user);
 	}
 }

@@ -30,6 +30,8 @@
 		</activity>
 		<activity android:name=".activity.user.DoctorVerify2Activity">
 		</activity>
+		<activity android:name=".activity.process.PrescriptionActivity">
+		</activity>
 	</application>
 
 </manifest>

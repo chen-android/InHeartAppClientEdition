@@ -9,8 +9,8 @@ android {
         applicationId "com.medvision.vruser"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode rootProject.ext.versionCode
-        versionName rootProject.ext.versionName
+        versionCode 1
+        versionName "1.0"
         multiDexEnabled true
 
         resValue "string", "tray__authority", "${applicationId}.tray"

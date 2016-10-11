@@ -6,6 +6,7 @@ import com.medvision.vrdoctor.beans.VerifyImg;
 import com.medvision.vrdoctor.beans.requestbody.RegisterReq;
 import com.medvision.vrdoctor.beans.requestbody.SmsReq;
 import com.medvision.vrdoctor.beans.requestbody.UserReq;
+import com.medvision.vrdoctor.beans.requestbody.VerifyInfoReq;
 
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
@@ -35,5 +36,13 @@ public interface UserService {
 	//验证图片上传
 	@Multipart
 	@POST("doctor/authUpload")
-	Observable<HttpResult<VerifyImg>> uploadVerifyImg(@Part("uid") RequestBody uid, @Part("filename") RequestBody filename, @Part MultipartBody.Part file);
+	Observable<HttpResult<VerifyImg>> uploadVerifyImg(@Part("fileData") RequestBody fileData, @Part("token") String token, @Part("filename") String filename);
+
+	//验证图片上传
+	@POST("doctor/authUpload")
+	Observable<HttpResult<VerifyImg>> uploadVerifyImg(@Body MultipartBody body);
+
+
+	@POST("doctor/auth")
+	Observable<HttpResult<NoData>> uploadVerifyInfo(@Body VerifyInfoReq verifyInfoReq);
 }
