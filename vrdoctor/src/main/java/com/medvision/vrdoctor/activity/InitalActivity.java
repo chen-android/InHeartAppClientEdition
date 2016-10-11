@@ -22,5 +22,6 @@ public class InitalActivity extends AppCompatActivity {
 		} else {
 			startActivity(new Intent(this, LoginActivity.class));
 		}
+		finish();
 	}
 }

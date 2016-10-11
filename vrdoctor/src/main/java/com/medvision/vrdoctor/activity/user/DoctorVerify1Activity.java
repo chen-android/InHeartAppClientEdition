@@ -25,6 +25,7 @@ import java.util.List;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 import butterknife.OnClick;
+import cn.pedant.SweetAlert.SweetAlertDialog;
 import me.nereo.multi_image_selector.MultiImageSelectorActivity;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
@@ -125,7 +126,14 @@ public class DoctorVerify1Activity extends AppCompatActivity {
 					.subscribeOn(Schedulers.io())
 					.observeOn(AndroidSchedulers.mainThread())
 					.subscribe(new ProgressSubscriber<>(DoctorVerify1Activity.this, noData -> {
-
+						new SweetAlertDialog(DoctorVerify1Activity.this)
+								.setTitleText("提示")
+								.setContentText("资料提交成功")
+								.setConfirmText("确认")
+								.setConfirmClickListener(sweetAlertDialog -> {
+									sweetAlertDialog.dismiss();
+									finish();
+								});
 					}));
 		}
 	}

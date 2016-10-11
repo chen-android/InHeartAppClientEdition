@@ -1,7 +1,10 @@
 package com.medvision.vrdoctor.activity.user;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.View;
@@ -25,6 +28,7 @@ import butterknife.ButterKnife;
 import butterknife.InjectView;
 import butterknife.OnClick;
 import cn.pedant.SweetAlert.SweetAlertDialog;
+import kr.co.namee.permissiongen.PermissionGen;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
@@ -52,6 +56,8 @@ public class LoginActivity extends AppCompatActivity {
 	Button mLoginConfirmBt;
 
 	private UserService userService;
+	private User user;
+	private boolean hasPermission;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -59,12 +65,12 @@ public class LoginActivity extends AppCompatActivity {
 		setContentView(R.layout.activity_login);
 		ButterKnife.inject(this);
 		userService = HttpMethods.getInstance().getClassInstance(UserService.class);
-		User user = SpUtils.getInstance().getUser();
-		if (user != null && !TextUtils.isEmpty(user.getUsername()) && !TextUtils.isEmpty(user.getPassword())) {
-			mLoginUsernameEt.setText(user.getUsername());
-			mLoginPwdEt.setText(user.getPassword());
-			mLoginConfirmBt.performClick();
-		}
+		user = SpUtils.getInstance().getUser();
+		PermissionGen.with(this)
+				.addRequestCode(100)
+				.permissions(Manifest.permission.READ_PHONE_STATE, Manifest.permission.READ_EXTERNAL_STORAGE)
+				.request();
+
 	}
 
 	@OnClick({R.id.login_register_tv, R.id.login_forget_pwd_tv, R.id.login_confirm_bt})
@@ -76,15 +82,21 @@ public class LoginActivity extends AppCompatActivity {
 			case R.id.login_forget_pwd_tv:
 				break;
 			case R.id.login_confirm_bt:
-				UserReq userReq = new UserReq(mLoginUsernameEt.getText().toString(), mLoginPwdEt.getText().toString());
-				userReq.setAppId(SystemUtils.getIMEI(this));
-				userReq.setAppVersion(SystemUtils.getAppVersion(this));
-				userReq.setDeviceModel(SystemUtils.getDeviceModel());
-				userReq.setDeviceSystem(SystemUtils.getDeviceSystem());
-				userReq.setDeviceVersion(SystemUtils.getDeviceSystemVersion());
-				requestLogin(userReq);
+				performLogin();
 				break;
 		}
+	}
+
+	private void performLogin() {
+		UserReq userReq = new UserReq(mLoginUsernameEt.getText().toString(), mLoginPwdEt.getText().toString());
+		if (hasPermission) {
+			userReq.setAppId(SystemUtils.getIMEI(this));
+			userReq.setAppVersion(SystemUtils.getAppVersion(this));
+			userReq.setDeviceModel(SystemUtils.getDeviceModel());
+			userReq.setDeviceSystem(SystemUtils.getDeviceSystem());
+			userReq.setDeviceVersion(SystemUtils.getDeviceSystemVersion());
+		}
+		requestLogin(userReq);
 	}
 
 
@@ -150,6 +162,18 @@ public class LoginActivity extends AppCompatActivity {
 		if (requestCode == REQUEST_CODE_REGISTER) {
 			if (resultCode == RESULT_OK) {
 
+			}
+		}
+	}
+
+	@Override
+	public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+		if (requestCode == 100) {
+			hasPermission = grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED;
+			if (user != null && !TextUtils.isEmpty(user.getUsername()) && !TextUtils.isEmpty(user.getPassword())) {
+				mLoginUsernameEt.setText(user.getUsername());
+				mLoginPwdEt.setText(user.getPassword());
+				mLoginConfirmBt.performClick();
 			}
 		}
 	}
