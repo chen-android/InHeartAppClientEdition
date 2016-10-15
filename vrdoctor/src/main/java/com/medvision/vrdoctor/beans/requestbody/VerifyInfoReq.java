@@ -4,7 +4,7 @@ package com.medvision.vrdoctor.beans.requestbody;
  * Created by cs on 2016/10/11.
  */
 
-public class VerifyInfoReq {
+public class VerifyInfoReq extends BaseReq {
 	private String idNumber;
 	private String realname;
 	private String imageId;

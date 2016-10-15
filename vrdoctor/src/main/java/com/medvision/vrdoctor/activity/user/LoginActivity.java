@@ -34,14 +34,6 @@ import rx.schedulers.Schedulers;
 
 public class LoginActivity extends AppCompatActivity {
 
-	private static final String LOGIN_STATUS_NETWORK_ERROR = "-1";//网络错误
-	private static final String LOGIN_STATUS_PWD_ERROR = "-2";//密码错误
-	private static final String LOGIN_STATUS_NO_USER = "-3";//无此用户
-	private static final String LOGIN_STATUS_UNAUTHORIZED = "-4";//未认证
-	private static final String LOGIN_STATUS_COMMITED = "-5";//已提交
-	private static final String LOGIN_STATUS_UNPASSED = "-6";//未通过
-	private static final String LOGIN_STATUS_CLOSE = "-7";//停诊
-
 	private static final int REQUEST_CODE_REGISTER = 0;
 
 	@InjectView(R.id.login_username_et)
@@ -134,7 +126,9 @@ public class LoginActivity extends AppCompatActivity {
 								})
 								.setCancelClickListener(SweetAlertDialog::dismiss).show();
 					} else if (Constant.LOGIN_STATUS_COMMITED.equals(result.getCode())) {
-
+						Intent intent = new Intent(LoginActivity.this, DoctorVerify2Activity.class);
+						intent.putExtra("status", Constant.VERIFY_STATUS_ING);
+						startActivity(intent);
 					} else if (Constant.LOGIN_STATUS_UNPASSED.equals(result.getCode())) {
 						User user = result.getData();
 						user.setCode(result.getCode());
@@ -153,7 +147,7 @@ public class LoginActivity extends AppCompatActivity {
 								})
 								.setCancelClickListener(SweetAlertDialog::dismiss).show();
 					}
-				}));
+				}, false));
 	}
 
 	@Override

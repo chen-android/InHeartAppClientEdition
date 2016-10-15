@@ -13,4 +13,7 @@ public class Constant {
 	public static final String LOGIN_STATUS_COMMITED = "-5";//已提交
 	public static final String LOGIN_STATUS_UNPASSED = "-6";//未通过
 	public static final String LOGIN_STATUS_CLOSE = "-7";//停诊
+
+	public static final int VERIFY_STATUS_ING = 0;//医师认证 进行中
+	public static final int VERIFY_STATUS_UNPASSED = 1;//医师认证 失败
 }

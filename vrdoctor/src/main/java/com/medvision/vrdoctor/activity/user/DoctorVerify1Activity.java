@@ -16,6 +16,8 @@ import com.cs.widget.utils.Navigation;
 import com.medvision.vrdoctor.R;
 import com.medvision.vrdoctor.beans.requestbody.VerifyInfoReq;
 import com.medvision.vrdoctor.network.UserService;
+import com.medvision.vrdoctor.utils.Constant;
+import com.medvision.vrdoctor.utils.SpUtils;
 import com.squareup.picasso.Picasso;
 
 import java.io.File;
@@ -120,6 +122,7 @@ public class DoctorVerify1Activity extends AppCompatActivity {
 						verifyInfoReq.setIdNumber(mDoctorVerifyIdEt.getText().toString());
 						verifyInfoReq.setImageId(verifyImg.getImageId());
 						verifyInfoReq.setRealname(mDoctorVerifyNameEt.getText().toString());
+						verifyInfoReq.setToken(SpUtils.getInstance().getToken());
 						return userService.uploadVerifyInfo(verifyInfoReq);
 					})
 					.map(new HttpResultFunc<>())
@@ -132,8 +135,11 @@ public class DoctorVerify1Activity extends AppCompatActivity {
 								.setConfirmText("确认")
 								.setConfirmClickListener(sweetAlertDialog -> {
 									sweetAlertDialog.dismiss();
+									Intent intent = new Intent(DoctorVerify1Activity.this, DoctorVerify2Activity.class);
+									intent.putExtra("status", Constant.VERIFY_STATUS_ING);
+									startActivity(intent);
 									finish();
-								});
+								}).show();
 					}));
 		}
 	}

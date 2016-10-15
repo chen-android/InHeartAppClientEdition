@@ -4,7 +4,7 @@ package com.medvision.vrdoctor.beans.requestbody;
  * Created by Administrator on 2016/9/27 0027.
  */
 
-public class UserReq {
+public class UserReq extends BaseReq {
 	private String username;
 	private String password;
 	private String appId;

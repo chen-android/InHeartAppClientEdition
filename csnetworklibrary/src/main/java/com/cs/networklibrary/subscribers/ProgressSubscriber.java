@@ -15,7 +15,7 @@ import rx.Subscriber;
  * 用于在Http请求开始时，自动显示一个ProgressDialog
  * 在Http请求结束是，关闭ProgressDialog
  * 调用者自己对请求数据进行处理
- * Created by liukun on 16/3/10.
+ * Created by chenshuai on 16/3/10.
  */
 public class ProgressSubscriber<T> extends Subscriber<T> implements ProgressCancelListener {
 
@@ -24,6 +24,7 @@ public class ProgressSubscriber<T> extends Subscriber<T> implements ProgressCanc
 	private ProgressDialogHandler mProgressDialogHandler;
 
 	private Context context;
+	private boolean shouldShowError = true;
 
 	public ProgressSubscriber(Context context, SubscriberOnNextListener<T> mSubscriberOnNextListener) {
 		this(context, mSubscriberOnNextListener, null);
@@ -34,6 +35,13 @@ public class ProgressSubscriber<T> extends Subscriber<T> implements ProgressCanc
 		mSubscriberOnErrorListener = subscriberOnErrorListener;
 		this.context = context;
 		mProgressDialogHandler = new ProgressDialogHandler(context, this, true);
+	}
+
+	public ProgressSubscriber(Context context, SubscriberOnNextListener<T> mSubscriberOnNextListener, boolean shouldShowError) {
+		this.mSubscriberOnNextListener = mSubscriberOnNextListener;
+		this.context = context;
+		mProgressDialogHandler = new ProgressDialogHandler(context, this, true);
+		this.shouldShowError = shouldShowError;
 	}
 
 	private void showProgressDialog() {
@@ -79,7 +87,9 @@ public class ProgressSubscriber<T> extends Subscriber<T> implements ProgressCanc
 		} else if (e instanceof ConnectException) {
 			Toast.makeText(context, "网络中断，请检查您的网络状态", Toast.LENGTH_SHORT).show();
 		} else {
-//			Toast.makeText(context, "", Toast.LENGTH_SHORT).show();
+			if (shouldShowError) {
+				Toast.makeText(context, "", Toast.LENGTH_SHORT).show();
+			}
 		}
 		dismissProgressDialog();
 		if (mSubscriberOnErrorListener != null) {

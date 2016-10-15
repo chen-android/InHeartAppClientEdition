@@ -46,4 +46,8 @@ public class SpUtils extends SpUtilsBase {
 	public void saveUser(User user) {
 		putModule(SpDictionary.SP_USER, user);
 	}
+
+	public String getToken() {
+		return getUser().getToken();
+	}
 }
