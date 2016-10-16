@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest package="com.medvision.vrdoctor"
-          xmlns:android="http://schemas.android.com/apk/res/android"
-          xmlns:tools="http://schemas.android.com/tools">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+          xmlns:tools="http://schemas.android.com/tools"
+          package="com.medvision.vrdoctor">
 
 	<uses-permission android:name="android.permission.INTERNET"/>
 
@@ -31,6 +31,8 @@
 		<activity android:name=".activity.user.DoctorVerify2Activity">
 		</activity>
 		<activity android:name=".activity.process.PrescriptionActivity">
+		</activity>
+		<activity android:name=".activity.user.CollectionActivity">
 		</activity>
 	</application>
 

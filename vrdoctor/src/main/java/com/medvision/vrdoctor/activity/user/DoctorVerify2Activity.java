@@ -27,7 +27,7 @@ public class DoctorVerify2Activity extends AppCompatActivity {
 		int status = getIntent().getIntExtra("status", -1);
 		if (status == Constant.VERIFY_STATUS_ING) {
 			Navigation.getInstance(this).setTitle("等待审核").setBack();
-			mDoctorVerifyStatusIv.setImageResource(R.drawable.icon_verify_fail);
+			mDoctorVerifyStatusIv.setImageResource(R.drawable.icon_verify_success);
 			mDoctorVerifyStatusTv.setText("已提交审核材料\n请耐心等待");
 		} else if (status == Constant.VERIFY_STATUS_UNPASSED) {
 			Navigation.getInstance(this).setTitle("认证失败").setBack();

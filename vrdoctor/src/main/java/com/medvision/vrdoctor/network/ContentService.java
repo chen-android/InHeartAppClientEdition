@@ -1,6 +1,8 @@
 package com.medvision.vrdoctor.network;
 
+import com.medvision.vrdoctor.beans.ContentFilter;
 import com.medvision.vrdoctor.beans.HomeContent;
+import com.medvision.vrdoctor.beans.requestbody.BaseReq;
 import com.medvision.vrdoctor.beans.requestbody.HomeContentReq;
 
 import java.util.List;
@@ -17,4 +19,7 @@ public interface ContentService {
 
 	@POST("doctor/content/search")
 	Observable<HttpResult<List<HomeContent>>> getSearchContent(@Body HomeContentReq homeContentReq);
+
+	@POST("doctor/content/disease")
+	Observable<HttpResult<List<ContentFilter>>> getContentFilterDisease(@Body BaseReq baseReq);
 }
