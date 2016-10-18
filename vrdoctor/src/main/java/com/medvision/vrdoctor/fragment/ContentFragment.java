@@ -15,6 +15,7 @@ import android.widget.TextView;
 
 import com.cs.networklibrary.http.HttpMethods;
 import com.cs.networklibrary.http.HttpResultFunc;
+import com.cs.networklibrary.subscribers.ProgressSubscriber;
 import com.cs.widget.recyclerview.DividerGridItemDecoration;
 import com.jcodecraeer.xrecyclerview.XRecyclerView;
 import com.medvision.vrdoctor.R;
@@ -114,13 +115,13 @@ public class ContentFragment extends Fragment {
 	}
 
 	private void requestContentDisease() {
-		mContentService.getContentFilterDisease(new BaseReq(SpUtils.getInstance().getToken()))
+		mContentService.getFilterDisease(new BaseReq(SpUtils.getInstance().getToken()))
 				.map(new HttpResultFunc<>())
 				.subscribeOn(Schedulers.io())
 				.observeOn(AndroidSchedulers.mainThread())
 				.subscribe(new ProgressSubscriber<>(getActivity(), contentFilters -> {
 					diseaseLoaded = true;
-					showContentDisease(contentFilters);
+//					showContentDisease();
 				}));
 	}
 
