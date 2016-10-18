@@ -18,11 +18,13 @@ import com.cs.networklibrary.http.HttpResultFunc;
 import com.cs.widget.recyclerview.DividerGridItemDecoration;
 import com.jcodecraeer.xrecyclerview.XRecyclerView;
 import com.medvision.vrdoctor.R;
+import com.medvision.vrdoctor.beans.ContentFilter;
 import com.medvision.vrdoctor.beans.HomeContent;
 import com.medvision.vrdoctor.beans.requestbody.BaseReq;
 import com.medvision.vrdoctor.beans.requestbody.HomeContentReq;
 import com.medvision.vrdoctor.network.ContentService;
 import com.medvision.vrdoctor.utils.SpUtils;
+import com.medvision.vrdoctor.view.popupwindow.PopupUtils;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -55,6 +57,12 @@ public class ContentFragment extends Fragment {
 	private HomeContentReq mHomeContentReq;
 	private int currentPage = 1;
 
+	private boolean diseaseLoaded = false;
+	private boolean therapyLoaded = false;
+	private boolean typeLoaded = false;
+
+	private View diseaseFilterView;
+
 	public static ContentFragment newInstance() {
 		ContentFragment fragment = new ContentFragment();
 		return fragment;
@@ -86,6 +94,7 @@ public class ContentFragment extends Fragment {
 	public void onClick(View view) {
 		switch (view.getId()) {
 			case R.id.content_bingzhong_bt:
+				showContentDisease(null);
 				break;
 			case R.id.content_neirong_bt:
 				break;
@@ -102,6 +111,17 @@ public class ContentFragment extends Fragment {
 				.subscribeOn(Schedulers.io())
 				.observeOn(AndroidSchedulers.mainThread())
 				.subscribe();
+	}
+
+	private void requestContentDisease() {
+		mContentService.getContentFilterDisease(new BaseReq(SpUtils.getInstance().getToken()))
+				.map(new HttpResultFunc<>())
+				.subscribeOn(Schedulers.io())
+				.observeOn(AndroidSchedulers.mainThread())
+				.subscribe(new ProgressSubscriber<>(getActivity(), contentFilters -> {
+					diseaseLoaded = true;
+					showContentDisease(contentFilters);
+				}));
 	}
 
 	private class MyContentAdapter extends RecyclerView.Adapter<MyContentAdapter.ViewHolder> {
@@ -148,10 +168,25 @@ public class ContentFragment extends Fragment {
 		}
 	}
 
+	private void showContentDisease(List<ContentFilter> filters) {
+		if (diseaseLoaded) {
+			if (diseaseFilterView == null) {
+				diseaseFilterView = View.inflate(getActivity(), R.layout.popup_disease_list, null);
+
+
+			} else {
+				new PopupUtils(getActivity()).setContentView(diseaseFilterView).show();
+			}
+		} else {
+			requestContentDisease();
+		}
+	}
+
 	private class MyFliterAdapter extends RecyclerView.Adapter<MyFliterAdapter.ViewHolder> {
+
 		@Override
 		public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-			return null;
+			return new ViewHolder(View.inflate(getActivity(), R.layout.list_item_content_filter, null));
 		}
 
 		@Override
@@ -166,8 +201,13 @@ public class ContentFragment extends Fragment {
 
 		class ViewHolder extends RecyclerView.ViewHolder {
 
-			public ViewHolder(View itemView) {
+			TextView name;
+			TextView spell;
+
+			ViewHolder(View itemView) {
 				super(itemView);
+				name = (TextView) itemView.findViewById(R.id.list_item_content_filter_name_tv);
+				spell = (TextView) itemView.findViewById(R.id.list_item_content_filter_spell_tv);
 			}
 		}
 	}

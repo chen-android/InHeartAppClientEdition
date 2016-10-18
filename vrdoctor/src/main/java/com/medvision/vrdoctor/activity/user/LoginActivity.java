@@ -98,12 +98,12 @@ public class LoginActivity extends AppCompatActivity {
 				.observeOn(AndroidSchedulers.mainThread())
 				.subscribe(new ProgressSubscriber<>(LoginActivity.this, result -> {
 					if (result.getCode().equals(Constant.LOGIN_STATUS_SUCCESS) || Constant.LOGIN_STATUS_CLOSE.equals(result.getCode())) {
-						ToastUtil.showMessage(LoginActivity.this, "登陆成功");
 						User user = result.getData();
 						user.setCode(result.getCode());
 						user.setPassword(userReq.getPassword());
 						SpUtils.getInstance().saveUser(user);
 						startActivity(new Intent(LoginActivity.this, MainActivity.class));
+						finish();
 					} else if (Constant.LOGIN_STATUS_PWD_ERROR.equals(result.getCode())) {
 						ToastUtil.showMessage(LoginActivity.this, result.getMessage());
 					} else if (Constant.LOGIN_STATUS_NO_USER.equals(result.getCode())) {

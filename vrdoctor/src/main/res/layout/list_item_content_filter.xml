@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+
+	<TextView
+		android:id="@+id/list_item_content_filter_spell_tv"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:paddingLeft="@dimen/middle_space"
+		android:paddingTop="@dimen/small_space"
+		android:paddingBottom="@dimen/small_space"
+		android:background="@color/lightgray"
+		tools:text="D"/>
+
+	<TextView
+		android:id="@+id/list_item_content_filter_name_tv"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:padding="@dimen/middle_space"
+		tools:text="产前xxxxxx"/>
+</LinearLayout>

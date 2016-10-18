@@ -7,6 +7,9 @@ package com.medvision.vrdoctor.beans.requestbody;
 public class BaseReq {
 	private String token;
 
+	public BaseReq() {
+	}
+
 	public BaseReq(String token) {
 		this.token = token;
 	}
