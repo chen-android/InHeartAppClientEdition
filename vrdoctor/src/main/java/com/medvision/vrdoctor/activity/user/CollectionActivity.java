@@ -17,6 +17,7 @@ import com.medvision.vrdoctor.R;
 import com.medvision.vrdoctor.beans.Collection;
 import com.medvision.vrdoctor.beans.requestbody.CollectionListReq;
 import com.medvision.vrdoctor.network.UserService;
+import com.medvision.vrdoctor.utils.Constant;
 import com.medvision.vrdoctor.utils.SpUtils;
 import com.squareup.picasso.Picasso;
 
@@ -28,10 +29,8 @@ import butterknife.InjectView;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
-public class CollectionActivity extends AppCompatActivity {
 
-	private static final int REQUEST_REFRESH = 752;
-	private static final int REQUEST_MORE = 979;
+public class CollectionActivity extends AppCompatActivity {
 
 	@InjectView(R.id.collection_rv)
 	XRecyclerView mCollectionRv;
@@ -53,20 +52,20 @@ public class CollectionActivity extends AppCompatActivity {
 		mCollectionListReq = new CollectionListReq();
 		mCollectionListReq.setToken(SpUtils.getInstance().getToken());
 		mCollectionListReq.setPaging(currentPage);
-		requestCollectionList(mCollectionListReq, REQUEST_REFRESH);
+		requestCollectionList(mCollectionListReq, Constant.REQUEST_REFRESH);
 		mCollectionRv.setLoadingListener(new XRecyclerView.LoadingListener() {
 			@Override
 			public void onRefresh() {
 				currentPage = 1;
 				mCollectionListReq.setPaging(currentPage);
-				requestCollectionList(mCollectionListReq, REQUEST_REFRESH);
+				requestCollectionList(mCollectionListReq, Constant.REQUEST_REFRESH);
 			}
 
 			@Override
 			public void onLoadMore() {
 				currentPage++;
 				mCollectionListReq.setPaging(currentPage);
-				requestCollectionList(mCollectionListReq, REQUEST_MORE);
+				requestCollectionList(mCollectionListReq, Constant.REQUEST_MORE);
 			}
 		});
 	}
@@ -80,9 +79,9 @@ public class CollectionActivity extends AppCompatActivity {
 	}
 
 	private void setViewData(List<Collection> collections, int loadType) {
-		if (loadType == REQUEST_MORE) {
+		if (loadType == Constant.REQUEST_MORE) {
 			mAdapter.addData(collections);
-		} else if (loadType == REQUEST_REFRESH) {
+		} else if (loadType == Constant.REQUEST_REFRESH) {
 			mAdapter.setData(collections);
 		}
 	}

@@ -16,4 +16,7 @@ public class Constant {
 
 	public static final int VERIFY_STATUS_ING = 0;//医师认证 进行中
 	public static final int VERIFY_STATUS_UNPASSED = 1;//医师认证 失败
+
+	public static final int REQUEST_REFRESH = 752;
+	public static final int REQUEST_MORE = 979;
 }

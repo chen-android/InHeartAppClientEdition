@@ -20,12 +20,15 @@ import com.cs.widget.recyclerview.DividerGridItemDecoration;
 import com.jcodecraeer.xrecyclerview.XRecyclerView;
 import com.medvision.vrdoctor.R;
 import com.medvision.vrdoctor.beans.ContentFilter;
+import com.medvision.vrdoctor.beans.FilterDisease;
+import com.medvision.vrdoctor.beans.FilterTherapy;
+import com.medvision.vrdoctor.beans.FilterType;
 import com.medvision.vrdoctor.beans.HomeContent;
 import com.medvision.vrdoctor.beans.requestbody.BaseReq;
 import com.medvision.vrdoctor.beans.requestbody.HomeContentReq;
 import com.medvision.vrdoctor.network.ContentService;
+import com.medvision.vrdoctor.utils.Constant;
 import com.medvision.vrdoctor.utils.SpUtils;
-import com.medvision.vrdoctor.view.popupwindow.PopupUtils;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -34,6 +37,7 @@ import java.util.List;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 import butterknife.OnClick;
+import rx.Subscriber;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
@@ -58,9 +62,9 @@ public class ContentFragment extends Fragment {
 	private HomeContentReq mHomeContentReq;
 	private int currentPage = 1;
 
-	private boolean diseaseLoaded = false;
-	private boolean therapyLoaded = false;
-	private boolean typeLoaded = false;
+	private List<FilterType> mFilterTypes;
+	private List<FilterDisease> mFilterDiseases;
+	private List<FilterTherapy> mFilterTherapies;
 
 	private View diseaseFilterView;
 
@@ -87,7 +91,8 @@ public class ContentFragment extends Fragment {
 		mMyContentAdapter = new MyContentAdapter();
 		mContentRv.setAdapter(mMyContentAdapter);
 		mContentRv.addItemDecoration(new DividerGridItemDecoration(getContext()).setDividerDrawable(getResources().getDrawable(R.drawable.shape_divider_ststem_bg)));
-		requestHomeContent();
+		requestContentFilter();
+		requestContent(Constant.REQUEST_REFRESH);
 		return view;
 	}
 
@@ -104,24 +109,52 @@ public class ContentFragment extends Fragment {
 		}
 	}
 
-	private void requestHomeContent() {
+	private void requestContentFilter() {
 		mHomeContentReq.setPage(currentPage);
 		BaseReq br = new BaseReq(SpUtils.getInstance().getToken());
 		mContentService.getFilterType(br)
 				.map(new HttpResultFunc<>())
-				.subscribeOn(Schedulers.io())
-				.observeOn(AndroidSchedulers.mainThread())
-				.subscribe();
-	}
-
-	private void requestContentDisease() {
-		mContentService.getFilterDisease(new BaseReq(SpUtils.getInstance().getToken()))
+				.flatMap(filterTypes -> {
+					mFilterTypes = filterTypes;
+					return mContentService.getFilterDisease(br);
+				})
+				.map(new HttpResultFunc<>())
+				.flatMap(filterDiseases -> {
+					mFilterDiseases = filterDiseases;
+					return mContentService.getFilterTherapy(br);
+				})
 				.map(new HttpResultFunc<>())
 				.subscribeOn(Schedulers.io())
 				.observeOn(AndroidSchedulers.mainThread())
-				.subscribe(new ProgressSubscriber<>(getActivity(), contentFilters -> {
-					diseaseLoaded = true;
-//					showContentDisease();
+				.subscribe(new Subscriber<List<FilterTherapy>>() {
+					@Override
+					public void onCompleted() {
+
+					}
+
+					@Override
+					public void onError(Throwable e) {
+
+					}
+
+					@Override
+					public void onNext(List<FilterTherapy> filterTherapies) {
+						mFilterTherapies = filterTherapies;
+					}
+				});
+	}
+
+	private void requestContent(int requestType) {
+		mContentService.getSearchContent(mHomeContentReq)
+				.map(new HttpResultFunc<>())
+				.subscribeOn(Schedulers.io())
+				.observeOn(AndroidSchedulers.mainThread())
+				.subscribe(new ProgressSubscriber<>(getActivity(), homeContents -> {
+					if (requestType == Constant.REQUEST_REFRESH) {
+						mMyContentAdapter.setDatas(homeContents);
+					} else if (requestType == Constant.REQUEST_MORE) {
+						mMyContentAdapter.addDatas(homeContents);
+					}
 				}));
 	}
 
@@ -170,17 +203,7 @@ public class ContentFragment extends Fragment {
 	}
 
 	private void showContentDisease(List<ContentFilter> filters) {
-		if (diseaseLoaded) {
-			if (diseaseFilterView == null) {
-				diseaseFilterView = View.inflate(getActivity(), R.layout.popup_disease_list, null);
 
-
-			} else {
-				new PopupUtils(getActivity()).setContentView(diseaseFilterView).show();
-			}
-		} else {
-			requestContentDisease();
-		}
 	}
 
 	private class MyFliterAdapter extends RecyclerView.Adapter<MyFliterAdapter.ViewHolder> {
