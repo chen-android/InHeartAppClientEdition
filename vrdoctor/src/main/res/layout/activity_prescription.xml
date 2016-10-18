@@ -4,7 +4,7 @@
 	xmlns:tools="http://schemas.android.com/tools"
 	android:layout_width="match_parent"
 	android:layout_height="match_parent"
-	tools:context="com.medvision.vrdoctor.activity.process.PrescriptionActivity"
+	tools:context="com.medvision.vrdoctor.activity.prescription.PrescriptionContentActivity"
 	android:orientation="vertical">
 
 	<include layout="@layout/activity_base_title_bar"/>

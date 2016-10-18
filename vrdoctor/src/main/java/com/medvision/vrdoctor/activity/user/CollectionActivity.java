@@ -29,7 +29,9 @@ import butterknife.InjectView;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
-
+/**
+ * 个人收藏界面
+ */
 public class CollectionActivity extends AppCompatActivity {
 
 	@InjectView(R.id.collection_rv)

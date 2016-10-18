@@ -16,6 +16,9 @@ import butterknife.ButterKnife;
 import butterknife.InjectView;
 import butterknife.OnClick;
 
+/**
+ * 验证结果界面
+ */
 public class DoctorVerify2Activity extends AppCompatActivity {
 
 	@InjectView(R.id.doctor_verify_status_iv)

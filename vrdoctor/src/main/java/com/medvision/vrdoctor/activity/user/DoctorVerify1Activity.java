@@ -33,6 +33,9 @@ import okhttp3.RequestBody;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
+/**
+ * 医师认证界面
+ */
 public class DoctorVerify1Activity extends AppCompatActivity {
 
 	private static final int REQUEST_IMAGE = 1;

@@ -1,11 +1,11 @@
-package com.medvision.vrdoctor.activity.process;
+package com.medvision.vrdoctor.activity.prescription;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
 import com.medvision.vrdoctor.R;
 
-public class PrescriptionActivity extends AppCompatActivity {
+public class PrescriptionContentActivity extends AppCompatActivity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {

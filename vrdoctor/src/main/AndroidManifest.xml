@@ -30,9 +30,11 @@
 		</activity>
 		<activity android:name=".activity.user.DoctorVerify2Activity">
 		</activity>
-		<activity android:name=".activity.process.PrescriptionActivity">
+		<activity android:name=".activity.prescription.PrescriptionContentActivity">
 		</activity>
 		<activity android:name=".activity.user.CollectionActivity">
+		</activity>
+		<activity android:name=".activity.content.VrVideoActivity">
 		</activity>
 	</application>
 
