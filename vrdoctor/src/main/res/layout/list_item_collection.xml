@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                             xmlns:app="http://schemas.android.com/apk/res-auto"
+                                             xmlns:tools="http://schemas.android.com/tools"
+                                             android:orientation="vertical"
+                                             android:layout_width="match_parent"
+                                             android:layout_height="match_parent">
+
+	<ImageView
+		android:layout_width="100dp"
+		android:layout_height="70dp"
+		app:srcCompat="@drawable/icon_banner"
+		android:id="@+id/list_item_collection_iv"
+		android:layout_marginEnd="16dp"
+		app:layout_constraintRight_toRightOf="parent"
+		android:layout_marginRight="16dp"
+		android:layout_marginTop="16dp"
+		app:layout_constraintTop_toTopOf="parent"
+		android:contentDescription="@null"
+		android:scaleType="fitXY"/>
+
+	<TextView
+		android:layout_width="0dp"
+		android:layout_height="wrap_content"
+		android:id="@+id/list_item_collection_title_tv"
+		android:layout_marginStart="16dp"
+		android:layout_marginTop="20dp"
+		app:layout_constraintLeft_toLeftOf="parent"
+		app:layout_constraintTop_toTopOf="parent"
+		android:layout_marginLeft="16dp"
+		app:layout_constraintRight_toLeftOf="@+id/list_item_collection_iv"
+		android:layout_marginEnd="16dp"
+		android:layout_marginRight="16dp"
+		app:layout_constraintHorizontal_bias="0.0"
+		tools:text="来开始减肥了爱丽丝俩家时代就阿里绝对是疯了了"
+		android:maxLines="2"/>
+
+	<TextView
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:id="@+id/list_item_collection_date_tv"
+		android:layout_marginStart="16dp"
+		android:layout_marginTop="8dp"
+		app:layout_constraintTop_toBottomOf="@+id/list_item_collection_title_tv"
+		app:layout_constraintLeft_toLeftOf="parent"
+		android:layout_marginLeft="16dp"
+		tools:text="2016-10-10"/>
+</android.support.constraint.ConstraintLayout>

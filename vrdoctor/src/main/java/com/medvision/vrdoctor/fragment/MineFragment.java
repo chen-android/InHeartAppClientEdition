@@ -1,6 +1,7 @@
 package com.medvision.vrdoctor.fragment;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -11,6 +12,9 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.medvision.vrdoctor.R;
+import com.medvision.vrdoctor.activity.user.CollectionActivity;
+import com.medvision.vrdoctor.beans.User;
+import com.medvision.vrdoctor.utils.SpUtils;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
@@ -39,7 +43,10 @@ public class MineFragment extends Fragment {
 	@InjectView(R.id.mine_setting_tv)
 	TextView mMineSettingTv;
 
+	private User mUser;
+
 	public MineFragment() {
+		mUser = SpUtils.getInstance().getUser();
 	}
 
 	public static MineFragment newInstance() {
@@ -52,6 +59,9 @@ public class MineFragment extends Fragment {
 	                         Bundle savedInstanceState) {
 		View view = inflater.inflate(R.layout.fragment_mine, container, false);
 		ButterKnife.inject(this, view);
+		if (mUser != null) {
+			mMineNameTv.setText(mUser.getUsername());
+		}
 		return view;
 	}
 
@@ -69,6 +79,7 @@ public class MineFragment extends Fragment {
 			case R.id.mine_my_ask_tv:
 				break;
 			case R.id.mine_my_collection_tv:
+				startActivity(new Intent(getActivity(), CollectionActivity.class));
 				break;
 			case R.id.mine_my_ask_setting_tv:
 				break;

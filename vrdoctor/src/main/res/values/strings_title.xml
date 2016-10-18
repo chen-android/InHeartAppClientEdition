@@ -3,4 +3,6 @@
 	<string name="title_register">注册</string>
 	<string name="title_doctor_verify">医师认证</string>
 	<string name="title_mine">个人中心</string>
+	<string name="title_consultation">问诊</string>
+	<string name="title_collection">收藏</string>
 </resources>

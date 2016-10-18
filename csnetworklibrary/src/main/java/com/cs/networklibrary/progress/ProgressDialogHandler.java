@@ -46,7 +46,7 @@ public class ProgressDialogHandler extends Handler {
 					Field field = temp.getDeclaredField("mProgressDialog");
 					field.setAccessible(true);
 					Object obj = field.get(pd);
-					Method m = obj.getClass().getDeclaredMethod("setOnCancelListener", DialogInterface.OnCancelListener.class);
+					Method m = obj.getClass().getSuperclass().getDeclaredMethod("setOnCancelListener", DialogInterface.OnCancelListener.class);
 					m.invoke(obj, new DialogInterface.OnCancelListener() {
 						@Override
 						public void onCancel(DialogInterface dialog) {

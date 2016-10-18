@@ -130,22 +130,10 @@ public class LoginActivity extends AppCompatActivity {
 						intent.putExtra("status", Constant.VERIFY_STATUS_ING);
 						startActivity(intent);
 					} else if (Constant.LOGIN_STATUS_UNPASSED.equals(result.getCode())) {
-						User user = result.getData();
-						user.setCode(result.getCode());
-						user.setPassword(userReq.getPassword());
-						SpUtils.getInstance().saveUser(user);
-						new SweetAlertDialog(LoginActivity.this)
-								.setTitleText("提示")
-								.setContentText("您未通过医师认证，是否再次认证？")
-								.setConfirmText("确认")
-								.setCancelText("取消")
-								.setConfirmClickListener(sweetAlertDialog -> {
-									Intent intent = new Intent(LoginActivity.this, DoctorVerify1Activity.class);
-									intent.putExtra("uid", result.getData().getUid());
-									startActivity(intent);
-									sweetAlertDialog.dismiss();
-								})
-								.setCancelClickListener(SweetAlertDialog::dismiss).show();
+						Intent intent = new Intent(LoginActivity.this, DoctorVerify2Activity.class);
+						intent.putExtra("status", Constant.VERIFY_STATUS_UNPASSED);
+						intent.putExtra("token", result.getData().getToken());
+						startActivity(intent);
 					}
 				}, false));
 	}

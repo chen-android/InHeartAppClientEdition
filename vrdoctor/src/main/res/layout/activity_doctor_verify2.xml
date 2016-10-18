@@ -25,4 +25,15 @@
 		android:textSize="@dimen/large_text_size"
 		android:gravity="center"
 		android:layout_marginTop="@dimen/super_space"/>
+
+	<Button
+		android:id="@+id/doctor_verify_upload_bt"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_gravity="center_horizontal"
+		android:layout_marginTop="@dimen/middle_space"
+		android:background="@drawable/shape_blue_bg_5r"
+		android:text="@string/verify_reupload"
+		android:textColor="@color/white"
+		android:visibility="gone"/>
 </LinearLayout>

@@ -17,7 +17,6 @@ import com.medvision.vrdoctor.R;
 import com.medvision.vrdoctor.beans.requestbody.VerifyInfoReq;
 import com.medvision.vrdoctor.network.UserService;
 import com.medvision.vrdoctor.utils.Constant;
-import com.medvision.vrdoctor.utils.SpUtils;
 import com.squareup.picasso.Picasso;
 
 import java.io.File;
@@ -94,7 +93,7 @@ public class DoctorVerify1Activity extends AppCompatActivity {
 				List<String> path = data.getStringArrayListExtra(MultiImageSelectorActivity.EXTRA_RESULT);
 				paths.clear();
 				paths.addAll(path);
-				Picasso.with(this).load(new File(path.get(0))).into(mDoctorVerifyIv);
+				Picasso.with(this).load(new File(path.get(0))).fit().into(mDoctorVerifyIv);
 			}
 		}
 	}
@@ -114,7 +113,9 @@ public class DoctorVerify1Activity extends AppCompatActivity {
 
 			RequestBody requestBody = RequestBody.create(MultipartBody.FORM, file);
 			MultipartBody.Builder builder = new MultipartBody.Builder();
-			builder.addFormDataPart("fileData", file.getName(), requestBody).addFormDataPart("token", token).addFormDataPart("filename", file.getName());
+			builder.addFormDataPart("fileData", file.getName(), requestBody)
+					.addFormDataPart("token", token)
+					.addFormDataPart("filename", file.getName());
 			userService.uploadVerifyImg(builder.build())
 					.map(new HttpResultFunc<>())
 					.flatMap(verifyImg -> {
@@ -122,7 +123,7 @@ public class DoctorVerify1Activity extends AppCompatActivity {
 						verifyInfoReq.setIdNumber(mDoctorVerifyIdEt.getText().toString());
 						verifyInfoReq.setImageId(verifyImg.getImageId());
 						verifyInfoReq.setRealname(mDoctorVerifyNameEt.getText().toString());
-						verifyInfoReq.setToken(SpUtils.getInstance().getToken());
+						verifyInfoReq.setToken(token);
 						return userService.uploadVerifyInfo(verifyInfoReq);
 					})
 					.map(new HttpResultFunc<>())

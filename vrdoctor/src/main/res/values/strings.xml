@@ -32,5 +32,6 @@
 	<string name="mine_my_collection">我的收藏</string>
 	<string name="mine_ask_setting">问诊设置</string>
 	<string name="mine_setting">设置</string>
+	<string name="verify_reupload">重新审核</string>
 
 </resources>
