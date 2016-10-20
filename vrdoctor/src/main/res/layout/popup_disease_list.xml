@@ -23,5 +23,6 @@
 		android:layout_height="wrap_content"
 		android:layout_alignParentRight="true"
 		android:layout_centerVertical="true"
-		android:padding="@dimen/middle_space"/>
+		android:padding="@dimen/middle_space"
+		android:visibility="gone"/>
 </RelativeLayout>

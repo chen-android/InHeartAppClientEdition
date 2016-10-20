@@ -27,7 +27,7 @@ public class FilterDisease {
 		this.array = array;
 	}
 
-	private class DiseaseItem {
+	public class DiseaseItem {
 		private String id;
 		private String creator;
 		private String createdAt;
@@ -40,6 +40,7 @@ public class FilterDisease {
 		private String remark;
 		private int status;
 		private String hidden;
+		private String letter;
 
 		public String getId() {
 			return id;
@@ -135,6 +136,14 @@ public class FilterDisease {
 
 		public void setHidden(String hidden) {
 			this.hidden = hidden;
+		}
+
+		public String getLetter() {
+			return letter;
+		}
+
+		public void setLetter(String letter) {
+			this.letter = letter;
 		}
 	}
 }

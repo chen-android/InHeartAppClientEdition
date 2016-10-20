@@ -4,6 +4,7 @@ package com.medvision.vrdoctor.fragment;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,9 +18,9 @@ import com.cs.networklibrary.http.HttpMethods;
 import com.cs.networklibrary.http.HttpResultFunc;
 import com.cs.networklibrary.subscribers.ProgressSubscriber;
 import com.cs.widget.recyclerview.DividerGridItemDecoration;
+import com.cs.widget.recyclerview.RecyclerViewDivider;
 import com.jcodecraeer.xrecyclerview.XRecyclerView;
 import com.medvision.vrdoctor.R;
-import com.medvision.vrdoctor.beans.ContentFilter;
 import com.medvision.vrdoctor.beans.FilterDisease;
 import com.medvision.vrdoctor.beans.FilterTherapy;
 import com.medvision.vrdoctor.beans.FilterType;
@@ -29,6 +30,7 @@ import com.medvision.vrdoctor.beans.requestbody.HomeContentReq;
 import com.medvision.vrdoctor.network.ContentService;
 import com.medvision.vrdoctor.utils.Constant;
 import com.medvision.vrdoctor.utils.SpUtils;
+import com.medvision.vrdoctor.view.popupwindow.PopupUtils;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -62,11 +64,12 @@ public class ContentFragment extends Fragment {
 	private HomeContentReq mHomeContentReq;
 	private int currentPage = 1;
 
-	private List<FilterType> mFilterTypes;
-	private List<FilterDisease> mFilterDiseases;
-	private List<FilterTherapy> mFilterTherapies;
+	private List<FilterType> mFilterTypes = new ArrayList<>();
+	private List<FilterDisease> mFilterDiseases = new ArrayList<>();
+	private List<FilterTherapy> mFilterTherapies = new ArrayList<>();
 
 	private View diseaseFilterView;
+	private PopupUtils mPopupUtils;
 
 	public static ContentFragment newInstance() {
 		ContentFragment fragment = new ContentFragment();
@@ -100,7 +103,7 @@ public class ContentFragment extends Fragment {
 	public void onClick(View view) {
 		switch (view.getId()) {
 			case R.id.content_bingzhong_bt:
-				showContentDisease(null);
+				showContentDisease();
 				break;
 			case R.id.content_neirong_bt:
 				break;
@@ -115,12 +118,12 @@ public class ContentFragment extends Fragment {
 		mContentService.getFilterType(br)
 				.map(new HttpResultFunc<>())
 				.flatMap(filterTypes -> {
-					mFilterTypes = filterTypes;
+					mFilterTypes.addAll(filterTypes);
 					return mContentService.getFilterDisease(br);
 				})
 				.map(new HttpResultFunc<>())
 				.flatMap(filterDiseases -> {
-					mFilterDiseases = filterDiseases;
+					mFilterDiseases.addAll(filterDiseases);
 					return mContentService.getFilterTherapy(br);
 				})
 				.map(new HttpResultFunc<>())
@@ -129,7 +132,7 @@ public class ContentFragment extends Fragment {
 				.subscribe(new Subscriber<List<FilterTherapy>>() {
 					@Override
 					public void onCompleted() {
-
+						initFilterView();
 					}
 
 					@Override
@@ -139,7 +142,7 @@ public class ContentFragment extends Fragment {
 
 					@Override
 					public void onNext(List<FilterTherapy> filterTherapies) {
-						mFilterTherapies = filterTherapies;
+						mFilterTherapies.addAll(filterTherapies);
 					}
 				});
 	}
@@ -202,11 +205,43 @@ public class ContentFragment extends Fragment {
 		}
 	}
 
-	private void showContentDisease(List<ContentFilter> filters) {
-
+	private void initFilterView() {
+		mPopupUtils = new PopupUtils(getActivity());
+		diseaseFilterView = View.inflate(getContext(), R.layout.popup_disease_list, null);
+		RecyclerView rv = (RecyclerView) diseaseFilterView.findViewById(R.id.popup_disease_rv);
+		LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
+		rv.setLayoutManager(linearLayoutManager);
+		rv.addItemDecoration(new RecyclerViewDivider(getContext(), LinearLayoutManager.VERTICAL));
+		MyFilterAdapter diseaseAdapter = new MyFilterAdapter();
+		List<FilterDisease.DiseaseItem> items = new ArrayList<>();
+		for (FilterDisease filterDisease : mFilterDiseases) {
+			for (FilterDisease.DiseaseItem diseaseItem : filterDisease.getArray()) {
+				diseaseItem.setLetter(filterDisease.getLetter());
+				items.add(diseaseItem);
+			}
+		}
+		diseaseAdapter.setDiseaseItems(items);
+		rv.setAdapter(diseaseAdapter);
 	}
 
-	private class MyFliterAdapter extends RecyclerView.Adapter<MyFliterAdapter.ViewHolder> {
+	private void showContentDisease() {
+		if (mPopupUtils != null) {
+			mPopupUtils.setContentView(diseaseFilterView).show();
+		}
+	}
+
+	private class MyFilterAdapter extends RecyclerView.Adapter<MyFilterAdapter.ViewHolder> {
+
+		private List<FilterDisease.DiseaseItem> mDiseaseItems;
+
+		public MyFilterAdapter() {
+			mDiseaseItems = new ArrayList<>();
+		}
+
+		public void setDiseaseItems(List<FilterDisease.DiseaseItem> items) {
+			this.mDiseaseItems.clear();
+			this.mDiseaseItems.addAll(items);
+		}
 
 		@Override
 		public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -215,7 +250,17 @@ public class ContentFragment extends Fragment {
 
 		@Override
 		public void onBindViewHolder(ViewHolder holder, int position) {
-
+			FilterDisease.DiseaseItem item = mDiseaseItems.get(position);
+			if (position == 0) {
+				holder.spell.setText(item.getLetter());
+			} else {
+				if (mDiseaseItems.get(position - 1).getLetter().equals(item.getLetter())) {
+					holder.spell.setVisibility(View.GONE);
+				} else {
+					holder.spell.setText(item.getLetter());
+				}
+			}
+			holder.name.setText(item.getName());
 		}
 
 		@Override
