@@ -25,7 +25,7 @@ import butterknife.OnClick;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class MineFragment extends Fragment {
+public class MineFragment extends BaseFragment {
 
 
 	@InjectView(R.id.mine_personal_iv)

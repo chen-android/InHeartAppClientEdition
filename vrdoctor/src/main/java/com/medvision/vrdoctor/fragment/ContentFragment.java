@@ -2,7 +2,6 @@ package com.medvision.vrdoctor.fragment;
 
 
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -47,7 +46,7 @@ import rx.schedulers.Schedulers;
  *
  *
  */
-public class ContentFragment extends Fragment {
+public class ContentFragment extends BaseFragment {
 	@InjectView(R.id.content_search_et)
 	EditText mContentSearchEt;
 	@InjectView(R.id.content_rv)
@@ -245,7 +244,9 @@ public class ContentFragment extends Fragment {
 
 		@Override
 		public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-			return new ViewHolder(View.inflate(getActivity(), R.layout.list_item_content_filter, null));
+			View view = View.inflate(parent.getContext(), R.layout.list_item_content_filter, null);
+			view.setLayoutParams(new RecyclerView.LayoutParams(RecyclerView.LayoutParams.MATCH_PARENT, RecyclerView.LayoutParams.WRAP_CONTENT));
+			return new ViewHolder(view);
 		}
 
 		@Override
@@ -265,7 +266,7 @@ public class ContentFragment extends Fragment {
 
 		@Override
 		public int getItemCount() {
-			return 0;
+			return mDiseaseItems.size();
 		}
 
 		class ViewHolder extends RecyclerView.ViewHolder {
@@ -279,6 +280,15 @@ public class ContentFragment extends Fragment {
 				spell = (TextView) itemView.findViewById(R.id.list_item_content_filter_spell_tv);
 			}
 		}
+	}
+
+	@Override
+	public boolean onBackPressed() {
+		if (mPopupUtils.isShowing()) {
+			mPopupUtils.dismissPopup();
+			return true;
+		}
+		return false;
 	}
 
 	@Override
