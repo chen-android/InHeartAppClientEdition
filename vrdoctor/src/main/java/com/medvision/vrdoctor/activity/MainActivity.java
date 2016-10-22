@@ -10,6 +10,7 @@ import android.support.v7.app.AppCompatActivity;
 import com.cs.widget.tab.PagerSlidingTabStrip1;
 import com.cs.widget.tab.TextImageRes;
 import com.medvision.vrdoctor.R;
+import com.medvision.vrdoctor.fragment.BaseFragment;
 import com.medvision.vrdoctor.fragment.ConsultationFragment;
 import com.medvision.vrdoctor.fragment.ContentFragment;
 import com.medvision.vrdoctor.fragment.MineFragment;
@@ -27,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
 	PagerSlidingTabStrip1 mMainPsts;
 
 	private ArrayList<TextImageRes> tabs = new ArrayList<>();
-	private Fragment[] fragments = {
+	private BaseFragment[] fragments = {
 			ContentFragment.newInstance(),
 			ConsultationFragment.newInstance(),
 			MineFragment.newInstance()
@@ -66,5 +67,13 @@ public class MainActivity extends AppCompatActivity {
 		public TextImageRes getPageRes(int position) {
 			return tabs.get(position);
 		}
+	}
+
+	@Override
+	public void onBackPressed() {
+		if (fragments[mMainVp.getCurrentItem()].onBackPressed()) {
+			return;
+		}
+		super.onBackPressed();
 	}
 }

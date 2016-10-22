@@ -2,7 +2,6 @@ package com.medvision.vrdoctor.fragment;
 
 
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,7 +18,7 @@ import butterknife.InjectView;
 /**
  *
  */
-public class ConsultationFragment extends Fragment {
+public class ConsultationFragment extends BaseFragment {
 
 
 	@InjectView(R.id.consultation_rv)
@@ -44,6 +43,11 @@ public class ConsultationFragment extends Fragment {
 
 	private void requestConsultation() {
 
+	}
+
+	@Override
+	public boolean onBackPressed() {
+		return false;
 	}
 
 	private class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {

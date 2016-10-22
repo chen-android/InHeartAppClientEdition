@@ -33,13 +33,14 @@ public class VrVideoActivity extends AppCompatActivity implements UVPlayerCallBa
 	ImageView mActivityImgBack;
 	@InjectView(R.id.activity_imgBuffer)
 	ImageView mActivityImgBuffer;
+	@InjectView(R.id.activity_rlPlayView)
+	RelativeLayout mActivityRlPlayView;
 
 	private UVMediaPlayer mMediaplayer = null;  // 媒体视频播放器
 	private VideoController mCtrl = null;
 	private String Path = "http://cache.utovr.com/201508270528174780.m3u8";
 	private boolean bufferResume = true;
 	private boolean needBufferAnim = true;
-	private RelativeLayout rlParent = null;
 	protected int CurOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT;
 	private int SmallPlayH = 0;
 	private boolean colseDualScreen = false;
@@ -49,7 +50,7 @@ public class VrVideoActivity extends AppCompatActivity implements UVPlayerCallBa
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_vr_video);
 		ButterKnife.inject(this);
-		mMediaplayer = new UVMediaPlayer(VrVideoActivity.this, mActivityRlParent);
+		mMediaplayer = new UVMediaPlayer(VrVideoActivity.this, mActivityRlPlayView);
 		//将工具条的显示或隐藏交个SDK管理，也可自己管理
 		mMediaplayer.setToolbar(mActivityRlToolbar, null, mActivityImgBack);
 		mCtrl = new VideoController(mActivityRlToolbar, playerControl, true);
@@ -100,7 +101,7 @@ public class VrVideoActivity extends AppCompatActivity implements UVPlayerCallBa
 	}
 
 	private void changeOrientation(boolean isLandscape) {
-		if (rlParent == null) {
+		if (mActivityRlParent == null) {
 			return;
 		}
 		if (isLandscape) {
@@ -111,7 +112,7 @@ public class VrVideoActivity extends AppCompatActivity implements UVPlayerCallBa
 			RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams(
 					RelativeLayout.LayoutParams.MATCH_PARENT,
 					RelativeLayout.LayoutParams.MATCH_PARENT);
-			rlParent.setLayoutParams(lp);
+			mActivityRlParent.setLayoutParams(lp);
 			if (colseDualScreen && mMediaplayer != null) {
 				mCtrl.setDualScreenEnabled(true);
 			}
@@ -124,7 +125,7 @@ public class VrVideoActivity extends AppCompatActivity implements UVPlayerCallBa
 					WindowManager.LayoutParams.FLAG_FORCE_NOT_FULLSCREEN | WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 			getSmallPlayHeight();
 			RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, SmallPlayH);
-			rlParent.setLayoutParams(lp);
+			mActivityRlParent.setLayoutParams(lp);
 			if (mMediaplayer != null && mMediaplayer.isDualScreenEnabled()) {
 				mCtrl.setDualScreenEnabled(false);
 				colseDualScreen = true;

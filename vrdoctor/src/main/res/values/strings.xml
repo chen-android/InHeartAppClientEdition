@@ -33,5 +33,7 @@
 	<string name="mine_ask_setting">问诊设置</string>
 	<string name="mine_setting">设置</string>
 	<string name="verify_reupload">重新审核</string>
+	<string name="setting_clear_cache">清除缓存</string>
+	<string name="setting_about">关于</string>
 
 </resources>

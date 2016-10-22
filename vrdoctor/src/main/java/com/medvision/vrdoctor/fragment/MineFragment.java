@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import com.medvision.vrdoctor.R;
 import com.medvision.vrdoctor.activity.content.VrVideoActivity;
+import com.medvision.vrdoctor.activity.other.SettingActivity;
 import com.medvision.vrdoctor.activity.user.CollectionActivity;
 import com.medvision.vrdoctor.beans.User;
 import com.medvision.vrdoctor.utils.SpUtils;
@@ -24,7 +25,7 @@ import butterknife.OnClick;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class MineFragment extends Fragment {
+public class MineFragment extends BaseFragment {
 
 
 	@InjectView(R.id.mine_personal_iv)
@@ -86,6 +87,7 @@ public class MineFragment extends Fragment {
 				startActivity(new Intent(getActivity(), VrVideoActivity.class));
 				break;
 			case R.id.mine_setting_tv:
+				startActivity(new Intent(getActivity(), SettingActivity.class));
 				break;
 		}
 	}

@@ -23,7 +23,7 @@ public class PopupUtils {
 	RelativeLayout backgroundView;
 	FrameLayout contentView;
 	View otherView;
-	private int duration = 3000;
+	private int duration = 300;
 
 	public PopupUtils(Activity context) {
 		this.context = context;
@@ -47,6 +47,13 @@ public class PopupUtils {
 			backgroundView.startAnimation(AnimationUtils.loadAnimation(context, R.anim.alpha_0to1));
 			pw.showAtLocation(context.getWindow().getDecorView(), Gravity.NO_GRAVITY, 0, 0);
 		}
+	}
+
+	public boolean isShowing() {
+		if (pw != null) {
+			return pw.isShowing();
+		}
+		return false;
 	}
 
 	public void dismissPopup() {
