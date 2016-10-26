@@ -35,5 +35,6 @@
 	<string name="verify_reupload">重新审核</string>
 	<string name="setting_clear_cache">清除缓存</string>
 	<string name="setting_about">关于</string>
+	<string name="setting_logout">退出登录</string>
 
 </resources>

@@ -19,4 +19,8 @@ public class Constant {
 
 	public static final int REQUEST_REFRESH = 752;
 	public static final int REQUEST_MORE = 979;
+
+	public static final int CONTENT_TYPE_VIDEO = 1;
+	public static final int CONTENT_TYPE_MEDIA = 2;
+	public static final int CONTENT_TYPE_PIC = 3;
 }

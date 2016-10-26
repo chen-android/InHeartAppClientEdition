@@ -1,6 +1,7 @@
 package com.medvision.vrdoctor.fragment;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
@@ -20,6 +21,7 @@ import com.cs.widget.recyclerview.DividerGridItemDecoration;
 import com.cs.widget.recyclerview.RecyclerViewDivider;
 import com.jcodecraeer.xrecyclerview.XRecyclerView;
 import com.medvision.vrdoctor.R;
+import com.medvision.vrdoctor.activity.content.VrVideoActivity;
 import com.medvision.vrdoctor.beans.FilterDisease;
 import com.medvision.vrdoctor.beans.FilterTherapy;
 import com.medvision.vrdoctor.beans.FilterType;
@@ -92,7 +94,18 @@ public class ContentFragment extends BaseFragment {
 		mContentRv.setLayoutManager(glm);
 		mMyContentAdapter = new MyContentAdapter();
 		mContentRv.setAdapter(mMyContentAdapter);
-		mContentRv.addItemDecoration(new DividerGridItemDecoration(getContext()).setDividerDrawable(getResources().getDrawable(R.drawable.shape_divider_ststem_bg)));
+		mContentRv.addItemDecoration(new DividerGridItemDecoration(getContext()).setDividerDrawable(getResources().getDrawable(R.drawable.shape_divider_ststem_bg), true));
+		mContentRv.setLoadingListener(new XRecyclerView.LoadingListener() {
+			@Override
+			public void onRefresh() {
+				requestContent(Constant.REQUEST_REFRESH);
+			}
+
+			@Override
+			public void onLoadMore() {
+				requestContent(Constant.REQUEST_MORE);
+			}
+		});
 		requestContentFilter();
 		requestContent(Constant.REQUEST_REFRESH);
 		return view;
@@ -185,6 +198,13 @@ public class ContentFragment extends BaseFragment {
 			Picasso.with(getActivity())
 					.load(content.getCoverPic())
 					.into(holder.iv);
+			holder.itemView.setOnClickListener(v -> {
+				if (content.getType() == Constant.CONTENT_TYPE_VIDEO) {
+					Intent intent = new Intent(getActivity(), VrVideoActivity.class);
+					intent.putExtra("contentId", content.getId());
+					startActivity(intent);
+				}
+			});
 		}
 
 		@Override
