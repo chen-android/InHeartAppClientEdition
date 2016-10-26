@@ -86,7 +86,6 @@
 	<com.jcodecraeer.xrecyclerview.XRecyclerView
 		android:id="@+id/content_rv"
 		android:layout_width="match_parent"
-		android:layout_height="match_parent"
-		android:padding="@dimen/small_space"/>
+		android:layout_height="match_parent"/>
 
 </LinearLayout>

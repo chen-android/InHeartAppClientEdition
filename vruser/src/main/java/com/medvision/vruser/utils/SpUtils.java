@@ -52,4 +52,8 @@ public class SpUtils extends SpUtilsBase {
 		}
 		return userId;
 	}
+
+	public void clearUserData() {
+		getInstance().remove(SpDictionary.SP_USER);
+	}
 }

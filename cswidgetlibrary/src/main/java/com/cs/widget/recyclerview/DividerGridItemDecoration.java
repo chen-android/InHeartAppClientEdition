@@ -17,6 +17,8 @@ public class DividerGridItemDecoration extends RecyclerView.ItemDecoration {
 
 	private static final int[] ATTR = {android.R.attr.listDivider};
 	private Drawable divider;
+	//xrecyclerview这个库会在顶部加一个刷新用的view。导致判断分割线是否是最后一列出错。
+	private boolean isXRecyclerView = false;
 
 	public DividerGridItemDecoration(Context context) {
 		super();
@@ -25,8 +27,9 @@ public class DividerGridItemDecoration extends RecyclerView.ItemDecoration {
 		a.recycle();
 	}
 
-	public DividerGridItemDecoration setDividerDrawable(Drawable dividerDrawable) {
+	public DividerGridItemDecoration setDividerDrawable(Drawable dividerDrawable, boolean isXRecyclerView) {
 		this.divider = dividerDrawable;
+		this.isXRecyclerView = isXRecyclerView;
 		return this;
 	}
 
@@ -68,8 +71,13 @@ public class DividerGridItemDecoration extends RecyclerView.ItemDecoration {
 	private boolean isLastColum(RecyclerView parent, int pos, int spanCount, int childCount) {
 		RecyclerView.LayoutManager layoutManager = parent.getLayoutManager();
 		if (layoutManager instanceof GridLayoutManager) {
-			if ((pos + 1) % spanCount == 0)// 如果是最后一列，则不需要绘制右边
-				return true;
+			if (isXRecyclerView) {
+				if (pos % spanCount == 0)// 如果是最后一列，则不需要绘制右边
+					return true;
+			} else {
+				if ((pos + 1) % spanCount == 0)// 如果是最后一列，则不需要绘制右边
+					return true;
+			}
 		}
 		return false;
 	}

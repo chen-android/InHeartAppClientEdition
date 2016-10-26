@@ -24,7 +24,9 @@
 		android:supportsRtl="true"
 		android:theme="@style/AppTheme"
 		tools:replace="android:icon">
-		<activity android:name=".activity.user.LoginActivity">
+		<activity
+			android:name=".activity.user.LoginActivity"
+			android:launchMode="singleTask">
 		</activity>
 		<activity android:name=".activity.user.RegisterActivity">
 		</activity>

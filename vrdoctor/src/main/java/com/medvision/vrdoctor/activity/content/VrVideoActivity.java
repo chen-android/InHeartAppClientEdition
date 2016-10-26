@@ -6,9 +6,11 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.KeyEvent;
+import android.view.View;
 import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.medvision.vrdoctor.R;
@@ -35,21 +37,37 @@ public class VrVideoActivity extends AppCompatActivity implements UVPlayerCallBa
 	ImageView mActivityImgBuffer;
 	@InjectView(R.id.activity_rlPlayView)
 	RelativeLayout mActivityRlPlayView;
+	@InjectView(R.id.vr_video_title_tv)
+	TextView mVrVideoTitleTv;
+	@InjectView(R.id.vr_video_play_times_tv)
+	TextView mVrVideoPlayTimesTv;
+	@InjectView(R.id.vr_video_date_tv)
+	TextView mVrVideoDateTv;
+	@InjectView(R.id.vr_video_name_tv)
+	TextView mVrVideoNameTv;
+	@InjectView(R.id.vr_video_collect_iv)
+	ImageView mVrVideoCollectIv;
+	@InjectView(R.id.vr_video_content_tv)
+	TextView mVrVideoContentTv;
 
 	private UVMediaPlayer mMediaplayer = null;  // 媒体视频播放器
 	private VideoController mCtrl = null;
-	private String Path = "http://cache.utovr.com/201508270528174780.m3u8";
+	//	private String Path = "http://cache.utovr.com/201508270528174780.m3u8";
+	private String Path = "";
 	private boolean bufferResume = true;
 	private boolean needBufferAnim = true;
 	protected int CurOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT;
 	private int SmallPlayH = 0;
 	private boolean colseDualScreen = false;
 
+	private String contentId;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_vr_video);
 		ButterKnife.inject(this);
+		contentId = getIntent().getStringExtra("contentId");
 		mMediaplayer = new UVMediaPlayer(VrVideoActivity.this, mActivityRlPlayView);
 		//将工具条的显示或隐藏交个SDK管理，也可自己管理
 		mMediaplayer.setToolbar(mActivityRlToolbar, null, mActivityImgBack);
@@ -95,9 +113,15 @@ public class VrVideoActivity extends AppCompatActivity implements UVPlayerCallBa
 		super.onDestroy();
 	}
 
-	@OnClick(R.id.activity_imgBack)
-	public void onClick() {
-		back();
+	@OnClick({R.id.activity_imgBack, R.id.vr_video_collect_iv})
+	public void onClick(View view) {
+		switch (view.getId()) {
+			case R.id.activity_imgBack:
+				back();
+				break;
+			case R.id.vr_video_collect_iv:
+				break;
+		}
 	}
 
 	private void changeOrientation(boolean isLandscape) {

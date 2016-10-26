@@ -48,6 +48,7 @@
 	<string name="user_info_complete_emergency_phone">紧急联系方式</string>
 	<string name="user_info_complete_address">家庭住址</string>
 	<string name="content_search">请输入搜索内容</string>
+	<string name="user_info_complete_change_head_image">点击切换头像</string>
 
 
 </resources>
