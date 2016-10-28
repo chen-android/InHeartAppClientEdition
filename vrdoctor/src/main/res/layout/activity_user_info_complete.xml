@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	tools:context="com.medvision.vrdoctor.activity.user.UserInfoCompleteActivity">
+
+	<LinearLayout
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:orientation="vertical">
+
+		<include layout="@layout/activity_base_title_bar"/>
+
+		<RelativeLayout
+			android:id="@+id/user_info_complete_user_head_rl"
+			android:layout_width="match_parent"
+			android:layout_height="200dp">
+
+			<ImageView
+				android:id="@+id/user_info_complete_user_head_iv"
+				android:layout_width="match_parent"
+				android:layout_height="match_parent"
+				android:src="@drawable/icon_img_default"/>
+
+			<TextView
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layout_alignParentBottom="true"
+				android:textColor="@color/white"
+				android:text="@string/user_info_complete_change_head_img"
+				android:background="@color/transparent_50_black"
+				android:padding="@dimen/middle_space"
+				android:gravity="center"/>
+		</RelativeLayout>
+
+		<TextView
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:text="@string/user_info_complete_my_sign"
+			android:padding="@dimen/middle_space"
+			android:background="@color/lightgray"/>
+
+		<EditText
+			android:id="@+id/user_info_complete_my_sign_et"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:hint="@string/user_info_complete_less_than_30"
+			android:textColorHint="@color/lightgray"
+			android:padding="@dimen/middle_space"
+			android:background="@color/white"
+			android:maxLength="30"/>
+
+		<TextView
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:text="@string/user_info_complete_my_description"
+			android:padding="@dimen/middle_space"
+			android:background="@color/lightgray"/>
+
+		<EditText
+			android:id="@+id/user_info_complete_my_description_et"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:hint="@string/user_info_complete_less_than_300"
+			android:textColorHint="@color/lightgray"
+			android:padding="@dimen/middle_space"
+			android:maxLength="300"
+			android:background="@color/white"
+			android:minHeight="100dp"/>
+
+		<RelativeLayout
+			android:id="@+id/user_info_complete_my_job_rl"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:padding="@dimen/middle_space"
+			android:layout_marginTop="@dimen/middle_space"
+			android:background="@color/white">
+
+			<TextView
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:text="@string/user_info_complete_my_job"/>
+
+			<TextView
+				android:id="@+id/user_info_complete_my_job_tv"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:drawableRight="@drawable/icon_right_arrow"
+				android:layout_alignParentRight="true"
+				tools:text="xxxx"/>
+		</RelativeLayout>
+
+		<RelativeLayout
+			android:id="@+id/user_info_complete_my_city_rl"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:padding="@dimen/middle_space"
+			android:layout_marginTop="@dimen/middle_space"
+			android:background="@color/white">
+
+			<TextView
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:text="@string/user_info_complete_my_job"/>
+
+			<TextView
+				android:id="@+id/user_info_complete_my_city_tv"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:drawableRight="@drawable/icon_right_arrow"
+				android:layout_alignParentRight="true"
+				tools:text="xxxx"/>
+		</RelativeLayout>
+	</LinearLayout>
+
+</ScrollView>

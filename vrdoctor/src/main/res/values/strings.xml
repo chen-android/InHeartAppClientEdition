@@ -36,5 +36,11 @@
 	<string name="setting_clear_cache">清除缓存</string>
 	<string name="setting_about">关于</string>
 	<string name="setting_logout">退出登录</string>
+	<string name="user_info_complete_change_head_img">点击切换头像</string>
+	<string name="user_info_complete_my_sign">我的签名</string>
+	<string name="user_info_complete_my_description">我的介绍</string>
+	<string name="user_info_complete_less_than_30">不超过30个字</string>
+	<string name="user_info_complete_less_than_300">不超过300个字</string>
+	<string name="user_info_complete_my_job">我的擅长</string>
 
 </resources>
