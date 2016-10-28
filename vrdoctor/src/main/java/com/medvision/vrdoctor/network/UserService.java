@@ -3,7 +3,9 @@ package com.medvision.vrdoctor.network;
 import com.cs.networklibrary.entity.NoData;
 import com.medvision.vrdoctor.beans.Collection;
 import com.medvision.vrdoctor.beans.User;
+import com.medvision.vrdoctor.beans.UserInfo;
 import com.medvision.vrdoctor.beans.VerifyImg;
+import com.medvision.vrdoctor.beans.requestbody.BaseReq;
 import com.medvision.vrdoctor.beans.requestbody.CollectionListReq;
 import com.medvision.vrdoctor.beans.requestbody.RegisterReq;
 import com.medvision.vrdoctor.beans.requestbody.SmsReq;
@@ -46,10 +48,15 @@ public interface UserService {
 	@POST("doctor/authUpload")
 	Observable<HttpResult<VerifyImg>> uploadVerifyImg(@Body MultipartBody body);
 
-
+	//验证信息上传
 	@POST("doctor/auth")
 	Observable<HttpResult<NoData>> uploadVerifyInfo(@Body VerifyInfoReq verifyInfoReq);
 
+	//获取个人收藏列表
 	@POST("doctor/contentCollect/search")
 	Observable<HttpResult<List<Collection>>> requestCollectionList(@Body CollectionListReq collectionListReq);
+
+	@POST("doctor/getInfo")
+	Observable<HttpResult<UserInfo>> requestUserInfo(@Body BaseReq baseReq);
 }
+

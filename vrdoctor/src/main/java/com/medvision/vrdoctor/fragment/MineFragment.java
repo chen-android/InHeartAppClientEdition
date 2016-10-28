@@ -15,6 +15,7 @@ import com.medvision.vrdoctor.R;
 import com.medvision.vrdoctor.activity.content.VrVideoActivity;
 import com.medvision.vrdoctor.activity.other.SettingActivity;
 import com.medvision.vrdoctor.activity.user.CollectionActivity;
+import com.medvision.vrdoctor.activity.user.UserInfoCompleteActivity;
 import com.medvision.vrdoctor.beans.User;
 import com.medvision.vrdoctor.utils.SpUtils;
 
@@ -77,6 +78,7 @@ public class MineFragment extends BaseFragment {
 	public void onClick(View view) {
 		switch (view.getId()) {
 			case R.id.mine_personal_rl:
+				startActivity(new Intent(getActivity(), UserInfoCompleteActivity.class));
 				break;
 			case R.id.mine_my_ask_tv:
 				break;
