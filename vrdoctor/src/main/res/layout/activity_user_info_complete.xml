@@ -9,7 +9,9 @@
 	<LinearLayout
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
-		android:orientation="vertical">
+		android:orientation="vertical"
+		android:focusable="true"
+		android:focusableInTouchMode="true">
 
 		<include layout="@layout/activity_base_title_bar"/>
 
@@ -22,7 +24,8 @@
 				android:id="@+id/user_info_complete_user_head_iv"
 				android:layout_width="match_parent"
 				android:layout_height="match_parent"
-				android:src="@drawable/icon_img_default"/>
+				android:src="@drawable/icon_img_default"
+				android:scaleType="fitXY"/>
 
 			<TextView
 				android:layout_width="match_parent"

@@ -88,7 +88,7 @@ public class ProgressSubscriber<T> extends Subscriber<T> implements ProgressCanc
 			Toast.makeText(context, "网络中断，请检查您的网络状态", Toast.LENGTH_SHORT).show();
 		} else {
 			if (shouldShowError) {
-				Toast.makeText(context, "", Toast.LENGTH_SHORT).show();
+				Toast.makeText(context, e.getMessage(), Toast.LENGTH_SHORT).show();
 			}
 		}
 		dismissProgressDialog();

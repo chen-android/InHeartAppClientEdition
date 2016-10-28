@@ -3,12 +3,14 @@ package com.medvision.vrdoctor.network;
 import com.cs.networklibrary.entity.NoData;
 import com.medvision.vrdoctor.beans.Collection;
 import com.medvision.vrdoctor.beans.User;
+import com.medvision.vrdoctor.beans.UserHeadImg;
 import com.medvision.vrdoctor.beans.UserInfo;
 import com.medvision.vrdoctor.beans.VerifyImg;
 import com.medvision.vrdoctor.beans.requestbody.BaseReq;
 import com.medvision.vrdoctor.beans.requestbody.CollectionListReq;
 import com.medvision.vrdoctor.beans.requestbody.RegisterReq;
 import com.medvision.vrdoctor.beans.requestbody.SmsReq;
+import com.medvision.vrdoctor.beans.requestbody.UserInfoReq;
 import com.medvision.vrdoctor.beans.requestbody.UserReq;
 import com.medvision.vrdoctor.beans.requestbody.VerifyInfoReq;
 
@@ -48,14 +50,23 @@ public interface UserService {
 	@POST("doctor/authUpload")
 	Observable<HttpResult<VerifyImg>> uploadVerifyImg(@Body MultipartBody body);
 
+	//上传用户头像
+	@POST("doctor/headPictureUpload")
+	Observable<HttpResult<UserHeadImg>> uploadHeadImg(@Body MultipartBody body);
+
+	@POST("doctor/fillInfo")
+	Observable<HttpResult<NoData>> requestSaveUserInfo(@Body UserInfoReq userInfoReq);
+
 	//验证信息上传
 	@POST("doctor/auth")
+
 	Observable<HttpResult<NoData>> uploadVerifyInfo(@Body VerifyInfoReq verifyInfoReq);
 
 	//获取个人收藏列表
 	@POST("doctor/contentCollect/search")
 	Observable<HttpResult<List<Collection>>> requestCollectionList(@Body CollectionListReq collectionListReq);
 
+	//获取个人详细信息
 	@POST("doctor/getInfo")
 	Observable<HttpResult<UserInfo>> requestUserInfo(@Body BaseReq baseReq);
 }
