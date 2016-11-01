@@ -8,6 +8,7 @@ public class VerifyInfoReq extends BaseReq {
 	private String idNumber;
 	private String realname;
 	private String imageId;
+	private String titleImageId;
 
 	public String getIdNumber() {
 		return idNumber;
@@ -31,5 +32,13 @@ public class VerifyInfoReq extends BaseReq {
 
 	public void setImageId(String imageId) {
 		this.imageId = imageId;
+	}
+
+	public String getTitleImageId() {
+		return titleImageId;
+	}
+
+	public void setTitleImageId(String titleImageId) {
+		this.titleImageId = titleImageId;
 	}
 }

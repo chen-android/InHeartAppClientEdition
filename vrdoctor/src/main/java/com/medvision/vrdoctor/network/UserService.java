@@ -50,6 +50,10 @@ public interface UserService {
 	@POST("doctor/authUpload")
 	Observable<HttpResult<VerifyImg>> uploadVerifyImg(@Body MultipartBody body);
 
+	//验证图片上传
+	@POST("doctor/authTitleUpload")
+	Observable<HttpResult<VerifyImg>> uploadVerifyTitleImg(@Body MultipartBody body);
+
 	//上传用户头像
 	@POST("doctor/headPictureUpload")
 	Observable<HttpResult<UserHeadImg>> uploadHeadImg(@Body MultipartBody body);

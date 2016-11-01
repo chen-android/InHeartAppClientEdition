@@ -23,8 +23,9 @@
 	<!-- hint -->
 	<string name="hint_login_user_phone">请输入您的手机号</string>
 	<string name="hint_login_user_pwd">请输入您的密码</string>
-	<string name="doctor_verify_pic_upload">医师资格证件照上传</string>
-	<string name="doctor_verify_upload_tip">请确认以下信息准确</string>
+	<string name="doctor_verify_pic_upload">请上传医师资格证或心理咨询师证</string>
+	<string name="doctor_verify_pic1_upload">职称资格证图片上传</string>
+	<string name="doctor_verify_upload_tip">如果您有职称资格证，请上传职称资格证</string>
 
 	<!-- TODO: Remove or change this placeholder text -->
 	<string name="hello_blank_fragment">Hello blank fragment</string>

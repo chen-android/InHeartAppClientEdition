@@ -1,104 +1,123 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-	android:id="@+id/activity_doctor_verify"
-	xmlns:android="http://schemas.android.com/apk/res/android"
-	xmlns:tools="http://schemas.android.com/tools"
-	android:layout_width="match_parent"
-	android:layout_height="match_parent"
-	android:orientation="vertical"
-	tools:context="com.medvision.vrdoctor.activity.user.DoctorVerify1Activity">
-
-	<include layout="@layout/activity_base_title_bar"/>
-
-	<TextView
-		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
-		android:text="@string/doctor_verify_pic_upload"
-		android:padding="@dimen/middle_space"/>
-
-	<ImageView
-		android:id="@+id/doctor_verify_iv"
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
-		android:maxHeight="120dp"
-		android:adjustViewBounds="true"
-		android:layout_marginLeft="@dimen/middle_space"
-		android:layout_marginBottom="@dimen/middle_space"
-		android:scaleType="fitXY"
-		android:src="@drawable/icon_pic_add"/>
-
-	<include layout="@layout/line_break_black"/>
-
-	<TextView
-		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
-		android:text="@string/doctor_verify_upload_tip"
-		android:padding="@dimen/middle_space"/>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
 	<LinearLayout
+
 		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
-		android:orientation="horizontal"
-		android:padding="@dimen/middle_space">
+		android:layout_height="match_parent"
+		android:orientation="vertical"
+		tools:context="com.medvision.vrdoctor.activity.user.DoctorVerify1Activity">
+
+		<include layout="@layout/activity_base_title_bar"/>
 
 		<TextView
-			android:layout_width="0dp"
-			android:layout_weight="1"
+			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
-			android:text="姓名"/>
+			android:padding="@dimen/middle_space"
+			android:text="@string/doctor_verify_pic_upload"/>
 
-		<EditText
-			android:id="@+id/doctor_verify_name_et"
-			android:layout_width="0dp"
-			android:layout_weight="4"
+		<ImageView
+			android:id="@+id/doctor_verify_iv"
+			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
-			android:hint="请输入你的真实姓名"
-			android:inputType="text"
-			android:background="@android:color/transparent"/>
-	</LinearLayout>
+			android:layout_marginBottom="@dimen/middle_space"
+			android:layout_marginLeft="@dimen/middle_space"
+			android:adjustViewBounds="true"
+			android:maxHeight="120dp"
+			android:scaleType="fitXY"
+			android:src="@drawable/icon_pic_add"/>
 
-	<RelativeLayout
-		android:layout_width="match_parent"
-		android:layout_height="0.5dp"
-		android:background="@color/black"
-		android:layout_marginLeft="@dimen/middle_space"
-		android:layout_marginRight="@dimen/middle_space"/>
-
-	<LinearLayout
-		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
-		android:orientation="horizontal"
-		android:padding="@dimen/middle_space">
+		<include layout="@layout/line_break_black"/>
 
 		<TextView
-			android:layout_width="0dp"
-			android:layout_weight="1"
+			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
-			android:text="身份证"/>
+			android:padding="@dimen/middle_space"
+			android:text="@string/doctor_verify_pic1_upload"/>
 
-		<EditText
-			android:id="@+id/doctor_verify_id_et"
-			android:layout_width="0dp"
-			android:layout_weight="4"
+		<TextView
+			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
-			android:hint="请输入你的证件号"
-			android:inputType="numberSigned"
-			android:background="@android:color/transparent"/>
+			android:paddingLeft="@dimen/middle_space"
+			android:text="@string/doctor_verify_upload_tip"
+			android:textSize="@dimen/minimum_text_size"/>
+
+		<ImageView
+			android:id="@+id/doctor_verify1_iv"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_margin="@dimen/middle_space"
+			android:maxHeight="120dp"
+			android:src="@drawable/icon_pic_add"/>
+
+		<LinearLayout
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:orientation="horizontal"
+			android:padding="@dimen/middle_space">
+
+			<TextView
+				android:layout_width="0dp"
+				android:layout_height="wrap_content"
+				android:layout_weight="1"
+				android:text="姓名"/>
+
+			<EditText
+				android:id="@+id/doctor_verify_name_et"
+				android:layout_width="0dp"
+				android:layout_height="wrap_content"
+				android:layout_weight="4"
+				android:background="@android:color/transparent"
+				android:hint="请输入你的真实姓名"
+				android:inputType="text"/>
+		</LinearLayout>
+
+		<RelativeLayout
+			android:layout_width="match_parent"
+			android:layout_height="0.5dp"
+			android:layout_marginLeft="@dimen/middle_space"
+			android:layout_marginRight="@dimen/middle_space"
+			android:background="@color/black"/>
+
+		<LinearLayout
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:orientation="horizontal"
+			android:padding="@dimen/middle_space">
+
+			<TextView
+				android:layout_width="0dp"
+				android:layout_height="wrap_content"
+				android:layout_weight="1"
+				android:text="身份证"/>
+
+			<EditText
+				android:id="@+id/doctor_verify_id_et"
+				android:layout_width="0dp"
+				android:layout_height="wrap_content"
+				android:layout_weight="4"
+				android:background="@android:color/transparent"
+				android:hint="请输入你的证件号"
+				android:inputType="numberSigned"/>
+		</LinearLayout>
+
+		<RelativeLayout
+			android:layout_width="match_parent"
+			android:layout_height="0.5dp"
+			android:layout_marginLeft="@dimen/middle_space"
+			android:layout_marginRight="@dimen/middle_space"
+			android:background="@color/black"/>
+
+		<Button
+			android:id="@+id/doctor_verify_next_bt"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_margin="@dimen/middle_space"
+			android:background="@drawable/shape_blue_bg_5r"
+			android:text="@string/commit"
+			android:textColor="@color/white"/>
 	</LinearLayout>
-
-	<RelativeLayout
-		android:layout_width="match_parent"
-		android:layout_height="0.5dp"
-		android:background="@color/black"
-		android:layout_marginLeft="@dimen/middle_space"
-		android:layout_marginRight="@dimen/middle_space"/>
-
-	<Button
-		android:id="@+id/doctor_verify_next_bt"
-		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
-		android:layout_margin="@dimen/middle_space"
-		android:background="@drawable/shape_blue_bg_5r"
-		android:text="@string/commit"
-		android:textColor="@color/white"/>
-</LinearLayout>
+</ScrollView>
