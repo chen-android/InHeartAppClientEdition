@@ -7,7 +7,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 
 import com.cs.networklibrary.http.HttpMethods;
 import com.cs.networklibrary.http.HttpResultFunc;
@@ -46,8 +45,6 @@ public class DoctorVerify1Activity extends AppCompatActivity {
 	ImageView mDoctorVerifyIv;
 	@InjectView(R.id.doctor_verify_next_bt)
 	Button mDoctorVerifyNextBt;
-	@InjectView(R.id.activity_doctor_verify)
-	LinearLayout mActivityDoctorVerify;
 	@InjectView(R.id.doctor_verify_name_et)
 	EditText mDoctorVerifyNameEt;
 	@InjectView(R.id.doctor_verify_id_et)
