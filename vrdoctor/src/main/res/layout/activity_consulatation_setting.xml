@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:orientation="vertical"
+	tools:context="com.medvision.vrdoctor.activity.other.ConsulatationSettingActivity">
+
+	<include layout="@layout/activity_base_title_bar"/>
+
+	<TextView
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:padding="@dimen/middle_space"
+		android:text="设置最低价格"/>
+
+	<LinearLayout
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:orientation="horizontal"
+		android:padding="@dimen/middle_space"
+		android:background="@color/white"
+		android:focusable="true"
+		android:focusableInTouchMode="true">
+
+		<TextView
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:text="￥"
+			android:layout_marginRight="@dimen/small_space"/>
+
+		<EditText
+			android:id="@+id/consulation_setting_et"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:background="@color/white"/>
+	</LinearLayout>
+
+	<Button
+
+		android:id="@+id/consulation_setting_commit_bt"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:background="@drawable/shape_blue_bg_5r"
+		android:layout_margin="@dimen/middle_space"
+		android:text="完成"
+		android:textColor="@color/white"/>
+</LinearLayout>

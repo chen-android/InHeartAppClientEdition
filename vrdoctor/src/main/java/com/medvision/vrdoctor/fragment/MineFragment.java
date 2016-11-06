@@ -12,7 +12,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.medvision.vrdoctor.R;
-import com.medvision.vrdoctor.activity.content.VrVideoActivity;
+import com.medvision.vrdoctor.activity.other.ConsulatationSettingActivity;
 import com.medvision.vrdoctor.activity.other.SettingActivity;
 import com.medvision.vrdoctor.activity.user.CollectionActivity;
 import com.medvision.vrdoctor.activity.user.UserInfoCompleteActivity;
@@ -86,7 +86,7 @@ public class MineFragment extends BaseFragment {
 				startActivity(new Intent(getActivity(), CollectionActivity.class));
 				break;
 			case R.id.mine_my_ask_setting_tv:
-				startActivity(new Intent(getActivity(), VrVideoActivity.class));
+				startActivity(new Intent(getActivity(), ConsulatationSettingActivity.class));
 				break;
 			case R.id.mine_setting_tv:
 				startActivity(new Intent(getActivity(), SettingActivity.class));

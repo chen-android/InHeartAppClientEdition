@@ -16,6 +16,8 @@ import com.cs.common.utils.SystemUtils;
 import com.cs.common.utils.ToastUtil;
 import com.cs.networklibrary.http.HttpMethods;
 import com.cs.networklibrary.subscribers.ProgressSubscriber;
+import com.hyphenate.EMCallBack;
+import com.hyphenate.chat.EMClient;
 import com.medvision.vrdoctor.R;
 import com.medvision.vrdoctor.activity.MainActivity;
 import com.medvision.vrdoctor.beans.User;
@@ -101,9 +103,25 @@ public class LoginActivity extends AppCompatActivity {
 						User user = result.getData();
 						user.setCode(result.getCode());
 						user.setPassword(userReq.getPassword());
-						SpUtils.getInstance().saveUser(user);
-						startActivity(new Intent(LoginActivity.this, MainActivity.class));
-						finish();
+						EMClient.getInstance().login(userReq.getUsername(), userReq.getPassword(), new EMCallBack() {//回调
+							@Override
+							public void onSuccess() {
+								EMClient.getInstance().groupManager().loadAllGroups();
+								EMClient.getInstance().chatManager().loadAllConversations();
+								SpUtils.getInstance().saveUser(user);
+								startActivity(new Intent(LoginActivity.this, MainActivity.class));
+								finish();
+							}
+
+							@Override
+							public void onProgress(int progress, String status) {
+
+							}
+
+							@Override
+							public void onError(int code, String message) {
+							}
+						});
 					} else if (Constant.LOGIN_STATUS_PWD_ERROR.equals(result.getCode())) {
 						ToastUtil.showMessage(LoginActivity.this, result.getMessage());
 					} else if (Constant.LOGIN_STATUS_NO_USER.equals(result.getCode())) {
