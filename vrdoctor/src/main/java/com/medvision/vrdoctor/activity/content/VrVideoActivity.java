@@ -317,7 +317,7 @@ public class VrVideoActivity extends AppCompatActivity implements UVPlayerCallBa
 
 		@Override
 		public boolean isGyroEnabled() {
-			return mMediaplayer != null ? mMediaplayer.isGyroEnabled() : false;
+			return mMediaplayer != null && mMediaplayer.isGyroEnabled();
 		}
 
 		@Override
@@ -328,7 +328,7 @@ public class VrVideoActivity extends AppCompatActivity implements UVPlayerCallBa
 
 		@Override
 		public boolean isDualScreenEnabled() {
-			return mMediaplayer != null ? mMediaplayer.isDualScreenEnabled() : false;
+			return mMediaplayer != null && mMediaplayer.isDualScreenEnabled();
 		}
 
 		@Override

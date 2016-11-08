@@ -48,6 +48,10 @@ public class SpUtils extends SpUtilsBase {
 	}
 
 	public String getToken() {
-		return getUser().getToken();
+		User user = getUser();
+		if (user != null) {
+			return user.getToken();
+		}
+		return "";
 	}
 }

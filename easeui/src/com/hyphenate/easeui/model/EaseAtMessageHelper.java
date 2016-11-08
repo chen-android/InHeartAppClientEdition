@@ -81,10 +81,7 @@ public class EaseAtMessageHelper {
 
 	public boolean containsAtAll(String content) {
 		String atAll = "@" + EaseUI.getInstance().getContext().getString(R.string.all_members);
-		if (content.contains(atAll)) {
-			return true;
-		}
-		return false;
+		return content.contains(atAll);
 	}
 
 	/**

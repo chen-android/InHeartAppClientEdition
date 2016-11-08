@@ -212,7 +212,6 @@ public class VideoController implements View.OnClickListener {
 
 		}
 
-		;
 	};
 
 	private Runnable CacheProRunnable = new Runnable() {
