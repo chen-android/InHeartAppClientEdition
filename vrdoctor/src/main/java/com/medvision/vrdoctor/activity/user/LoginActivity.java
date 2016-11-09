@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -37,6 +38,7 @@ import rx.schedulers.Schedulers;
 public class LoginActivity extends AppCompatActivity {
 
 	private static final int REQUEST_CODE_REGISTER = 0;
+	private static final String TAG = "LOGINACTIVITY";
 
 	@InjectView(R.id.login_username_et)
 	EditText mLoginUsernameEt;
@@ -103,7 +105,7 @@ public class LoginActivity extends AppCompatActivity {
 						User user = result.getData();
 						user.setCode(result.getCode());
 						user.setPassword(userReq.getPassword());
-						EMClient.getInstance().login(userReq.getUsername(), userReq.getPassword(), new EMCallBack() {//回调
+						EMClient.getInstance().login(user.getUsername(),user.getEncryptPw(), new EMCallBack() {//回调
 							@Override
 							public void onSuccess() {
 								EMClient.getInstance().groupManager().loadAllGroups();
@@ -120,6 +122,7 @@ public class LoginActivity extends AppCompatActivity {
 
 							@Override
 							public void onError(int code, String message) {
+								Log.e(TAG, message);
 							}
 						});
 					} else if (Constant.LOGIN_STATUS_PWD_ERROR.equals(result.getCode())) {

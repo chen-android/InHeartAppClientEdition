@@ -1,6 +1,6 @@
 package com.medvision.vrdoctor.application;
 
-import android.app.Application;
+import android.support.multidex.MultiDexApplication;
 
 import com.cs.networklibrary.util.PropertiesUtil;
 import com.hyphenate.chat.EMClient;
@@ -12,7 +12,7 @@ import com.medvision.vrdoctor.utils.SpUtils;
  * Created by Administrator on 2016/9/27 0027.
  */
 
-public class MyApplication extends Application {
+public class MyApplication extends MultiDexApplication {
 
 	@Override
 	public void onCreate() {

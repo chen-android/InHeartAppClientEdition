@@ -12,6 +12,7 @@ import java.io.Serializable;
 public class User implements Parcelable, Serializable {
 	private String uid;
 	private String realname;
+	private String encryptPw;
 	private String password;
 	private String token;
 	private String username;
@@ -39,6 +40,14 @@ public class User implements Parcelable, Serializable {
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+	public String getEncryptPw() {
+		return encryptPw;
+	}
+
+	public void setEncryptPw(String encryptPw) {
+		this.encryptPw = encryptPw;
 	}
 
 	public String getToken() {
@@ -77,6 +86,7 @@ public class User implements Parcelable, Serializable {
 	public void writeToParcel(Parcel dest, int flags) {
 		dest.writeString(this.uid);
 		dest.writeString(this.realname);
+		dest.writeString(this.encryptPw);
 		dest.writeString(this.password);
 		dest.writeString(this.token);
 		dest.writeString(this.username);
@@ -86,6 +96,7 @@ public class User implements Parcelable, Serializable {
 	protected User(Parcel in) {
 		this.uid = in.readString();
 		this.realname = in.readString();
+		this.encryptPw = in.readString();
 		this.password = in.readString();
 		this.token = in.readString();
 		this.username = in.readString();

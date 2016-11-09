@@ -16,6 +16,13 @@ android {
 
         resValue "string", "tray__authority", "${applicationId}.tray"
     }
+
+    sourceSets {
+        main {
+            jniLibs.srcDirs = ['libs']
+        }
+    }
+
     task nativeLibsToJar(type: Zip, description: "create a jar archive of the native libs") {
         destinationDir file("$projectDir/libs")
         baseName "Native_Libs2"
@@ -53,4 +60,5 @@ dependencies {
     compile 'com.jakewharton:butterknife:5.1.1'
     testCompile 'junit:junit:4.12'
     compile 'com.android.support.constraint:constraint-layout:1.0.0-alpha9'
+    compile 'com.android.support:multidex:1.0.1'
 }
