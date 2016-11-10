@@ -99,7 +99,7 @@ public class ContentFragment extends BaseFragment {
 		GridLayoutManager glm = new GridLayoutManager(getContext(), 2, GridLayoutManager.VERTICAL, false);
 		mContentRv.setLayoutManager(glm);
 		mMyContentAdapter = new MyContentAdapter();
-//		mRecyclerAdapterWithHF = new RecyclerAdapterWithHF(mMyContentAdapter);
+		mRecyclerAdapterWithHF = new RecyclerAdapterWithHF(mMyContentAdapter);
 		mContentRv.setAdapter(mRecyclerAdapterWithHF);
 		mContentRv.addItemDecoration(new DividerGridItemDecoration(getContext()).setDividerDrawable(getResources().getDrawable(R.drawable.shape_divider_ststem_bg)));
 		mPtrClassicFrameLayout.setAutoLoadMoreEnable(true);
@@ -188,7 +188,7 @@ public class ContentFragment extends BaseFragment {
 				}));
 	}
 
-	private class MyContentAdapter extends RecyclerView.Adapter<MyContentAdapter.ViewHolder> {
+	private class MyContentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 		private List<HomeContent> datas = new ArrayList<>();
 
 		public void setDatas(List<HomeContent> list) {
@@ -202,21 +202,22 @@ public class ContentFragment extends BaseFragment {
 			this.notifyDataSetChanged();
 		}
 		@Override
-		public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+		public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 			View inflate = View.inflate(parent.getContext(), R.layout.list_item_content, null);
 			inflate.setLayoutParams(new RecyclerView.LayoutParams(RecyclerView.LayoutParams.MATCH_PARENT, RecyclerView.LayoutParams.WRAP_CONTENT));
-			return new ViewHolder(inflate);
+			return new MyContentViewHolder(inflate);
 		}
 
 		@Override
-		public void onBindViewHolder(ViewHolder holder, int position) {
+		public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+			MyContentViewHolder vh = (MyContentViewHolder) holder;
 			HomeContent content = datas.get(position);
-			holder.tv.setText(content.getName());
+			vh.tv.setText(content.getName());
 			Picasso.with(getActivity())
 					.load(content.getCoverPic())
 					.placeholder(R.drawable.icon_img_default)
-					.into(holder.iv);
-			holder.itemView.setOnClickListener(v -> {
+					.into(vh.iv);
+			vh.itemView.setOnClickListener(v -> {
 				if (content.getType() == Constant.CONTENT_TYPE_VIDEO) {
 					Intent intent = new Intent(getActivity(), VrVideoActivity.class);
 					intent.putExtra("contentId", content.getId());
@@ -230,11 +231,11 @@ public class ContentFragment extends BaseFragment {
 			return datas.size();
 		}
 
-		class ViewHolder extends RecyclerView.ViewHolder {
+		class MyContentViewHolder extends RecyclerView.ViewHolder {
 			ImageView iv;
 			TextView tv;
 
-			public ViewHolder(View itemView) {
+			public MyContentViewHolder(View itemView) {
 				super(itemView);
 				iv = (ImageView) itemView.findViewById(R.id.list_item_content_iv);
 				tv = (TextView) itemView.findViewById(R.id.list_item_content_tv);

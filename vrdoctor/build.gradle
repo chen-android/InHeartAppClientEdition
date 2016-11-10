@@ -51,6 +51,7 @@ dependencies {
     compile project(':csnetworklibrary')
     compile project(':multi-image-selector')
     compile project(':easeui')
+    compile 'com.chanven.lib:cptr:1.1.0'
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
