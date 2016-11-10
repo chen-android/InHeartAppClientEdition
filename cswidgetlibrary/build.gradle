@@ -29,7 +29,8 @@ dependencies {
     compile 'de.hdodenhof:circleimageview:2.0.0'
     compile 'com.bigkoo:pickerview:2.0.8'
     compile 'com.bigkoo:convenientbanner:2.0.5'
-    compile 'com.jcodecraeer:xrecyclerview:1.2.7'
+    compile 'com.jcodecraeer:xrecyclerview:1.2.7'//recyclerview下拉上拉刷新
     compile 'jp.wasabeef:blurry:2.0.2'
-    compile 'cn.pedant.sweetalert:library:1.3'
+    compile 'cn.pedant.sweetalert:library:1.3'//sweetalert对话框
+    compile 'com.chanven.lib:cptr:1.1.0'//listview，gridview，recylcerview，下拉，上拉刷新组建
 }

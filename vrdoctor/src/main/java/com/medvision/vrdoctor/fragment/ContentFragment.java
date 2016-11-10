@@ -14,12 +14,15 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.chanven.lib.cptr.PtrClassicFrameLayout;
+import com.chanven.lib.cptr.PtrDefaultHandler;
+import com.chanven.lib.cptr.PtrFrameLayout;
+import com.chanven.lib.cptr.recyclerview.RecyclerAdapterWithHF;
 import com.cs.networklibrary.http.HttpMethods;
 import com.cs.networklibrary.http.HttpResultFunc;
 import com.cs.networklibrary.subscribers.ProgressSubscriber;
 import com.cs.widget.recyclerview.DividerGridItemDecoration;
 import com.cs.widget.recyclerview.RecyclerViewDivider;
-import com.jcodecraeer.xrecyclerview.XRecyclerView;
 import com.medvision.vrdoctor.R;
 import com.medvision.vrdoctor.activity.content.VrVideoActivity;
 import com.medvision.vrdoctor.beans.FilterDisease;
@@ -52,15 +55,18 @@ public class ContentFragment extends BaseFragment {
 	@InjectView(R.id.content_search_et)
 	EditText mContentSearchEt;
 	@InjectView(R.id.content_rv)
-	XRecyclerView mContentRv;
+	RecyclerView mContentRv;
 	@InjectView(R.id.content_bingzhong_bt)
 	Button mContentBingzhongBt;
 	@InjectView(R.id.content_neirong_bt)
 	Button mContentNeirongBt;
 	@InjectView(R.id.content_liaofa_bt)
 	Button mContentLiaofaBt;
+	@InjectView(R.id.content_pcfl)
+	PtrClassicFrameLayout mPtrClassicFrameLayout;
 
 	private MyContentAdapter mMyContentAdapter;
+	private RecyclerAdapterWithHF mRecyclerAdapterWithHF;
 	private ContentService mContentService;
 	private HomeContentReq mHomeContentReq;
 	private int currentPage = 1;
@@ -93,19 +99,18 @@ public class ContentFragment extends BaseFragment {
 		GridLayoutManager glm = new GridLayoutManager(getContext(), 2, GridLayoutManager.VERTICAL, false);
 		mContentRv.setLayoutManager(glm);
 		mMyContentAdapter = new MyContentAdapter();
-		mContentRv.setAdapter(mMyContentAdapter);
-		mContentRv.addItemDecoration(new DividerGridItemDecoration(getContext()).setDividerDrawable(getResources().getDrawable(R.drawable.shape_divider_ststem_bg), true));
-		mContentRv.setLoadingListener(new XRecyclerView.LoadingListener() {
+//		mRecyclerAdapterWithHF = new RecyclerAdapterWithHF(mMyContentAdapter);
+		mContentRv.setAdapter(mRecyclerAdapterWithHF);
+		mContentRv.addItemDecoration(new DividerGridItemDecoration(getContext()).setDividerDrawable(getResources().getDrawable(R.drawable.shape_divider_ststem_bg)));
+		mPtrClassicFrameLayout.setAutoLoadMoreEnable(true);
+		mPtrClassicFrameLayout.setPtrHandler(new PtrDefaultHandler() {
 			@Override
-			public void onRefresh() {
+			public void onRefreshBegin(PtrFrameLayout frame) {
 				requestContent(Constant.REQUEST_REFRESH);
 			}
-
-			@Override
-			public void onLoadMore() {
-				requestContent(Constant.REQUEST_MORE);
-			}
 		});
+
+		mPtrClassicFrameLayout.setOnLoadMoreListener(() -> requestContent(Constant.REQUEST_MORE));
 		requestContentFilter();
 		requestContent(Constant.REQUEST_REFRESH);
 		return view;
@@ -167,8 +172,18 @@ public class ContentFragment extends BaseFragment {
 				.subscribe(new ProgressSubscriber<>(getActivity(), homeContents -> {
 					if (requestType == Constant.REQUEST_REFRESH) {
 						mMyContentAdapter.setDatas(homeContents);
+						mPtrClassicFrameLayout.refreshComplete();
+						if (!mPtrClassicFrameLayout.isLoadMoreEnable()) {
+							mPtrClassicFrameLayout.setLoadMoreEnable(true);
+						}
 					} else if (requestType == Constant.REQUEST_MORE) {
 						mMyContentAdapter.addDatas(homeContents);
+						if (homeContents == null || homeContents.isEmpty()) {
+							mPtrClassicFrameLayout.setLoadMoreEnable(false);
+							mPtrClassicFrameLayout.loadMoreComplete(false);
+						}else{
+							mPtrClassicFrameLayout.loadMoreComplete(true);
+						}
 					}
 				}));
 	}
@@ -188,7 +203,9 @@ public class ContentFragment extends BaseFragment {
 		}
 		@Override
 		public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-			return new ViewHolder(View.inflate(parent.getContext(), R.layout.list_item_content, null));
+			View inflate = View.inflate(parent.getContext(), R.layout.list_item_content, null);
+			inflate.setLayoutParams(new RecyclerView.LayoutParams(RecyclerView.LayoutParams.MATCH_PARENT, RecyclerView.LayoutParams.WRAP_CONTENT));
+			return new ViewHolder(inflate);
 		}
 
 		@Override
@@ -197,6 +214,7 @@ public class ContentFragment extends BaseFragment {
 			holder.tv.setText(content.getName());
 			Picasso.with(getActivity())
 					.load(content.getCoverPic())
+					.placeholder(R.drawable.icon_img_default)
 					.into(holder.iv);
 			holder.itemView.setOnClickListener(v -> {
 				if (content.getType() == Constant.CONTENT_TYPE_VIDEO) {

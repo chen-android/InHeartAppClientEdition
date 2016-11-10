@@ -16,6 +16,10 @@ public class HttpResult<T> implements HttpResultBase<T> {
 		return code;
 	}
 
+	public void setCode(String code) {
+		this.code = code;
+	}
+
 	@Override
 	public String getMessage() {
 		return message;

@@ -19,6 +19,7 @@ import com.cs.networklibrary.http.HttpMethods;
 import com.cs.networklibrary.subscribers.ProgressSubscriber;
 import com.hyphenate.EMCallBack;
 import com.hyphenate.chat.EMClient;
+import com.kaopiz.kprogresshud.KProgressHUD;
 import com.medvision.vrdoctor.R;
 import com.medvision.vrdoctor.activity.MainActivity;
 import com.medvision.vrdoctor.beans.User;
@@ -105,9 +106,16 @@ public class LoginActivity extends AppCompatActivity {
 						User user = result.getData();
 						user.setCode(result.getCode());
 						user.setPassword(userReq.getPassword());
+						KProgressHUD pd = KProgressHUD.create(LoginActivity.this)
+								.setStyle(KProgressHUD.Style.SPIN_INDETERMINATE)
+								.setDimAmount(0.5f)
+								.setAnimationSpeed(2)
+								.setCancellable(false)
+								.show();
 						EMClient.getInstance().login(user.getUsername(),user.getEncryptPw(), new EMCallBack() {//回调
 							@Override
 							public void onSuccess() {
+								pd.dismiss();
 								EMClient.getInstance().groupManager().loadAllGroups();
 								EMClient.getInstance().chatManager().loadAllConversations();
 								SpUtils.getInstance().saveUser(user);
@@ -123,6 +131,7 @@ public class LoginActivity extends AppCompatActivity {
 							@Override
 							public void onError(int code, String message) {
 								Log.e(TAG, message);
+								pd.dismiss();
 							}
 						});
 					} else if (Constant.LOGIN_STATUS_PWD_ERROR.equals(result.getCode())) {
